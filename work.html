@@ -1,33 +1,177 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Work</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>Work | Akash Rawat</title>
+  <meta name="description" content="Work timeline and experience." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="skills.html">Skills</a>
-  <a href="work.html">Work</a>
-  <a href="projects.html">Projects</a>
-  <a href="contact.html">Contact</a>
-</nav>
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Go to home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">
+          <span class="brand-name">Akash Rawat</span>
+          <span class="brand-tag">Portfolio</span>
+        </span>
+      </a>
 
-<section>
-  <h2>My Work & Experience</h2>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
+        <span class="sr-only">Open menu</span>
+        <span class="nav-toggle-lines" aria-hidden="true"></span>
+      </button>
 
-  <p>Currently learning and building personal projects.</p>
+      <nav class="site-nav" id="siteNav" aria-label="Primary">
+        <a href="about.html">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="work.html" class="active">Work</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a class="btn btn-sm btn-ghost" href="#pack2zip">Pack2Zip</a>
+      </nav>
+    </div>
+    <div class="header-glow" aria-hidden="true"></div>
+  </header>
 
-  <ul>
-    <li>Practice Websites</li>
-    <li>Python Programs</li>
-    <li>GitHub Repositories</li>
-    <li>School / Self Projects</li>
-  </ul>
+  <main id="main">
 
+<section class="page-hero">
+  <div class="container reveal">
+    <h1>Work</h1>
+    <p class="muted">Learning timeline. Add internships, freelance, or school work here.</p>
+  </div>
 </section>
 
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Timeline</h2>
+      <p class="muted">Keep entries short. Show what you did and what you learned.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="t-item reveal">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-card">
+          <div class="t-top">
+            <h3>Started building projects</h3>
+            <span class="t-date">2026</span>
+          </div>
+          <p class="muted">
+            Created this portfolio, practiced responsive layout, and improved GitHub workflow.
+          </p>
+          <div class="t-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">GitHub Pages</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-item reveal delay-1">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-card">
+          <div class="t-top">
+            <h3>JavaScript fundamentals</h3>
+            <span class="t-date">Ongoing</span>
+          </div>
+          <p class="muted">
+            DOM manipulation, events, and small UI interactions (menus, scroll reveal, animations).
+          </p>
+          <div class="t-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">DOM</span>
+            <span class="tag">UI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-item reveal delay-2">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-card">
+          <div class="t-top">
+            <h3>Next: real-world projects</h3>
+            <span class="t-date">Next</span>
+          </div>
+          <p class="muted">
+            Add 2–3 projects with real users: a small website, a tool, or a useful app.
+          </p>
+          <div class="t-tags">
+            <span class="tag">Portfolio</span>
+            <span class="tag">Practice</span>
+            <span class="tag">Growth</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="pack2zip">
+  <div class="container">
+    <div class="pack2zip-card reveal">
+      <div class="pack2zip-left">
+        <div class="badge">Tool</div>
+        <h3 class="pack2zip-title">Pack2Zip Converter</h3>
+        <p class="pack2zip-text">Quick card with the link for easy access.</p>
+        <div class="pack2zip-actions">
+          <a class="btn" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noopener noreferrer">Open Pack2Zip</a>
+          <a class="btn btn-ghost" href="projects.html#tools">See Tools</a>
+        </div>
+      </div>
+      <div class="pack2zip-right" aria-hidden="true">
+        <div class="motion-lines"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <div class="footer-title">Akash Rawat</div>
+            <div class="footer-subtitle">Built with HTML, CSS, JS • GitHub Pages</div>
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="projects.html">Projects</a>
+          <a href="contact.html">Contact</a>
+          <a href="#top">Back to top</a>
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <div class="mini-card">
+          <div class="mini-card-title">Quick note</div>
+          <p class="mini-card-text">
+            Replace the placeholder links, projects, and contact info with your real details.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>© 2026 Akash Rawat</span>
+        <span class="dot" aria-hidden="true">•</span>
+        <span class="muted">Made for akbyte-was-taken.github.io</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

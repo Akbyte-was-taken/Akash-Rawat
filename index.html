@@ -1,37 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Akash | Portfolio</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>Akash Rawat | Portfolio</title>
+  <meta name="description" content="Akash Rawat portfolio: projects, skills, work, and contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<header>
-  <h1>Akash Rawat</h1>
-  <p>Learning Coding | Future Developer</p>
-</header>
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Go to home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">
+          <span class="brand-name">Akash Rawat</span>
+          <span class="brand-tag">Portfolio</span>
+        </span>
+      </a>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="skills.html">Skills</a>
-  <a href="work.html">Work</a>
-  <a href="projects.html">Projects</a>
-  <a href="contact.html">Contact</a>
-</nav>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
+        <span class="sr-only">Open menu</span>
+        <span class="nav-toggle-lines" aria-hidden="true"></span>
+      </button>
 
-<section>
-  <h2>Welcome 👋</h2>
-  <p>
-    This is my personal portfolio website where I share my skills,
-    projects, and learning journey.
-  </p>
+      <nav class="site-nav" id="siteNav" aria-label="Primary">
+        <a href="about.html">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="work.html">Work</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a class="btn btn-sm btn-ghost" href="#pack2zip">Pack2Zip</a>
+      </nav>
+    </div>
+    <div class="header-glow" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy reveal">
+      <p class="kicker">Hi, I’m <span class="accent">Akash Rawat</span></p>
+      <h1 class="hero-title">
+        I build clean websites, learn fast, and ship projects.
+      </h1>
+      <p class="hero-subtitle">
+        This site is a simple, professional portfolio you can keep improving as you learn:
+        new skills, new projects, and real work.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn" href="projects.html">See Projects</a>
+        <a class="btn btn-ghost" href="contact.html">Contact</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">HTML</div>
+          <div class="stat-label">Structure</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">CSS</div>
+          <div class="stat-label">Design</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">JS</div>
+          <div class="stat-label">Interactivity</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-card reveal delay-1" aria-label="Profile card">
+      <div class="profile-card">
+        <div class="profile-top">
+          <div class="avatar" aria-hidden="true">
+            <span class="avatar-ring"></span>
+            <span class="avatar-core"></span>
+          </div>
+          <div>
+            <div class="profile-name">Akash Rawat</div>
+            <div class="profile-role">Student • Learning Developer</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="profile-grid">
+          <div class="pill">Web Dev</div>
+          <div class="pill">Python</div>
+          <div class="pill">GitHub</div>
+          <div class="pill">Linux</div>
+          <div class="pill">UI</div>
+          <div class="pill">Problem Solving</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="profile-actions">
+          <a class="btn btn-sm" href="about.html">About Me</a>
+          <a class="btn btn-sm btn-ghost" href="skills.html">Skills</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="grid-lines"></div>
+  </div>
 </section>
 
-<footer>
-  © 2026 Akash Rawat
-</footer>
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>What I do</h2>
+      <p class="muted">
+        A focused set of skills, done well. Simple, fast, and clean.
+      </p>
+    </div>
 
+    <div class="cards">
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">⚡</div>
+        <h3>Fast, responsive UI</h3>
+        <p>
+          Layouts that look good on mobile and desktop. No heavy frameworks needed.
+        </p>
+        <ul class="checklist">
+          <li>Mobile-first layout</li>
+          <li>Accessible navigation</li>
+          <li>Performance-friendly animations</li>
+        </ul>
+      </article>
+
+      <article class="card reveal delay-1">
+        <div class="card-icon" aria-hidden="true">🧠</div>
+        <h3>Learning + building</h3>
+        <p>
+          I learn by shipping. Small projects, then bigger ones. Consistent progress.
+        </p>
+        <ul class="checklist">
+          <li>Practice projects</li>
+          <li>Clear code structure</li>
+          <li>Version control</li>
+        </ul>
+      </article>
+
+      <article class="card reveal delay-2">
+        <div class="card-icon" aria-hidden="true">🛠️</div>
+        <h3>Real tools</h3>
+        <p>
+          The basics that matter: Git, debugging, and writing code that’s easy to maintain.
+        </p>
+        <ul class="checklist">
+          <li>GitHub workflow</li>
+          <li>Debugging habits</li>
+          <li>Reusable components</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="pack2zip">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Pack2Zip</h2>
+      <p class="muted">
+        Quick access card (custom). Use it when you need to convert a pack to a ZIP.
+      </p>
+    </div>
+
+    <div class="pack2zip-card reveal">
+      <div class="pack2zip-left">
+        <div class="badge">Tool</div>
+        <h3 class="pack2zip-title">Pack2Zip Converter</h3>
+        <p class="pack2zip-text">
+          Clean link card with a short explanation. Opens in a new tab.
+        </p>
+        <div class="pack2zip-actions">
+          <a class="btn" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noopener noreferrer">
+            Open Pack2Zip
+          </a>
+          <a class="btn btn-ghost" href="projects.html#tools">See Tools</a>
+        </div>
+      </div>
+
+      <div class="pack2zip-right" aria-hidden="true">
+        <div class="code-window">
+          <div class="code-top">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="code-title">pack2zip.dpdns.org</span>
+          </div>
+          <pre class="code-body"><code>
+1. Choose your .mrpack file
+2. Convert to .zip
+3. Download and use it
+          </code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Featured projects</h2>
+      <p class="muted">
+        Add your best projects here. Keep it short and real.
+      </p>
+    </div>
+
+    <div class="projects-grid">
+      <article class="project reveal">
+        <div class="project-top">
+          <div class="project-badge">Website</div>
+          <h3>Portfolio Website</h3>
+          <p class="muted">A clean personal site built with HTML, CSS, and JS.</p>
+        </div>
+        <div class="project-meta">
+          <span class="tag">Responsive</span>
+          <span class="tag">Animations</span>
+          <span class="tag">Accessible</span>
+        </div>
+        <div class="project-actions">
+          <a class="btn btn-sm" href="projects.html">Details</a>
+          <a class="btn btn-sm btn-ghost" href="https://github.com/" target="_blank" rel="noopener noreferrer">Repo</a>
+        </div>
+      </article>
+
+      <article class="project reveal delay-1">
+        <div class="project-top">
+          <div class="project-badge">Python</div>
+          <h3>Mini Utilities</h3>
+          <p class="muted">Small scripts that automate tiny tasks while I learn.</p>
+        </div>
+        <div class="project-meta">
+          <span class="tag">CLI</span>
+          <span class="tag">Basics</span>
+          <span class="tag">Practice</span>
+        </div>
+        <div class="project-actions">
+          <a class="btn btn-sm" href="projects.html">Details</a>
+          <a class="btn btn-sm btn-ghost" href="https://github.com/" target="_blank" rel="noopener noreferrer">Repo</a>
+        </div>
+      </article>
+
+      <article class="project reveal delay-2">
+        <div class="project-top">
+          <div class="project-badge">Tools</div>
+          <h3>Learning Setup</h3>
+          <p class="muted">VS Code setup, extensions, and workflows I use daily.</p>
+        </div>
+        <div class="project-meta">
+          <span class="tag">VS Code</span>
+          <span class="tag">Git</span>
+          <span class="tag">Notes</span>
+        </div>
+        <div class="project-actions">
+          <a class="btn btn-sm" href="projects.html#tools">Details</a>
+          <a class="btn btn-sm btn-ghost" href="work.html">Timeline</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="center reveal" style="margin-top: 26px;">
+      <a class="btn btn-ghost" href="projects.html">View all projects</a>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <div class="footer-title">Akash Rawat</div>
+            <div class="footer-subtitle">Built with HTML, CSS, JS • GitHub Pages</div>
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="projects.html">Projects</a>
+          <a href="contact.html">Contact</a>
+          <a href="#top">Back to top</a>
+        </div>
+      </div>
+
+    
+            
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>© 2026 Akash Rawat</span>
+        <span class="dot" aria-hidden="true"></span>
+        
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

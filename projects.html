@@ -1,39 +1,191 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Projects</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>Projects | Akash Rawat</title>
+  <meta name="description" content="Projects and tools." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="skills.html">Skills</a>
-  <a href="work.html">Work</a>
-  <a href="projects.html">Projects</a>
-  <a href="contact.html">Contact</a>
-</nav>
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Go to home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">
+          <span class="brand-name">Akash Rawat</span>
+          <span class="brand-tag">Portfolio</span>
+        </span>
+      </a>
 
-<section>
-  <h2>My Projects</h2>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
+        <span class="sr-only">Open menu</span>
+        <span class="nav-toggle-lines" aria-hidden="true"></span>
+      </button>
 
-  <div class="card">
-    <h3>Portfolio Website</h3>
-    <p>This personal website built using HTML & CSS.</p>
+      <nav class="site-nav" id="siteNav" aria-label="Primary">
+        <a href="about.html">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="work.html">Work</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a class="btn btn-sm btn-ghost" href="#pack2zip">Pack2Zip</a>
+      </nav>
+    </div>
+    <div class="header-glow" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+
+<section class="page-hero">
+  <div class="container reveal">
+    <h1>Projects</h1>
+    <p class="muted">Real work matters more than big claims. Add links and screenshots.</p>
   </div>
-
-  <div class="card">
-    <h3>Python Tools</h3>
-    <p>Small scripts for automation and learning.</p>
-  </div>
-
-  <div class="card">
-    <h3>GitHub Repos</h3>
-    <p>Open-source practice projects.</p>
-  </div>
-
 </section>
 
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Projects</h2>
+      <p class="muted">Replace placeholders with your real GitHub repo links.</p>
+    </div>
+
+    <div class="projects-list">
+      <article class="project-wide reveal">
+        <div class="pw-left">
+          <div class="project-badge">Website</div>
+          <h3>Portfolio Website</h3>
+          <p class="muted">
+            A modern, responsive multi-page portfolio with animations, accessible navigation,
+            and clean components.
+          </p>
+          <div class="t-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JS</span>
+          </div>
+        </div>
+        <div class="pw-right">
+          <a class="btn btn-sm" href="index.html">Live</a>
+          <a class="btn btn-sm btn-ghost" href="https://github.com/" target="_blank" rel="noopener noreferrer">Repo</a>
+        </div>
+      </article>
+
+      <article class="project-wide reveal delay-1" id="tools">
+        <div class="pw-left">
+          <div class="project-badge">Tools</div>
+          <h3>Useful Tools</h3>
+          <p class="muted">
+            A place to save useful links for my workflow and learning (like Pack2Zip).
+          </p>
+          <div class="t-tags">
+            <span class="tag">Bookmarks</span>
+            <span class="tag">Workflow</span>
+            <span class="tag">Learning</span>
+          </div>
+        </div>
+        <div class="pw-right">
+          <a class="btn btn-sm" href="#pack2zip">Pack2Zip</a>
+          <a class="btn btn-sm btn-ghost" href="contact.html">Suggest Tool</a>
+        </div>
+      </article>
+
+      <article class="project-wide reveal delay-2">
+        <div class="pw-left">
+          <div class="project-badge">Python</div>
+          <h3>Mini Utilities (WIP)</h3>
+          <p class="muted">
+            Small scripts to practice file handling, automation, and basic CLI apps.
+          </p>
+          <div class="t-tags">
+            <span class="tag">Python</span>
+            <span class="tag">CLI</span>
+            <span class="tag">Practice</span>
+          </div>
+        </div>
+        <div class="pw-right">
+          <a class="btn btn-sm btn-ghost" href="skills.html">Skills</a>
+          <a class="btn btn-sm" href="work.html">Timeline</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="pack2zip">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Pack2Zip</h2>
+      <p class="muted">Custom card with a strong CTA button.</p>
+    </div>
+
+    <div class="pack2zip-card reveal">
+      <div class="pack2zip-left">
+        <div class="badge">Tool</div>
+        <h3 class="pack2zip-title">Pack2Zip Converter</h3>
+        <p class="pack2zip-text">
+          Convert .mrpack to .zip quickly. Handy when you want to explore or share packs.
+        </p>
+        <div class="pack2zip-actions">
+          <a class="btn" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noopener noreferrer">Open Pack2Zip</a>
+          <a class="btn btn-ghost" href="index.html">Home</a>
+        </div>
+      </div>
+      <div class="pack2zip-right" aria-hidden="true">
+        <div class="spark"></div>
+        <div class="spark s2"></div>
+        <div class="spark s3"></div>
+        <div class="spark s4"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <div class="footer-title">Akash Rawat</div>
+            <div class="footer-subtitle">Built with HTML, CSS, JS • GitHub Pages</div>
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="projects.html">Projects</a>
+          <a href="contact.html">Contact</a>
+          <a href="#top">Back to top</a>
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <div class="mini-card">
+          <div class="mini-card-title">Quick note</div>
+          <p class="mini-card-text">
+            Replace the placeholder links, projects, and contact info with your real details.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>© 2026 Akash Rawat</span>
+        <span class="dot" aria-hidden="true">•</span>
+        <span class="muted">Made for akbyte-was-taken.github.io</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

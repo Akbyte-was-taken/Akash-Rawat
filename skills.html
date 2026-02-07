@@ -1,33 +1,193 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Skills</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>Skills | Akash Rawat</title>
+  <meta name="description" content="Skills: HTML, CSS, JavaScript, Python, GitHub, Linux." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="skills.html">Skills</a>
-  <a href="work.html">Work</a>
-  <a href="projects.html">Projects</a>
-  <a href="contact.html">Contact</a>
-</nav>
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Go to home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">
+          <span class="brand-name">Akash Rawat</span>
+          <span class="brand-tag">Portfolio</span>
+        </span>
+      </a>
 
-<section>
-  <h2>My Skills</h2>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
+        <span class="sr-only">Open menu</span>
+        <span class="nav-toggle-lines" aria-hidden="true"></span>
+      </button>
 
-  <ul>
-    <li>HTML</li>
-    <li>CSS</li>
-    <li>JavaScript</li>
-    <li>Python</li>
-    <li>Git & GitHub</li>
-    <li>Linux Basics</li>
-  </ul>
+      <nav class="site-nav" id="siteNav" aria-label="Primary">
+        <a href="about.html">About</a>
+        <a href="skills.html" class="active">Skills</a>
+        <a href="work.html">Work</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a class="btn btn-sm btn-ghost" href="#pack2zip">Pack2Zip</a>
+      </nav>
+    </div>
+    <div class="header-glow" aria-hidden="true"></div>
+  </header>
 
+  <main id="main">
+
+<section class="page-hero">
+  <div class="container reveal">
+    <h1>Skills</h1>
+    <p class="muted">What I’m good at now, and what I’m improving.</p>
+  </div>
 </section>
 
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Core skills</h2>
+      <p class="muted">Simple list + progress bars. You can edit these anytime.</p>
+    </div>
+
+    <div class="skill-grid">
+      <div class="skill-card reveal">
+        <div class="skill-top">
+          <h3>HTML</h3>
+          <span class="skill-level">Strong basics</span>
+        </div>
+        <div class="bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+          <span style="width:75%"></span>
+        </div>
+        <p class="muted">Semantic tags, clean structure, accessible markup.</p>
+      </div>
+
+      <div class="skill-card reveal delay-1">
+        <div class="skill-top">
+          <h3>CSS</h3>
+          <span class="skill-level">Improving</span>
+        </div>
+        <div class="bar" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100">
+          <span style="width:68%"></span>
+        </div>
+        <p class="muted">Flexbox, Grid, responsive design, clean UI.</p>
+      </div>
+
+      <div class="skill-card reveal delay-2">
+        <div class="skill-top">
+          <h3>JavaScript</h3>
+          <span class="skill-level">Learning</span>
+        </div>
+        <div class="bar" role="progressbar" aria-valuenow="52" aria-valuemin="0" aria-valuemax="100">
+          <span style="width:52%"></span>
+        </div>
+        <p class="muted">DOM, events, basic logic and small interactive features.</p>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-top">
+          <h3>Python</h3>
+          <span class="skill-level">Learning</span>
+        </div>
+        <div class="bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
+          <span style="width:55%"></span>
+        </div>
+        <p class="muted">Basic scripts, file handling, and problem practice.</p>
+      </div>
+
+      <div class="skill-card reveal delay-1">
+        <div class="skill-top">
+          <h3>Git & GitHub</h3>
+          <span class="skill-level">Good basics</span>
+        </div>
+        <div class="bar" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100">
+          <span style="width:62%"></span>
+        </div>
+        <p class="muted">Commits, branches, GitHub Pages, repo organization.</p>
+      </div>
+
+      <div class="skill-card reveal delay-2">
+        <div class="skill-top">
+          <h3>Linux Basics</h3>
+          <span class="skill-level">Basics</span>
+        </div>
+        <div class="bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+          <span style="width:45%"></span>
+        </div>
+        <p class="muted">Terminal commands, files, permissions, basic troubleshooting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="pack2zip">
+  <div class="container">
+    <div class="pack2zip-card reveal">
+      <div class="pack2zip-left">
+        <div class="badge">Tool</div>
+        <h3 class="pack2zip-title">Pack2Zip Converter</h3>
+        <p class="pack2zip-text">Use this when you need to convert packs to ZIP.</p>
+        <div class="pack2zip-actions">
+          <a class="btn" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noopener noreferrer">Open Pack2Zip</a>
+          <a class="btn btn-ghost" href="projects.html#tools">See Tools</a>
+        </div>
+      </div>
+      <div class="pack2zip-right" aria-hidden="true">
+        <div class="progress-rings">
+          <div class="ring r1"></div>
+          <div class="ring r2"></div>
+          <div class="ring r3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <div class="footer-title">Akash Rawat</div>
+            <div class="footer-subtitle">Built with HTML, CSS, JS • GitHub Pages</div>
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="projects.html">Projects</a>
+          <a href="contact.html">Contact</a>
+          <a href="#top">Back to top</a>
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <div class="mini-card">
+          <div class="mini-card-title">Quick note</div>
+          <p class="mini-card-text">
+            Replace the placeholder links, projects, and contact info with your real details.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>© 2026 Akash Rawat</span>
+        <span class="dot" aria-hidden="true">•</span>
+        <span class="muted">Made for akbyte-was-taken.github.io</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

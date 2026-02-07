@@ -1,34 +1,174 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>About Me</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>About | Akash Rawat</title>
+  <meta name="description" content="About Akash Rawat: learning journey, goals, and focus." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="skills.html">Skills</a>
-  <a href="work.html">Work</a>
-  <a href="projects.html">Projects</a>
-  <a href="contact.html">Contact</a>
-</nav>
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Go to home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">
+          <span class="brand-name">Akash Rawat</span>
+          <span class="brand-tag">Portfolio</span>
+        </span>
+      </a>
 
-<section>
-  <h2>About Me</h2>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
+        <span class="sr-only">Open menu</span>
+        <span class="nav-toggle-lines" aria-hidden="true"></span>
+      </button>
 
-  <p>
-    Hi, I'm Akash Rawat. I am learning programming and web development.
-    My goal is to become a professional software developer.
-  </p>
+      <nav class="site-nav" id="siteNav" aria-label="Primary">
+        <a href="about.html" class="active">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="work.html">Work</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a class="btn btn-sm btn-ghost" href="#pack2zip">Pack2Zip</a>
+      </nav>
+    </div>
+    <div class="header-glow" aria-hidden="true"></div>
+  </header>
 
-  <p>
-    I enjoy building websites, learning new technologies,
-    and solving problems.
-  </p>
+  <main id="main">
 
+<section class="page-hero">
+  <div class="container reveal">
+    <h1>About</h1>
+    <p class="muted">A short story, clear goals, and what I’m learning right now.</p>
+  </div>
 </section>
 
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div class="reveal">
+        <h2>Who I am</h2>
+        <p>
+          I’m Akash Rawat. I’m learning coding and building projects to get better every week.
+          I like web development because it’s visual and practical: you can create something real quickly.
+        </p>
+        <p>
+          My focus is to learn the fundamentals first, then build real projects that people can use.
+        </p>
+
+        <div class="info-cards">
+          <div class="info reveal">
+            <div class="info-title">Location</div>
+            <div class="info-value">India</div>
+          </div>
+          <div class="info reveal delay-1">
+            <div class="info-title">Focus</div>
+            <div class="info-value">Web Dev + Python</div>
+          </div>
+          <div class="info reveal delay-2">
+            <div class="info-title">Goal</div>
+            <div class="info-value">Strong portfolio</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal delay-1">
+        <div class="panel">
+          <h3>What I’m learning</h3>
+          <ul class="checklist">
+            <li>Responsive layout (mobile-first)</li>
+            <li>JavaScript basics (DOM, events)</li>
+            <li>Git and GitHub workflow</li>
+            <li>Problem solving and clean code</li>
+          </ul>
+
+          <div class="divider"></div>
+
+          <h3>What I value</h3>
+          <ul class="checklist">
+            <li>Simple designs that look professional</li>
+            <li>Readable code and good structure</li>
+            <li>Consistent practice</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="pack2zip">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Pack2Zip Card</h2>
+      <p class="muted">Same custom card available on every page.</p>
+    </div>
+    <div class="pack2zip-card reveal">
+      <div class="pack2zip-left">
+        <div class="badge">Tool</div>
+        <h3 class="pack2zip-title">Pack2Zip Converter</h3>
+        <p class="pack2zip-text">Convert mrpack to zip quickly using this tool.</p>
+        <div class="pack2zip-actions">
+          <a class="btn" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noopener noreferrer">Open Pack2Zip</a>
+          <a class="btn btn-ghost" href="projects.html#tools">See Tools</a>
+        </div>
+      </div>
+      <div class="pack2zip-right" aria-hidden="true">
+        <div class="shine"></div>
+        <div class="stack">
+          <div class="stack-card"></div>
+          <div class="stack-card"></div>
+          <div class="stack-card"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <div class="footer-title">Akash Rawat</div>
+            <div class="footer-subtitle">Built with HTML, CSS, JS • GitHub Pages</div>
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="projects.html">Projects</a>
+          <a href="contact.html">Contact</a>
+          <a href="#top">Back to top</a>
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <div class="mini-card">
+          <div class="mini-card-title">Quick note</div>
+          <p class="mini-card-text">
+            Replace the placeholder links, projects, and contact info with your real details.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>© 2026 Akash Rawat</span>
+        <span class="dot" aria-hidden="true">•</span>
+        <span class="muted">Made for akbyte-was-taken.github.io</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
