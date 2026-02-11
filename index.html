@@ -1,320 +1,1432 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0b1020" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b1220" />
   <title>Akash Rawat | Portfolio</title>
-  <meta name="description" content="Akash Rawat portfolio: projects, skills, work, and contact." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <meta name="description" content="Akash Rawat — Coder who likes web development. Portfolio, skills, projects, and contact." />
+
+  <style>
+    :root{
+      --bg:#070b14;
+      --panel:#0b1220;
+      --panel2:#0d1629;
+      --text:#e8eefc;
+      --muted:#a8b4d6;
+      --brand:#6ee7ff;
+      --brand2:#7c5cff;
+      --ok:#4ade80;
+      --warn:#fbbf24;
+      --danger:#fb7185;
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+      --ring: 0 0 0 2px rgba(110,231,255,.20), 0 0 0 10px rgba(124,92,255,.10);
+      --radius: 18px;
+      --radius2: 24px;
+      --max: 1120px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background: radial-gradient(1200px 700px at 20% -10%, rgba(124,92,255,.28), transparent 55%),
+                  radial-gradient(900px 600px at 90% 10%, rgba(110,231,255,.22), transparent 50%),
+                  radial-gradient(900px 600px at 10% 75%, rgba(110,231,255,.12), transparent 52%),
+                  linear-gradient(180deg, #050814, #070b14 45%, #060912);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+    button{font-family:inherit}
+
+    /* Background canvas */
+    #bgCanvas{
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    /* Glow blobs */
+    .blob{
+      position:fixed;
+      filter: blur(50px);
+      opacity:.35;
+      z-index:-3;
+      pointer-events:none;
+      mix-blend-mode:screen;
+      animation: drift 14s ease-in-out infinite;
+    }
+    .blob.b1{width:480px;height:480px;left:-140px;top:120px;background:radial-gradient(circle at 30% 30%, rgba(110,231,255,.9), transparent 60%);}
+    .blob.b2{width:520px;height:520px;right:-180px;top:40px;background:radial-gradient(circle at 40% 40%, rgba(124,92,255,.9), transparent 62%); animation-duration: 18s;}
+    .blob.b3{width:520px;height:520px;left:20%;bottom:-220px;background:radial-gradient(circle at 35% 35%, rgba(110,231,255,.55), transparent 62%); animation-duration: 20s;}
+    @keyframes drift{
+      0%,100%{transform: translate3d(0,0,0) scale(1)}
+      50%{transform: translate3d(40px,-28px,0) scale(1.05)}
+    }
+
+    /* Layout */
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px;}
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,11,20,.55);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      height:70px;
+      gap:12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 210px;
+    }
+    .logo{
+      width:38px;height:38px;border-radius:12px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(110,231,255,.9), transparent 62%),
+        radial-gradient(circle at 70% 70%, rgba(124,92,255,.9), transparent 62%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      box-shadow: 0 10px 40px rgba(110,231,255,.10), 0 8px 30px rgba(124,92,255,.10);
+      border: 1px solid rgba(255,255,255,.10);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: conic-gradient(from 180deg, rgba(110,231,255,.0), rgba(110,231,255,.5), rgba(124,92,255,.55), rgba(110,231,255,.0));
+      animation: spin 6s linear infinite;
+      opacity:.7;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .brandText{display:flex;flex-direction:column;line-height:1.1}
+    .brandText strong{font-size:14px;letter-spacing:.4px}
+    .brandText span{font-size:12px;color:var(--muted)}
+    .links{
+      display:flex;
+      gap:6px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .links a{
+      font-size:13px;
+      color:var(--muted);
+      padding:10px 10px;
+      border-radius:12px;
+      transition: all .2s ease;
+      border:1px solid transparent;
+      position:relative;
+    }
+    .links a:hover{
+      color:var(--text);
+      background: rgba(255,255,255,.04);
+      border-color: rgba(255,255,255,.08);
+    }
+    .links a.active{
+      color:var(--text);
+      background: rgba(110,231,255,.06);
+      border-color: rgba(110,231,255,.18);
+      box-shadow: 0 0 0 6px rgba(110,231,255,.06);
+    }
+
+    .ctaRow{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-left: 10px;
+    }
+    .btn{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:14px;
+      font-size:13px;
+      cursor:pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.06);}
+    .btn:active{transform: translateY(0px) scale(.98);}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(110,231,255,.16), rgba(124,92,255,.16));
+      border-color: rgba(110,231,255,.22);
+      box-shadow: 0 14px 40px rgba(110,231,255,.08), 0 12px 38px rgba(124,92,255,.08);
+    }
+    .btn.primary:hover{border-color: rgba(110,231,255,.30); background: linear-gradient(135deg, rgba(110,231,255,.20), rgba(124,92,255,.20));}
+    .dot{
+      width:8px;height:8px;border-radius:999px;background:var(--ok);
+      box-shadow: 0 0 0 6px rgba(74,222,128,.12);
+    }
+
+    /* Mobile nav button */
+    .hamburger{
+      display:none;
+      width:44px;height:44px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      cursor:pointer;
+    }
+    .hamburger svg{width:18px;height:18px}
+    .mobilePanel{
+      display:none;
+      padding: 12px 0 18px;
+      border-top:1px solid rgba(255,255,255,.06);
+    }
+    .mobilePanel .links{justify-content:flex-start}
+    .mobilePanel .ctaRow{margin:12px 0 0; justify-content:flex-start}
+
+    /* Sections */
+    section{padding: 82px 0;}
+    .hero{padding: 62px 0 70px;}
+    .gridHero{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+
+    .card{
+      border:1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card:before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(600px 220px at 20% 0%, rgba(110,231,255,.16), transparent 60%),
+                  radial-gradient(560px 240px at 100% 30%, rgba(124,92,255,.14), transparent 60%);
+      pointer-events:none;
+    }
+    .cardInner{position:relative; padding: 22px;}
+    .badge{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:8px 12px;
+      border-radius:999px;
+      width: fit-content;
+    }
+    .ping{
+      width:8px;height:8px;border-radius:999px;
+      background: var(--brand);
+      box-shadow: 0 0 0 8px rgba(110,231,255,.12);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{transform:scale(.95); opacity:.95}
+      50%{transform:scale(1.15); opacity:.75}
+    }
+
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height:1.08;
+      letter-spacing:-.5px;
+    }
+    .sub{
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+      margin: 0 0 18px;
+      max-width: 62ch;
+    }
+    .accent{
+      background: linear-gradient(90deg, var(--brand), var(--brand2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .heroActions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      margin-top: 18px;
+    }
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top: 18px;
+    }
+    .chip{
+      font-size:12px;
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+    }
+    .chip b{color:var(--text); font-weight:600}
+    .spark{
+      width:10px;height:10px;border-radius:4px;
+      background: linear-gradient(135deg, rgba(110,231,255,.9), rgba(124,92,255,.9));
+      box-shadow: 0 8px 26px rgba(110,231,255,.16), 0 10px 26px rgba(124,92,255,.10);
+    }
+
+    /* Right hero card */
+    .profile{
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+      height:100%;
+    }
+    .avatar{
+      height: 120px;
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(90px 90px at 30% 35%, rgba(110,231,255,.55), transparent 60%),
+        radial-gradient(120px 120px at 70% 65%, rgba(124,92,255,.55), transparent 62%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      position:relative;
+      overflow:hidden;
+    }
+    .avatar:after{
+      content:"";
+      position:absolute; inset:-60px;
+      background: radial-gradient(circle at 40% 20%, rgba(255,255,255,.20), transparent 40%),
+                  radial-gradient(circle at 60% 80%, rgba(255,255,255,.12), transparent 45%);
+      transform: rotate(12deg);
+      opacity:.55;
+    }
+    .profile .meta{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+    }
+    .kpi{
+      padding: 12px 12px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .kpi span{color:var(--muted); font-size:12px}
+    .kpi strong{font-size:13px}
+    .kpi .mini{
+      font-size:11px;color:rgba(232,238,252,.8);
+      border:1px solid rgba(110,231,255,.20);
+      background: rgba(110,231,255,.06);
+      padding:6px 10px;border-radius:999px;
+    }
+    .quickLinks{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .q{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .q:hover{transform: translateY(-2px); border-color: rgba(255,255,255,.14); background: rgba(255,255,255,.04);}
+    .q .left{display:flex; flex-direction:column; gap:2px}
+    .q .left b{font-size:13px}
+    .q .left small{font-size:12px; color:var(--muted)}
+    .arrow{
+      width:28px;height:28px;border-radius:10px;
+      border:1px solid rgba(255,255,255,.10);
+      display:grid;place-items:center;
+      background: rgba(255,255,255,.03);
+    }
+
+    /* Section headings */
+    .sectionTitle{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing: -.2px;
+    }
+    .sectionTitle p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+      max-width: 52ch;
+    }
+
+    /* Skills */
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .skillCard{
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding: 16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .skillCard:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(500px 160px at 10% 0%, rgba(110,231,255,.12), transparent 60%),
+                  radial-gradient(500px 160px at 100% 30%, rgba(124,92,255,.10), transparent 62%);
+      pointer-events:none;
+    }
+    .skillCard > *{position:relative}
+    .skillCard h3{
+      margin: 0 0 8px;
+      font-size: 14px;
+      letter-spacing:.2px;
+    }
+    .bar{
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+    }
+    .fill{
+      height:100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(110,231,255,.95), rgba(124,92,255,.95));
+      box-shadow: 0 12px 40px rgba(110,231,255,.14), 0 12px 40px rgba(124,92,255,.10);
+      transition: width 1.2s cubic-bezier(.2,.9,.2,1);
+    }
+    .skillMeta{
+      margin-top: 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    /* Projects */
+    .projects{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    .projectCard{
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius2);
+      overflow:hidden;
+      position:relative;
+      min-height: 250px;
+    }
+    .projectCard:before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(520px 200px at 20% 0%, rgba(110,231,255,.16), transparent 60%),
+        radial-gradient(520px 220px at 100% 45%, rgba(124,92,255,.14), transparent 60%);
+      pointer-events:none;
+    }
+    .projectInner{position:relative; padding:18px;}
+    .projectTop{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      justify-content:space-between;
+    }
+    .tag{
+      font-size:11px;
+      color: rgba(232,238,252,.9);
+      background: rgba(110,231,255,.06);
+      border: 1px solid rgba(110,231,255,.18);
+      padding: 6px 10px;
+      border-radius: 999px;
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+    }
+    .tag .pill{width:8px;height:8px;border-radius:999px;background:var(--brand)}
+    .projectTitle{
+      margin: 10px 0 6px;
+      font-size: 18px;
+      letter-spacing:-.2px;
+    }
+    .projectDesc{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.7;
+      max-width: 70ch;
+    }
+    .projectActions{
+      display:flex;
+      gap:10px;
+      margin-top: 14px;
+      flex-wrap:wrap;
+    }
+    .btn.small{padding: 9px 11px; border-radius: 14px; font-size: 13px;}
+    .btn.ghost{background: rgba(255,255,255,.03);}
+    .preview{
+      margin-top: 16px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      overflow:hidden;
+    }
+    .previewHeader{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 10px 12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background: rgba(7,11,20,.35);
+      color: var(--muted);
+      font-size:12px;
+      gap:10px;
+    }
+    .dots{display:flex; gap:6px; align-items:center}
+    .dots i{width:10px;height:10px;border-radius:999px;display:inline-block;background: rgba(255,255,255,.12)}
+    .dots i:nth-child(1){background: rgba(251,113,133,.75)}
+    .dots i:nth-child(2){background: rgba(251,191,36,.75)}
+    .dots i:nth-child(3){background: rgba(74,222,128,.75)}
+    .previewBody{
+      padding: 14px 12px 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      color: rgba(232,238,252,.85);
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    /* Contact */
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    .contactCard{
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius2);
+      overflow:hidden;
+      position:relative;
+    }
+    .contactCard:before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(580px 220px at 20% 0%, rgba(110,231,255,.14), transparent 60%),
+                  radial-gradient(580px 220px at 100% 40%, rgba(124,92,255,.12), transparent 60%);
+      pointer-events:none;
+    }
+    .contactInner{position:relative; padding:18px;}
+    label{display:block; font-size:12px; color:var(--muted); margin: 12px 0 6px;}
+    input, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(7,11,20,.45);
+      color: var(--text);
+      outline:none;
+      transition: box-shadow .2s ease, border-color .2s ease, background .2s ease;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(110,231,255,.28);
+      box-shadow: var(--ring);
+      background: rgba(7,11,20,.62);
+    }
+    textarea{min-height: 120px; resize: vertical;}
+    .hint{
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .toast{
+      position:fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%) translateY(30px);
+      background: rgba(11,18,32,.88);
+      border:1px solid rgba(255,255,255,.10);
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      opacity:0;
+      pointer-events:none;
+      transition: transform .22s ease, opacity .22s ease;
+      z-index: 80;
+      max-width: min(720px, 92vw);
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .toast.show{opacity:1; transform: translateX(-50%) translateY(0);}
+    .toast .ok{
+      width:10px;height:10px;border-radius:999px;background: var(--ok);
+      box-shadow: 0 0 0 8px rgba(74,222,128,.12);
+      flex:0 0 auto;
+    }
+    footer{
+      padding: 26px 0 34px;
+      color: rgba(168,180,214,.9);
+      font-size: 12px;
+      border-top:1px solid rgba(255,255,255,.06);
+      background: rgba(7,11,20,.30);
+    }
+    .foot{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .foot a{
+      color: rgba(232,238,252,.92);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding: 8px 10px;
+      border-radius: 12px;
+    }
+
+    /* Reveal */
+    .reveal{
+      opacity:0;
+      transform: translateY(14px);
+      transition: opacity .7s ease, transform .7s ease;
+      will-change: opacity, transform;
+    }
+    .reveal.show{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* Typing caret */
+    .typeRow{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-top: 8px;
+      color: rgba(232,238,252,.92);
+      font-size: 14px;
+    }
+    .caret{
+      width:10px;
+      height: 18px;
+      border-radius: 3px;
+      background: rgba(232,238,252,.88);
+      opacity:.85;
+      animation: blink 1s steps(1) infinite;
+    }
+    @keyframes blink{50%{opacity:.12}}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .gridHero{grid-template-columns: 1fr; }
+      .projects{grid-template-columns: 1fr;}
+      .contactGrid{grid-template-columns: 1fr;}
+      .brand{min-width:auto}
+      .links{display:none}
+      .hamburger{display:grid;place-items:center}
+      .mobilePanel{display:none}
+      .mobilePanel.open{display:block}
+    }
+    @media (max-width: 520px){
+      section{padding: 68px 0;}
+      .hero{padding: 50px 0 60px;}
+      .cardInner{padding: 18px;}
+      .btn{width:auto}
+    }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .blob, .logo:after, .ping, .caret{animation:none}
+      .reveal{transition:none}
+      .fill{transition:none}
+    }
+  </style>
 </head>
+
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+  <div class="blob b1" aria-hidden="true"></div>
+  <div class="blob b2" aria-hidden="true"></div>
+  <div class="blob b3" aria-hidden="true"></div>
 
-  <header class="site-header" id="top">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Go to home">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span class="brand-text">
-          <span class="brand-name">Akash Rawat</span>
-          <span class="brand-tag">Portfolio</span>
-        </span>
-      </a>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#home" aria-label="Go to top">
+          <div class="logo" aria-hidden="true"></div>
+          <div class="brandText">
+            <strong>Akash Rawat</strong>
+            <span>Coder • Web Development</span>
+          </div>
+        </a>
 
-      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
-        <span class="sr-only">Open menu</span>
-        <span class="nav-toggle-lines" aria-hidden="true"></span>
-      </button>
+        <nav class="links" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-      <nav class="site-nav" id="siteNav" aria-label="Primary">
-        <a href="about.html">About</a>
-        <a href="skills.html">Skills</a>
-        <a href="work.html">Work</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-        <a class="btn btn-sm btn-ghost" href="#pack2zip">Pack2Zip</a>
-      </nav>
+        <div class="ctaRow">
+          <a class="btn primary" href="#contact">
+            <span class="dot" aria-hidden="true"></span>
+            Available for projects
+          </a>
+          <button class="hamburger" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M4 7h16M4 12h16M4 17h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobilePanel" id="mobilePanel" aria-label="Mobile navigation">
+        <nav class="links" style="display:flex">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="ctaRow">
+          <a class="btn primary" href="#contact">
+            <span class="dot" aria-hidden="true"></span>
+            Available for projects
+          </a>
+          <a class="btn" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noopener">
+            Visit Pack2Zip
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="header-glow" aria-hidden="true"></div>
   </header>
 
-  <main id="main">
+  <main id="home" class="wrap">
+    <section class="hero">
+      <div class="gridHero">
+        <div class="card reveal">
+          <div class="cardInner">
+            <div class="badge">
+              <span class="ping" aria-hidden="true"></span>
+              Building clean, fast websites with modern UI
+            </div>
 
-<section class="hero">
-  <div class="container hero-inner">
-    <div class="hero-copy reveal">
-      <p class="kicker">Hi, I’m <span class="accent">Akash Rawat</span></p>
-      <h1 class="hero-title">
-        I build clean websites, learn fast, and ship projects.
-      </h1>
-      <p class="hero-subtitle">
-        This site is a simple, professional portfolio you can keep improving as you learn:
-        new skills, new projects, and real work.
-      </p>
+            <h1>
+              Hi, I’m <span class="accent">Akash Rawat</span>.
+              <br />
+              I’m a coder who likes <span class="accent">web development</span>.
+            </h1>
 
-      <div class="hero-cta">
-        <a class="btn" href="projects.html">See Projects</a>
-        <a class="btn btn-ghost" href="contact.html">Contact</a>
-      </div>
+            <div class="typeRow" aria-label="Role highlights">
+              <span id="typeText"></span>
+              <span class="caret" aria-hidden="true"></span>
+            </div>
 
-      <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-num">HTML</div>
-          <div class="stat-label">Structure</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">CSS</div>
-          <div class="stat-label">Design</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">JS</div>
-          <div class="stat-label">Interactivity</div>
-        </div>
-      </div>
-    </div>
+            <p class="sub">
+              I build responsive front-end experiences, useful web tools, and smooth UI interactions.
+              I care about speed, clarity, and details that make a site feel premium.
+            </p>
 
-    <div class="hero-card reveal delay-1" aria-label="Profile card">
-      <div class="profile-card">
-        <div class="profile-top">
-          <div class="avatar" aria-hidden="true">
-            <span class="avatar-ring"></span>
-            <span class="avatar-core"></span>
-          </div>
-          <div>
-            <div class="profile-name">Akash Rawat</div>
-            <div class="profile-role">Student • Learning Developer</div>
-          </div>
-        </div>
+            <div class="heroActions">
+              <a class="btn primary" href="#projects">
+                View projects
+                <span aria-hidden="true">→</span>
+              </a>
+              <a class="btn" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noopener">
+                Open Pack2Zip
+                <span aria-hidden="true">↗</span>
+              </a>
+              <button class="btn ghost" id="copyLinkBtn" type="button">
+                Copy portfolio link
+                <span aria-hidden="true">⎘</span>
+              </button>
+            </div>
 
-        <div class="divider"></div>
-
-        <div class="profile-grid">
-          <div class="pill">Web Dev</div>
-          <div class="pill">Python</div>
-          <div class="pill">GitHub</div>
-          <div class="pill">Linux</div>
-          <div class="pill">UI</div>
-          <div class="pill">Problem Solving</div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="profile-actions">
-          <a class="btn btn-sm" href="about.html">About Me</a>
-          <a class="btn btn-sm btn-ghost" href="skills.html">Skills</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero-bg" aria-hidden="true">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="grid-lines"></div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-head reveal">
-      <h2>What I do</h2>
-      <p class="muted">
-        A focused set of skills, done well. Simple, fast, and clean.
-      </p>
-    </div>
-
-    <div class="cards">
-      <article class="card reveal">
-        <div class="card-icon" aria-hidden="true">⚡</div>
-        <h3>Fast, responsive UI</h3>
-        <p>
-          Layouts that look good on mobile and desktop. No heavy frameworks needed.
-        </p>
-        <ul class="checklist">
-          <li>Mobile-first layout</li>
-          <li>Accessible navigation</li>
-          <li>Performance-friendly animations</li>
-        </ul>
-      </article>
-
-      <article class="card reveal delay-1">
-        <div class="card-icon" aria-hidden="true">🧠</div>
-        <h3>Learning + building</h3>
-        <p>
-          I learn by shipping. Small projects, then bigger ones. Consistent progress.
-        </p>
-        <ul class="checklist">
-          <li>Practice projects</li>
-          <li>Clear code structure</li>
-          <li>Version control</li>
-        </ul>
-      </article>
-
-      <article class="card reveal delay-2">
-        <div class="card-icon" aria-hidden="true">🛠️</div>
-        <h3>Real tools</h3>
-        <p>
-          The basics that matter: Git, debugging, and writing code that’s easy to maintain.
-        </p>
-        <ul class="checklist">
-          <li>GitHub workflow</li>
-          <li>Debugging habits</li>
-          <li>Reusable components</li>
-        </ul>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="section alt" id="pack2zip">
-  <div class="container">
-    <div class="section-head reveal">
-      <h2>Pack2Zip</h2>
-      <p class="muted">
-        Quick access card (custom). Use it when you need to convert a pack to a ZIP.
-      </p>
-    </div>
-
-    <div class="pack2zip-card reveal">
-      <div class="pack2zip-left">
-        <div class="badge">Tool</div>
-        <h3 class="pack2zip-title">Pack2Zip Converter</h3>
-        <p class="pack2zip-text">
-          Clean link card with a short explanation. Opens in a new tab.
-        </p>
-        <div class="pack2zip-actions">
-          <a class="btn" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noopener noreferrer">
-            Open Pack2Zip
-          </a>
-          <a class="btn btn-ghost" href="projects.html#tools">See Tools</a>
-        </div>
-      </div>
-
-      <div class="pack2zip-right" aria-hidden="true">
-        <div class="code-window">
-          <div class="code-top">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
-            <span class="code-title">pack2zip.dpdns.org</span>
-          </div>
-          <pre class="code-body"><code>
-1. Choose your .mrpack file
-2. Convert to .zip
-3. Download and use it
-          </code></pre>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-head reveal">
-      <h2>Featured projects</h2>
-      <p class="muted">
-        Add your best projects here. Keep it short and real.
-      </p>
-    </div>
-
-    <div class="projects-grid">
-      <article class="project reveal">
-        <div class="project-top">
-          <div class="project-badge">Website</div>
-          <h3>Portfolio Website</h3>
-          <p class="muted">A clean personal site built with HTML, CSS, and JS.</p>
-        </div>
-        <div class="project-meta">
-          <span class="tag">Responsive</span>
-          <span class="tag">Animations</span>
-          <span class="tag">Accessible</span>
-        </div>
-        <div class="project-actions">
-          <a class="btn btn-sm" href="projects.html">Details</a>
-          <a class="btn btn-sm btn-ghost" href="https://github.com/" target="_blank" rel="noopener noreferrer">Repo</a>
-        </div>
-      </article>
-
-      <article class="project reveal delay-1">
-        <div class="project-top">
-          <div class="project-badge">Python</div>
-          <h3>Mini Utilities</h3>
-          <p class="muted">Small scripts that automate tiny tasks while I learn.</p>
-        </div>
-        <div class="project-meta">
-          <span class="tag">CLI</span>
-          <span class="tag">Basics</span>
-          <span class="tag">Practice</span>
-        </div>
-        <div class="project-actions">
-          <a class="btn btn-sm" href="projects.html">Details</a>
-          <a class="btn btn-sm btn-ghost" href="https://github.com/" target="_blank" rel="noopener noreferrer">Repo</a>
-        </div>
-      </article>
-
-      <article class="project reveal delay-2">
-        <div class="project-top">
-          <div class="project-badge">Tools</div>
-          <h3>Learning Setup</h3>
-          <p class="muted">VS Code setup, extensions, and workflows I use daily.</p>
-        </div>
-        <div class="project-meta">
-          <span class="tag">VS Code</span>
-          <span class="tag">Git</span>
-          <span class="tag">Notes</span>
-        </div>
-        <div class="project-actions">
-          <a class="btn btn-sm" href="projects.html#tools">Details</a>
-          <a class="btn btn-sm btn-ghost" href="work.html">Timeline</a>
-        </div>
-      </article>
-    </div>
-
-    <div class="center reveal" style="margin-top: 26px;">
-      <a class="btn btn-ghost" href="projects.html">View all projects</a>
-    </div>
-  </div>
-</section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-left">
-        <div class="footer-brand">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <div>
-            <div class="footer-title">Akash Rawat</div>
-            <div class="footer-subtitle">Built with HTML, CSS, JS • GitHub Pages</div>
+            <div class="chips" aria-label="Highlights">
+              <span class="chip"><span class="spark" aria-hidden="true"></span> Focus: <b>UI + Performance</b></span>
+              <span class="chip"><span class="spark" aria-hidden="true"></span> Stack: <b>HTML/CSS/JS</b></span>
+              <span class="chip"><span class="spark" aria-hidden="true"></span> Style: <b>Clean + Modern</b></span>
+            </div>
           </div>
         </div>
-        <div class="footer-links">
-          <a href="projects.html">Projects</a>
-          <a href="contact.html">Contact</a>
-          <a href="#top">Back to top</a>
-        </div>
-      </div>
 
-    
-            
+        <aside class="card reveal">
+          <div class="cardInner profile">
+            <div class="avatar" aria-label="Abstract avatar banner"></div>
+
+            <div class="meta">
+              <div class="kpi">
+                <div>
+                  <span>Primary</span><br/>
+                  <strong>Front-End Development</strong>
+                </div>
+                <div class="mini">Ready</div>
+              </div>
+
+              <div class="kpi">
+                <div>
+                  <span>Secondary</span><br/>
+                  <strong>Web Tools & Automation</strong>
+                </div>
+                <div class="mini">Active</div>
+              </div>
+
+              <div class="kpi">
+                <div>
+                  <span>Current project</span><br/>
+                  <strong>Pack2Zip</strong>
+                </div>
+                <div class="mini">Live</div>
+              </div>
+            </div>
+
+            <div class="quickLinks" aria-label="Quick links">
+              <a class="q" href="#skills">
+                <div class="left">
+                  <b>Skills overview</b>
+                  <small>What I’m confident in</small>
+                </div>
+                <span class="arrow" aria-hidden="true">→</span>
+              </a>
+
+              <a class="q" href="#projects">
+                <div class="left">
+                  <b>Featured project</b>
+                  <small>Pack2Zip web tool</small>
+                </div>
+                <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <a class="q" href="#contact">
+                <div class="left">
+                  <b>Contact</b>
+                  <small>Send a quick message</small>
+                </div>
+                <span class="arrow" aria-hidden="true">✉</span>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="sectionTitle reveal">
+        <div>
+          <h2>About</h2>
+          <p>
+            I’m focused on building real, usable websites with smooth animations and clean layout.
+            I like turning ideas into fast pages that look modern on mobile and desktop.
           </p>
         </div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="container footer-bottom-inner">
-        <span>© 2026 Akash Rawat</span>
-        <span class="dot" aria-hidden="true"></span>
-        
+
+      <div class="grid2">
+        <div class="skillCard reveal">
+          <h3>What I do</h3>
+          <p class="projectDesc">
+            Front-end development (HTML, CSS, JavaScript), responsive UI, animations, component-style sections,
+            and creating small web tools that solve real problems.
+          </p>
+          <div class="preview" style="margin-top:14px;">
+            <div class="previewHeader">
+              <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div>Daily mindset</div>
+              <div style="opacity:.8;">build • test • improve</div>
+            </div>
+            <div class="previewBody">
+const rule = "Make it clean, make it fast.";
+const detail = "Small polish = big difference.";
+            </div>
+          </div>
+        </div>
+
+        <div class="skillCard reveal">
+          <h3>How I work</h3>
+          <p class="projectDesc">
+            I start with a clear layout, then add interactions and animation carefully so the site stays smooth.
+            I keep things readable, mobile-first, and performance-friendly.
+          </p>
+          <div class="preview" style="margin-top:14px;">
+            <div class="previewHeader">
+              <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div>Checklist</div>
+              <div style="opacity:.8;">UI • UX • Speed</div>
+            </div>
+            <div class="previewBody">
+✓ responsive layout
+✓ accessible contrast and spacing
+✓ smooth scroll + reveal animations
+✓ lightweight, single-file setup
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="sectionTitle reveal">
+        <div>
+          <h2>Skills</h2>
+          <p>These bars animate when you scroll here. Built in pure HTML, CSS, and JS.</p>
+        </div>
+      </div>
+
+      <div class="grid2" id="skillsGrid">
+        <div class="skillCard reveal" data-skill="92">
+          <h3>HTML</h3>
+          <div class="bar"><div class="fill"></div></div>
+          <div class="skillMeta">
+            <span>Semantic layout, structure</span>
+            <span><b>92%</b></span>
+          </div>
+        </div>
+
+        <div class="skillCard reveal" data-skill="88">
+          <h3>CSS</h3>
+          <div class="bar"><div class="fill"></div></div>
+          <div class="skillMeta">
+            <span>Responsive UI, animations</span>
+            <span><b>88%</b></span>
+          </div>
+        </div>
+
+        <div class="skillCard reveal" data-skill="82">
+          <h3>JavaScript</h3>
+          <div class="bar"><div class="fill"></div></div>
+          <div class="skillMeta">
+            <span>Interactions, DOM, logic</span>
+            <span><b>82%</b></span>
+          </div>
+        </div>
+
+        <div class="skillCard reveal" data-skill="76">
+          <h3>Performance & UX</h3>
+          <div class="bar"><div class="fill"></div></div>
+          <div class="skillMeta">
+            <span>Fast load, smooth feel</span>
+            <span><b>76%</b></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="sectionTitle reveal">
+        <div>
+          <h2>Projects</h2>
+          <p>Featured: Pack2Zip — a web tool project. Plus a few things I build often.</p>
+        </div>
+      </div>
+
+      <div class="projects">
+        <div class="projectCard reveal">
+          <div class="projectInner">
+            <div class="projectTop">
+              <span class="tag"><span class="pill" aria-hidden="true"></span> Featured</span>
+              <span class="tag" style="border-color: rgba(124,92,255,.20); background: rgba(124,92,255,.06);">
+                <span class="pill" style="background: var(--brand2)" aria-hidden="true"></span> Live website
+              </span>
+            </div>
+
+            <div class="projectTitle">Pack2Zip</div>
+            <p class="projectDesc">
+              A practical web tool experience. Clean UI, fast interactions, and a layout that works well on mobile.
+              Built with a focus on usability and clarity.
+            </p>
+
+            <div class="projectActions">
+              <a class="btn primary small" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noopener">
+                Visit website <span aria-hidden="true">↗</span>
+              </a>
+              <a class="btn small" href="#contact">
+                Work with me <span aria-hidden="true">→</span>
+              </a>
+              <button class="btn ghost small" type="button" id="copyProjectBtn">
+                Copy link <span aria-hidden="true">⎘</span>
+              </button>
+            </div>
+
+            <div class="preview">
+              <div class="previewHeader">
+                <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                <div>Project notes</div>
+                <div style="opacity:.8;">v1 live</div>
+              </div>
+              <div class="previewBody">
+Goal: Make a simple tool feel premium.
+Focus: clean UI, responsive layout, smooth micro-animations.
+Result: a usable site that loads fast and stays easy to navigate.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="projectCard reveal">
+          <div class="projectInner">
+            <div class="projectTop">
+              <span class="tag"><span class="pill" aria-hidden="true"></span> I also build</span>
+            </div>
+            <div class="projectTitle">Common builds</div>
+            <p class="projectDesc">
+              Portfolio sites, landing pages, UI sections (hero/features/pricing), and small tools like converters,
+              generators, and lightweight dashboards.
+            </p>
+
+            <div class="preview">
+              <div class="previewHeader">
+                <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                <div>Typical stack</div>
+                <div style="opacity:.8;">HTML • CSS • JS</div>
+              </div>
+              <div class="previewBody">
+- Responsive layout (mobile-first)
+- Smooth scroll + reveal animations
+- Clean UI components
+- Simple, readable code
+              </div>
+            </div>
+
+            <div class="projectActions">
+              <a class="btn small" href="#skills">See skill bars <span aria-hidden="true">→</span></a>
+              <a class="btn small" href="#about">How I work <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="sectionTitle reveal">
+        <div>
+          <h2>Contact</h2>
+          <p>This form creates a ready-to-send message in your email app. No server needed.</p>
+        </div>
+      </div>
+
+      <div class="contactGrid">
+        <div class="contactCard reveal">
+          <div class="contactInner">
+            <h3 style="margin:0 0 6px; font-size:16px;">Send a message</h3>
+            <p class="projectDesc" style="margin-bottom:10px;">
+              Fill this and press “Create Email”. It opens your email app with everything pre-filled.
+            </p>
+
+            <form id="contactForm">
+              <label for="name">Your name</label>
+              <input id="name" name="name" autocomplete="name" placeholder="Enter your name" required />
+
+              <label for="topic">Topic</label>
+              <input id="topic" name="topic" placeholder="Website, redesign, tool idea, etc." required />
+
+              <label for="msg">Message</label>
+              <textarea id="msg" name="msg" placeholder="Write your message..." required></textarea>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+                <button class="btn primary" type="submit">
+                  Create Email <span aria-hidden="true">→</span>
+                </button>
+                <button class="btn ghost" type="button" id="resetBtn">
+                  Clear <span aria-hidden="true">⟲</span>
+                </button>
+              </div>
+
+              <div class="hint">
+                Tip: If you want replies, change the email address inside this file later. Right now it uses a placeholder.
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="contactCard reveal">
+          <div class="contactInner">
+            <h3 style="margin:0 0 6px; font-size:16px;">Quick info</h3>
+            <p class="projectDesc" style="margin-bottom:12px;">
+              A few details people usually ask for.
+            </p>
+
+            <div class="kpi" style="margin-bottom:10px;">
+              <div>
+                <span>Name</span><br/>
+                <strong>Akash Rawat</strong>
+              </div>
+              <div class="mini">Portfolio</div>
+            </div>
+
+            <div class="kpi" style="margin-bottom:10px;">
+              <div>
+                <span>Focus</span><br/>
+                <strong>Web Development</strong>
+              </div>
+              <div class="mini">Front-End</div>
+            </div>
+
+            <div class="kpi" style="margin-bottom:14px;">
+              <div>
+                <span>Website</span><br/>
+                <strong>Pack2Zip</strong>
+              </div>
+              <a class="mini" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noopener">Open ↗</a>
+            </div>
+
+            <div class="preview">
+              <div class="previewHeader">
+                <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                <div>Status</div>
+                <div style="opacity:.8;">Currently building</div>
+              </div>
+              <div class="previewBody">
+Looking for: real-world projects
+Prefer: clean UI, smooth interactions
+Goal: keep improving every build
+              </div>
+            </div>
+
+            <div class="projectActions" style="margin-top:14px;">
+              <button class="btn small" type="button" id="scrollTopBtn">
+                Back to top <span aria-hidden="true">↑</span>
+              </button>
+              <button class="btn ghost small" type="button" id="themeBtn">
+                Toggle contrast <span aria-hidden="true">◐</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        © <span id="year"></span> Akash Rawat. Built as a single-file portfolio (HTML + CSS + JS).
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a href="#projects">Projects</a>
+        <a href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noopener">Pack2Zip ↗</a>
       </div>
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="ok" aria-hidden="true"></span>
+    <span id="toastText">Copied.</span>
+  </div>
+
+  <script>
+    // ---------- Helpers ----------
+    const $ = (q, el=document) => el.querySelector(q);
+    const $$ = (q, el=document) => Array.from(el.querySelectorAll(q));
+
+    function showToast(text){
+      const toast = $("#toast");
+      $("#toastText").textContent = text;
+      toast.classList.add("show");
+      window.clearTimeout(showToast._t);
+      showToast._t = window.setTimeout(()=>toast.classList.remove("show"), 2200);
+    }
+
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        showToast("Copied to clipboard.");
+      }catch{
+        // Fallback
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+        showToast("Copied to clipboard.");
+      }
+    }
+
+    // ---------- Mobile menu ----------
+    const menuBtn = $("#menuBtn");
+    const mobilePanel = $("#mobilePanel");
+    if(menuBtn){
+      menuBtn.addEventListener("click", ()=>{
+        const open = mobilePanel.classList.toggle("open");
+        menuBtn.setAttribute("aria-expanded", String(open));
+      });
+    }
+
+    // Close mobile panel on link click
+    $$("#mobilePanel a").forEach(a=>{
+      a.addEventListener("click", ()=>{
+        mobilePanel.classList.remove("open");
+        menuBtn?.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // ---------- Active nav highlight ----------
+    const navLinks = $$(".links a[href^='#']");
+    const sections = ["about","skills","projects","contact"].map(id => document.getElementById(id)).filter(Boolean);
+    const navObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(!entry.isIntersecting) return;
+        const id = entry.target.id;
+        navLinks.forEach(a=>{
+          a.classList.toggle("active", a.getAttribute("href") === "#" + id);
+        });
+      });
+    }, { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 });
+    sections.forEach(s=>navObserver.observe(s));
+
+    // ---------- Reveal on scroll ----------
+    const revealEls = $$(".reveal");
+    const revealObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el=>revealObserver.observe(el));
+
+    // ---------- Skill bar animation ----------
+    const skillsGrid = $("#skillsGrid");
+    const skillObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(!entry.isIntersecting) return;
+        $$("#skillsGrid .skillCard").forEach(card=>{
+          const pct = Number(card.getAttribute("data-skill") || "0");
+          const fill = $(".fill", card);
+          // small stagger
+          const delay = Math.floor(Math.random() * 180);
+          setTimeout(()=>{ fill.style.width = Math.max(0, Math.min(100, pct)) + "%"; }, delay);
+        });
+        skillObserver.disconnect();
+      });
+    }, { threshold: 0.25 });
+    if(skillsGrid) skillObserver.observe(skillsGrid);
+
+    // ---------- Typing effect ----------
+    const typeText = $("#typeText");
+    const phrases = [
+      "Front-end developer (HTML • CSS • JS)",
+      "I build fast, responsive websites",
+      "Animations + clean UI details",
+      "Web tools like Pack2Zip"
+    ];
+    let p = 0, i = 0, dir = 1;
+    function tick(){
+      if(!typeText) return;
+      const current = phrases[p];
+      i += dir;
+
+      typeText.textContent = current.slice(0, i);
+
+      if(i === current.length){
+        dir = -1;
+        setTimeout(tick, 1100);
+        return;
+      }
+      if(i === 0){
+        dir = 1;
+        p = (p + 1) % phrases.length;
+      }
+      setTimeout(tick, dir === 1 ? 34 : 18);
+    }
+    tick();
+
+    // ---------- Buttons ----------
+    $("#copyLinkBtn")?.addEventListener("click", ()=>{
+      copyText(location.href.split("#")[0] + "#home");
+    });
+
+    $("#copyProjectBtn")?.addEventListener("click", ()=>{
+      copyText("https://pack2zip.dpdns.org/mrpack-to-zip.html");
+    });
+
+    $("#scrollTopBtn")?.addEventListener("click", ()=>{
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    $("#resetBtn")?.addEventListener("click", ()=>{
+      $("#contactForm")?.reset();
+      showToast("Cleared.");
+    });
+
+    // Placeholder: change to your real email later if you want.
+    const YOUR_EMAIL = "your-email@example.com";
+
+    $("#contactForm")?.addEventListener("submit", (e)=>{
+      e.preventDefault();
+      const name = ($("#name").value || "").trim();
+      const topic = ($("#topic").value || "").trim();
+      const msg = ($("#msg").value || "").trim();
+
+      const subject = encodeURIComponent(`Portfolio: ${topic}`);
+      const body = encodeURIComponent(
+        `Hi Akash,\n\n` +
+        `${msg}\n\n` +
+        `From: ${name}\n\n` +
+        `Sent via your portfolio site.`
+      );
+
+      const mailto = `mailto:${YOUR_EMAIL}?subject=${subject}&body=${body}`;
+      window.location.href = mailto;
+      showToast("Opening email draft…");
+    });
+
+    // ---------- Contrast toggle ----------
+    let highContrast = false;
+    $("#themeBtn")?.addEventListener("click", ()=>{
+      highContrast = !highContrast;
+      document.documentElement.style.setProperty("--muted", highContrast ? "#c9d4f5" : "#a8b4d6");
+      document.documentElement.style.setProperty("--panel", highContrast ? "#0a1226" : "#0b1220");
+      showToast(highContrast ? "Contrast: High" : "Contrast: Normal");
+    });
+
+    // ---------- Footer year ----------
+    $("#year").textContent = new Date().getFullYear();
+
+    // ---------- Background particles (canvas) ----------
+    const canvas = $("#bgCanvas");
+    const ctx = canvas.getContext("2d", { alpha: true });
+    let W = 0, H = 0, DPR = 1;
+
+    function resize(){
+      DPR = Math.min(2, window.devicePixelRatio || 1);
+      W = canvas.width = Math.floor(window.innerWidth * DPR);
+      H = canvas.height = Math.floor(window.innerHeight * DPR);
+      canvas.style.width = window.innerWidth + "px";
+      canvas.style.height = window.innerHeight + "px";
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    window.addEventListener("resize", resize, { passive:true });
+    resize();
+
+    const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const particles = [];
+    const COUNT = prefersReduced ? 28 : 70;
+
+    function rnd(min, max){ return Math.random() * (max - min) + min; }
+
+    for(let k=0;k<COUNT;k++){
+      particles.push({
+        x: rnd(0, window.innerWidth),
+        y: rnd(0, window.innerHeight),
+        r: rnd(1.2, 3.2),
+        vx: rnd(-0.22, 0.22),
+        vy: rnd(-0.20, 0.20),
+        a: rnd(0.20, 0.75)
+      });
+    }
+
+    function draw(){
+      ctx.clearRect(0,0,window.innerWidth, window.innerHeight);
+
+      // subtle grid lines
+      ctx.globalAlpha = 0.14;
+      ctx.strokeStyle = "rgba(255,255,255,0.08)";
+      ctx.lineWidth = 1;
+      const step = 90;
+      for(let x=0;x<window.innerWidth;x+=step){
+        ctx.beginPath();
+        ctx.moveTo(x,0);
+        ctx.lineTo(x,window.innerHeight);
+        ctx.stroke();
+      }
+      for(let y=0;y<window.innerHeight;y+=step){
+        ctx.beginPath();
+        ctx.moveTo(0,y);
+        ctx.lineTo(window.innerWidth,y);
+        ctx.stroke();
+      }
+
+      // particles + links
+      ctx.globalAlpha = 1;
+      for(const p of particles){
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if(p.x < -20) p.x = window.innerWidth + 20;
+        if(p.x > window.innerWidth + 20) p.x = -20;
+        if(p.y < -20) p.y = window.innerHeight + 20;
+        if(p.y > window.innerHeight + 20) p.y = -20;
+
+        // particle
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(232,238,252,${0.40 * p.a})`;
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      // links
+      for(let i=0;i<particles.length;i++){
+        for(let j=i+1;j<particles.length;j++){
+          const a = particles[i], b = particles[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const dist = Math.hypot(dx, dy);
+          if(dist < 120){
+            const alpha = (1 - dist/120) * 0.22;
+            ctx.strokeStyle = `rgba(110,231,255,${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      if(!prefersReduced) requestAnimationFrame(draw);
+    }
+    draw();
+
+    // ---------- Small polish: prevent "double tap zoom" issues on buttons (mobile) ----------
+    // No-op for desktop; safe on mobile.
+    document.addEventListener("touchstart", ()=>{}, { passive:true });
+  </script>
 </body>
 </html>
