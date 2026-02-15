@@ -2,31 +2,560 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Akash Rawat (Akbyte) — Web Developer. Projects: Pack2zip, CPS Tester. Skills: HTML, CSS, JS, Python." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Akash Rawat (Akbyte) — Web Developer. HTML, CSS, JavaScript, Python, React. Projects: Pack2Zip, CPS Tester." />
   <meta name="theme-color" content="#0b0c10" />
   <title>Akbyte · Akash Rawat</title>
 
-  <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="64" height="64"%3E%3Crect width="64" height="64" rx="16" fill="%230b0c10"/%3E%3Cpath d="M18 45V19h9l5 9 5-9h9v26h-7V31l-6 10h-2l-6-10v14h-7z" fill="%23ffffff"/%3E%3C/svg%3E'>
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"%3E%3Cdefs%3E%3ClinearGradient id="g" x1="0" y1="0" x2="1" y2="1"%3E%3Cstop offset="0" stop-color="%23ffd400"/%3E%3Cstop offset="1" stop-color="%23ffb000"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="64" height="64" rx="14" fill="%230b0c10"/%3E%3Cpath d="M18 44l8-24h6l8 24h-6l-1.7-6H31.7L30 44h-6zm15-11.2h6.5L36.3 22l-3.3 10.8z" fill="url(%23g)"/%3E%3C/svg%3E' />
+
+  <style>
+    /* =========================
+       Akbyte Portfolio (single file)
+       Theme: Black+Yellow + White+Yellow
+       ========================= */
+
+    :root{
+      --bg: #0b0c10;
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.09);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.68);
+      --muted2: rgba(255,255,255,0.52);
+      --border: rgba(255,255,255,0.10);
+      --border2: rgba(255,255,255,0.16);
+      --shadow: 0 18px 60px rgba(0,0,0,0.35);
+      --yellow: #ffd400;
+      --yellow2:#ffb000;
+      --good: #49d17d;
+      --bad: #ff5c7a;
+      --ring: 0 0 0 8px rgba(255, 212, 0, 0.12);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1060px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      --pixel: ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", monospace; /* used in retro egg */
+      --grainOpacity: .12;
+      --blobOpacity: .22;
+    }
+    html[data-theme="light"]{
+      --bg: #ffffff;
+      --panel: rgba(0,0,0,0.06);
+      --panel2: rgba(0,0,0,0.09);
+      --text: rgba(0,0,0,0.90);
+      --muted: rgba(0,0,0,0.64);
+      --muted2: rgba(0,0,0,0.52);
+      --border: rgba(0,0,0,0.10);
+      --border2: rgba(0,0,0,0.16);
+      --shadow: 0 18px 60px rgba(0,0,0,0.14);
+      --ring: 0 0 0 8px rgba(255, 212, 0, 0.18);
+      --grainOpacity: .08;
+      --blobOpacity: .18;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background: var(--bg);
+      overflow-x: hidden;
+      line-height: 1.55;
+    }
+    a{ color: inherit; text-decoration: none; }
+    button, input, textarea{ font: inherit; color: inherit; }
+    :focus-visible{ outline: none; box-shadow: var(--ring); border-color: rgba(255,212,0,0.7) !important; }
+
+    /* ---------- Background layers ---------- */
+    .bg{
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(1200px 700px at 20% 10%, rgba(255,212,0,var(--blobOpacity)), transparent 55%),
+        radial-gradient(900px 600px at 80% 20%, rgba(255,176,0, calc(var(--blobOpacity) * .7)), transparent 55%),
+        radial-gradient(1100px 700px at 60% 90%, rgba(255,212,0, calc(var(--blobOpacity) * .55)), transparent 55%),
+        linear-gradient(180deg, rgba(255,212,0,0.06), transparent 40%),
+        linear-gradient(180deg, var(--bg), var(--bg));
+      filter: saturate(1.05);
+    }
+    .grain{
+      position: fixed;
+      inset: -40%;
+      z-index: -1;
+      opacity: var(--grainOpacity);
+      pointer-events: none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+      transform: rotate(8deg);
+      animation: grainMove 9s steps(10) infinite;
+    }
+    @keyframes grainMove{
+      0%{ transform: translate(0,0) rotate(8deg); }
+      25%{ transform: translate(-2%, 1%) rotate(8deg); }
+      50%{ transform: translate(-1%, -2%) rotate(8deg); }
+      75%{ transform: translate(2%, 2%) rotate(8deg); }
+      100%{ transform: translate(0,0) rotate(8deg); }
+    }
+
+    /* ---------- Layout ---------- */
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 24px 18px 70px; }
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.06));
+      border-bottom: 1px solid var(--border);
+    }
+    html[data-theme="light"] header{
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.60));
+    }
+    .topbar{ max-width: var(--max); margin:0 auto; padding: 12px 18px; display:flex; align-items:center; gap: 14px; }
+    .brand{
+      display:flex; align-items:center; gap: 12px;
+      padding: 8px 10px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      user-select: none;
+      cursor: pointer;
+    }
+    .brand:hover{ border-color: var(--border2); background: rgba(255,255,255,0.04); }
+    html[data-theme="light"] .brand:hover{ background: rgba(0,0,0,0.04); }
+    .logo{
+      width: 34px; height: 34px; border-radius: 12px;
+      display:grid; place-items:center;
+      background: linear-gradient(140deg, rgba(255,212,0,0.18), rgba(255,176,0,0.08));
+      border: 1px solid rgba(255,212,0,0.28);
+      box-shadow: 0 10px 30px rgba(255,212,0,0.12);
+    }
+    .logo svg{ width: 19px; height: 19px; }
+    .brandText b{ display:block; font-size: 14px; letter-spacing: .2px; }
+    .brandText small{ display:block; font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+    .spacer{ flex: 1; }
+
+    .nav{
+      display:flex; gap: 8px; align-items:center;
+    }
+    .nav a{
+      font-size: 13px;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+    }
+    .nav a:hover{
+      color: var(--text);
+      border-color: var(--border2);
+      background: rgba(255,255,255,0.04);
+    }
+    html[data-theme="light"] .nav a:hover{ background: rgba(0,0,0,0.04); }
+    .ctaRow{
+      display:flex; gap: 10px; align-items:center;
+    }
+    .pill{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.10);
+      cursor: pointer;
+      transition: transform .14s ease, background .14s ease, border-color .14s ease;
+      user-select: none;
+    }
+    html[data-theme="light"] .pill{ background: rgba(0,0,0,0.03); }
+    .pill:hover{ transform: translateY(-1px); border-color: rgba(255,212,0,0.45); }
+    .pill:active{ transform: translateY(0px) scale(.99); }
+
+    .pill.primary{
+      border-color: rgba(255,212,0,0.55);
+      background: linear-gradient(180deg, rgba(255,212,0,0.18), rgba(255,176,0,0.08));
+    }
+    .pill.primary:hover{ border-color: rgba(255,212,0,0.75); }
+
+    .icon{
+      width: 16px; height:16px; display:inline-block;
+      opacity: .92;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero{
+      padding: 46px 0 22px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      align-items: start;
+    }
+    @media (max-width: 920px){
+      .hero{ grid-template-columns: 1fr; padding-top: 34px; }
+      .nav{ display:none; }
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+    html[data-theme="light"] .card{
+      background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.02));
+    }
+    .cardInner{ padding: 22px; }
+
+    .badge{
+      display:inline-flex; align-items:center; gap: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,0.03);
+      margin-bottom: 14px;
+      user-select: none;
+    }
+    html[data-theme="light"] .badge{ background: rgba(0,0,0,0.03); }
+
+    h1{
+      margin: 0 0 10px;
+      font-size: clamp(28px, 3.3vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -0.6px;
+    }
+    .sub{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 62ch;
+    }
+    .chips{
+      display:flex; flex-wrap: wrap; gap: 10px;
+      margin-top: 10px;
+    }
+    .chip{
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      user-select: none;
+      transition: transform .14s ease, border-color .14s ease;
+    }
+    html[data-theme="light"] .chip{ background: rgba(0,0,0,0.03); }
+    .chip:hover{ transform: translateY(-1px); border-color: rgba(255,212,0,0.45); }
+
+    .heroActions{
+      display:flex; flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .sideStack{
+      display:flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .quick{
+      display:grid;
+      gap: 10px;
+    }
+    .quick a{
+      display:flex; align-items:center; justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      transition: transform .14s ease, border-color .14s ease, background .14s ease;
+    }
+    html[data-theme="light"] .quick a{ background: rgba(0,0,0,0.03); }
+    .quick a:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,212,0,0.45);
+      background: rgba(255,212,0,0.08);
+    }
+    .quick .left{
+      display:flex; flex-direction: column; gap: 2px;
+      min-width: 0;
+    }
+    .quick .left b{ font-size: 13px; }
+    .quick .left small{
+      font-size: 12px; color: var(--muted);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      max-width: 48ch;
+    }
+
+    /* ---------- Sections ---------- */
+    section{ padding: 20px 0; }
+    .sectionTitle{
+      display:flex; align-items: baseline; justify-content: space-between;
+      gap: 14px;
+      margin: 16px 0 10px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+    .sectionTitle p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid{
+      display:grid;
+      gap: 14px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .col6{ grid-column: span 6; }
+    .col4{ grid-column: span 4; }
+    .col8{ grid-column: span 8; }
+    .col12{ grid-column: span 12; }
+
+    @media (max-width: 920px){
+      .col6, .col4, .col8{ grid-column: span 12; }
+    }
+
+    .project{
+      position: relative;
+      overflow:hidden;
+    }
+    .project .cardInner{ padding: 18px; }
+    .project h3{ margin: 0 0 6px; font-size: 16px; }
+    .project p{ margin: 0 0 12px; color: var(--muted); font-size: 13px; }
+    .project .meta{ display:flex; gap: 10px; flex-wrap: wrap; }
+    .tag{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      user-select:none;
+    }
+    html[data-theme="light"] .tag{ background: rgba(0,0,0,0.03); }
+
+    .projBtns{ display:flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .projBtns a{ font-size: 13px; }
+    .arrow{ opacity: .8; }
+
+    .project::before{
+      content:"";
+      position:absolute; inset: -1px;
+      background:
+        radial-gradient(500px 220px at 20% 0%, rgba(255,212,0,0.18), transparent 65%),
+        radial-gradient(520px 260px at 90% 20%, rgba(255,176,0,0.12), transparent 65%);
+      opacity: 0;
+      transition: opacity .2s ease;
+      pointer-events: none;
+    }
+    .project:hover::before{ opacity: 1; }
+    .project:hover{ border-color: rgba(255,212,0,0.35); }
+
+    .about p{ margin: 0; color: var(--muted); font-size: 14px; }
+    .list{
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .list li{ margin: 6px 0; }
+
+    /* ---------- Footer ---------- */
+    footer{ padding: 28px 0 0; }
+    .footerRow{
+      display:flex; align-items:center; justify-content: space-between;
+      gap: 14px;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footerLinks{ display:flex; gap: 10px; flex-wrap: wrap; }
+    .footerLinks a{
+      padding: 7px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      color: var(--muted);
+    }
+    .footerLinks a:hover{
+      border-color: var(--border2);
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+    }
+    html[data-theme="light"] .footerLinks a:hover{ background: rgba(0,0,0,0.03); }
+
+    /* ---------- Reveal animation ---------- */
+    .reveal{ opacity: 0; transform: translateY(10px); }
+    .reveal.on{ opacity: 1; transform: translateY(0); transition: opacity .55s ease, transform .55s ease; }
+
+    /* ---------- Modals ---------- */
+    .modal{
+      position: fixed;
+      inset: 0;
+      display:none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 80;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .modal.show{ display:flex; }
+    .modalBox{
+      width: min(820px, 100%);
+      border-radius: var(--radius2);
+      border: 1px solid var(--border2);
+      background: var(--bg);
+      box-shadow: 0 28px 90px rgba(0,0,0,0.45);
+      overflow:hidden;
+      position: relative;
+    }
+    .modalHead{
+      display:flex; align-items:center; justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+    html[data-theme="light"] .modalHead{ background: rgba(0,0,0,0.03); }
+    .modalHead b{ font-size: 13px; }
+    .modalHead small{ font-size: 12px; color: var(--muted); }
+    .xbtn{
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      padding: 8px 10px;
+      cursor:pointer;
+    }
+    html[data-theme="light"] .xbtn{ background: rgba(0,0,0,0.03); }
+    .xbtn:hover{ border-color: rgba(255,212,0,0.5); }
+
+    /* ---------- Game ---------- */
+    .gameWrap{ padding: 14px; display:grid; gap: 12px; }
+    .gameTop{
+      display:flex; gap: 10px; flex-wrap: wrap;
+      align-items: center; justify-content: space-between;
+    }
+    .scoreBox{
+      display:flex; gap: 10px; align-items: center; flex-wrap: wrap;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .scoreBox .n{ color: var(--text); }
+    canvas{
+      width: 100%;
+      height: 360px;
+      display:block;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(600px 240px at 30% 20%, rgba(255,212,0,0.14), transparent 62%),
+        radial-gradient(600px 240px at 70% 70%, rgba(255,176,0,0.10), transparent 62%),
+        rgba(255,255,255,0.02);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.25);
+    }
+    html[data-theme="light"] canvas{
+      background:
+        radial-gradient(600px 240px at 30% 20%, rgba(255,212,0,0.16), transparent 62%),
+        radial-gradient(600px 240px at 70% 70%, rgba(255,176,0,0.12), transparent 62%),
+        rgba(0,0,0,0.02);
+    }
+    .hint{
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    /* ---------- Dev Console (hidden) ---------- */
+    .term{
+      padding: 14px;
+      display:grid;
+      gap: 10px;
+    }
+    .termOut{
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 12px;
+      min-height: 200px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      overflow:auto;
+      white-space: pre-wrap;
+    }
+    html[data-theme="light"] .termOut{ background: rgba(0,0,0,0.03); }
+    .termRow{ display:flex; gap: 10px; }
+    .termRow input{
+      flex: 1;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 10px 12px;
+      outline: none;
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+    html[data-theme="light"] .termRow input{ background: rgba(0,0,0,0.03); }
+    .termRow button{
+      border-radius: 14px;
+      border: 1px solid rgba(255,212,0,0.45);
+      background: linear-gradient(180deg, rgba(255,212,0,0.22), rgba(255,176,0,0.10));
+      padding: 10px 12px;
+      cursor:pointer;
+    }
+
+    /* ---------- Retro mode (hidden) ---------- */
+    body.retro *{
+      font-family: var(--pixel) !important;
+      letter-spacing: .2px;
+    }
+    body.retro .chip, body.retro .tag, body.retro .pill, body.retro .nav a{
+      border-style: dashed;
+    }
+
+    /* ---------- Reduced motion ---------- */
+    @media (prefers-reduced-motion: reduce){
+      .grain{ animation: none; }
+      .reveal{ opacity: 1; transform: none; }
+      .reveal.on{ transition: none; }
+      .pill, .chip, .project::before, .project{ transition: none !important; }
+    }
+  </style>
 </head>
 
 <body>
-  <div class="bg-noise" aria-hidden="true"></div>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
 
-  <header class="top">
-    <div class="wrap top-row">
-      <a class="brand" href="#top" aria-label="Go to top">
-        <div class="logo" id="logoBtn" title="Akbyte">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M7 17V7h4l3 5 3-5h4v10h-3V12l-2.8 4.7h-.4L10 12v5H7z" fill="currentColor"/>
+  <header>
+    <div class="topbar">
+      <div class="brand" id="brandBtn" title="(Hidden) Hold to open Dev Console">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M7 17v7h4l3-5h4v10h-3V21l-2 3H5V17h2zm10-14h-4l-3 5H6V-2h3v8l2-3h8V3z" fill="currentColor" style="opacity:.0"></path>
+            <path d="M7 19l3-12h4l3 12h-3l-.7-3H10.7L10 19H7zm4.2-5.1h2.6L12.5 8.4l-1.3 5.5z" fill="currentColor"></path>
           </svg>
         </div>
-        <div class="brand-text">
+        <div class="brandText">
           <b>Akbyte</b>
           <small>Akash Rawat · Web Developer</small>
         </div>
-      </a>
+      </div>
+
+      <div class="spacer"></div>
 
       <nav class="nav" aria-label="Primary">
         <a href="#projects">Projects</a>
@@ -35,321 +564,1093 @@
         <a href="#contact">Contact</a>
       </nav>
 
-      <div class="top-actions">
-        <button class="btn ghost" id="themeToggle" type="button" aria-label="Toggle theme">
-          <span class="icon" aria-hidden="true">☾</span>
-          <span class="label">Theme</span>
+      <div class="ctaRow">
+        <button class="pill" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
+              <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19" stroke="currentColor" stroke-width="2" opacity=".55"/>
+            </svg>
+          </span>
+          <span id="themeLabel">Dark</span>
         </button>
-        <a class="btn" href="#contact">Hire / Contact</a>
+
+        <a class="pill primary" href="#contact" title="Contact Akash">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2" opacity=".75"/>
+              <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </span>
+          Contact
+        </a>
       </div>
-
-      <button class="hamburger" id="hamburger" type="button" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-
-    <div class="wrap mobile-nav" id="mobileNav" aria-label="Mobile menu">
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
     </div>
   </header>
 
-  <main id="top">
-    <section class="wrap hero">
-      <div class="hero-grid">
-        <div class="hero-left reveal">
-          <p class="kicker">
-            <span class="dot" aria-hidden="true"></span>
-            Available for freelance / projects
+  <main class="wrap">
+    <section class="hero">
+      <div class="card reveal">
+        <div class="cardInner">
+          <div class="badge" title="Black/Yellow + White/Yellow theme. Smooth animations.">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 2 2 7l10 5 10-5-10-5Z" stroke="currentColor" stroke-width="2" opacity=".8"/>
+                <path d="M2 17l10 5 10-5" stroke="currentColor" stroke-width="2" opacity=".55"/>
+                <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" opacity=".55"/>
+              </svg>
+            </span>
+            Clean UI · Fast build · GitHub Pages ready
+          </div>
+
+          <h1>Akash Rawat <span style="color:var(--yellow)">(Akbyte)</span></h1>
+          <p class="sub">
+            I build clean websites and web tools. I work with HTML, CSS, JavaScript, Python, React — and I’m still learning coding every day.
           </p>
 
-          <h1>
-            I build clean, fast websites and web tools.
-            <span class="sub">HTML · CSS · JavaScript · Python</span>
-          </h1>
-
-          <p class="lead">
-            I’m <b>Akash Rawat</b> (aka <b>Akbyte</b>). I like building practical tools with a polished UI and smooth UX.
-          </p>
-
-          <div class="cta">
-            <a class="btn" href="#projects">View projects</a>
-            <a class="btn ghost" href="https://akbyte.me" target="_blank" rel="noreferrer">akbyte.me</a>
+          <div class="chips" aria-label="Key skills">
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">Python</span>
+            <span class="chip">React</span>
           </div>
 
-          <div class="chips">
-            <span class="chip">Responsive UI</span>
-            <span class="chip">Animations</span>
-            <span class="chip">Clean code</span>
-            <span class="chip">GitHub Pages ready</span>
-          </div>
-        </div>
-
-        <div class="hero-right reveal">
-          <div class="card highlight">
-            <div class="card-head">
-              <b>Featured</b>
-              <span class="pill">Live</span>
-            </div>
-            <h3>Pack2zip</h3>
-            <p class="muted">
-              A tool page for Pack2zip. The main app is closed source; this repo explains usage.
-            </p>
-            <div class="card-actions">
-              <a class="btn small" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noreferrer">Open</a>
-              <a class="btn small ghost" href="https://github.com/Akbyte-was-taken/Pack2zip-info.git" target="_blank" rel="noreferrer">Info repo</a>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-head">
-              <b>Also</b>
-              <span class="pill neutral">Live</span>
-            </div>
-            <h3>CPS Tester</h3>
-            <p class="muted">
-              A clicks-per-second tester with a simple UI. Hosted on GitHub Pages.
-            </p>
-            <div class="card-actions">
-              <a class="btn small" href="https://akbyte-was-taken.github.io/CPS-Tester/" target="_blank" rel="noreferrer">Open</a>
-              <a class="btn small ghost" href="#projects">Details</a>
-            </div>
-          </div>
-
-          <div class="mini-stats">
-            <div class="stat">
-              <b>Focus</b>
-              <span>Front-end + tools</span>
-            </div>
-            <div class="stat">
-              <b>Style</b>
-              <span>Solid colors, clean cards</span>
-            </div>
-            <div class="stat">
-              <b>Bonus</b>
-              <span>Hidden mini-game</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="wrap section" id="projects">
-      <div class="section-head reveal">
-        <h2>Projects</h2>
-        <p class="muted">A few things I’ve built and hosted.</p>
-      </div>
-
-      <div class="grid reveal">
-        <article class="proj card lift">
-          <div class="proj-top">
-            <div>
-              <h3>Pack2zip</h3>
-              <p class="muted">Project page + usage info. Main tool is closed source.</p>
-            </div>
-            <span class="badge">Tool</span>
-          </div>
-
-          <div class="stack">
-            <span>HTML</span><span>CSS</span><span>JS</span>
-          </div>
-
-          <div class="proj-actions">
-            <a class="btn small" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noreferrer">Live</a>
-            <a class="btn small ghost" href="https://github.com/Akbyte-was-taken/Pack2zip-info.git" target="_blank" rel="noreferrer">Info Repo</a>
-          </div>
-        </article>
-
-        <article class="proj card lift">
-          <div class="proj-top">
-            <div>
-              <h3>CPS Tester</h3>
-              <p class="muted">Clicks per second tester hosted on GitHub Pages.</p>
-            </div>
-            <span class="badge">Web</span>
-          </div>
-
-          <div class="stack">
-            <span>HTML</span><span>CSS</span><span>JS</span>
-          </div>
-
-          <div class="proj-actions">
-            <a class="btn small" href="https://akbyte-was-taken.github.io/CPS-Tester/" target="_blank" rel="noreferrer">Live</a>
-            <a class="btn small ghost" href="#contact">Request features</a>
-          </div>
-        </article>
-
-        <article class="proj card lift">
-          <div class="proj-top">
-            <div>
-              <h3>Next project</h3>
-              <p class="muted">Slot reserved for your next build. Add anytime.</p>
-            </div>
-            <span class="badge neutral">Soon</span>
-          </div>
-
-          <div class="stack">
-            <span>UI</span><span>Performance</span><span>Animations</span>
-          </div>
-
-          <div class="proj-actions">
-            <a class="btn small ghost" href="#contact">Suggest idea</a>
-            <button class="btn small" id="openGame" type="button">Play easter egg</button>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="wrap section" id="skills">
-      <div class="section-head reveal">
-        <h2>Skills</h2>
-        <p class="muted">What I use most for building web apps and tools.</p>
-      </div>
-
-      <div class="skills reveal">
-        <div class="skill card">
-          <div class="skill-row">
-            <b>HTML</b><span class="muted">Structure</span>
-          </div>
-          <div class="bar"><i style="width: 92%"></i></div>
-        </div>
-
-        <div class="skill card">
-          <div class="skill-row">
-            <b>CSS</b><span class="muted">UI / Responsive</span>
-          </div>
-          <div class="bar"><i style="width: 88%"></i></div>
-        </div>
-
-        <div class="skill card">
-          <div class="skill-row">
-            <b>JavaScript</b><span class="muted">Logic / UI</span>
-          </div>
-          <div class="bar"><i style="width: 85%"></i></div>
-        </div>
-
-        <div class="skill card">
-          <div class="skill-row">
-            <b>Python</b><span class="muted">Scripts / Automation</span>
-          </div>
-          <div class="bar"><i style="width: 72%"></i></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="wrap section" id="about">
-      <div class="section-head reveal">
-        <h2>About</h2>
-      </div>
-
-      <div class="about reveal">
-        <div class="card">
-          <h3>Quick intro</h3>
-          <p class="muted">
-            I’m Akash (Akbyte). I build web pages and small tools that feel smooth and “finished”.
-            I care about layout, performance, and small details like hover states and mobile UX.
-          </p>
-
-          <div class="about-list">
-            <div class="row"><span class="tag">Location</span><b>India</b></div>
-            <div class="row"><span class="tag">What I like</span><b>Tool websites, UI polish</b></div>
-            <div class="row"><span class="tag">Hosting</span><b>GitHub Pages + custom domain</b></div>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>What I can build</h3>
-          <ul class="bullets">
-            <li>Portfolios, landing pages, and personal sites</li>
-            <li>Small web tools with clean UI</li>
-            <li>Responsive layouts that work on mobile</li>
-            <li>Animations that feel subtle and professional</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="wrap section" id="contact">
-      <div class="section-head reveal">
-        <h2>Contact</h2>
-        <p class="muted">If you want a site or a tool built, message me.</p>
-      </div>
-
-      <div class="contact reveal">
-        <div class="card">
-          <h3>Quick links</h3>
-          <div class="links">
-            <a class="link-row" href="https://github.com/Akbyte-was-taken" target="_blank" rel="noreferrer">
-              <span>GitHub</span><span class="arrow">→</span>
+          <div class="heroActions">
+            <a class="pill primary" href="#projects">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7h16M4 12h10M4 17h16" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </span>
+              See projects
             </a>
-            <a class="link-row" href="https://akbyte.me" target="_blank" rel="noreferrer">
-              <span>Website</span><span class="arrow">→</span>
-            </a>
-            <button class="link-row" id="copySite" type="button">
-              <span>Copy domain</span><span class="arrow" id="copyState">akbyte.me</span>
+
+            <button class="pill" id="playBtn" title="(Hidden) There are multiple ways to start this">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M9 7v10l10-5-10-5Z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </span>
+              Play (Easter)
+            </button>
+
+            <button class="pill" id="copyEmailBtn" title="Copy email">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M8 7h10v14H8V7Z" stroke="currentColor" stroke-width="2" opacity=".85"/>
+                  <path d="M6 3h10v4H6V3Z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </span>
+              Copy email
             </button>
           </div>
-          <p class="muted tiny">
-            Tip: You can replace the links above with your email/Instagram/Discord later.
-          </p>
+        </div>
+      </div>
+
+      <div class="sideStack">
+        <div class="card reveal">
+          <div class="cardInner">
+            <div class="sectionTitle" style="margin-top:0;">
+              <h2>Quick links</h2>
+              <p>Fast access</p>
+            </div>
+
+            <div class="quick" role="list">
+              <a role="listitem" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noreferrer">
+                <span class="left">
+                  <b>Pack2Zip</b>
+                  <small>Closed-source tool · info repo available</small>
+                </span>
+                <span class="arrow">↗</span>
+              </a>
+
+              <a role="listitem" href="https://github.com/Akbyte-was-taken/Pack2zip-info.git" target="_blank" rel="noreferrer">
+                <span class="left">
+                  <b>Pack2Zip Info Repo</b>
+                  <small>How to use + details</small>
+                </span>
+                <span class="arrow">↗</span>
+              </a>
+
+              <a role="listitem" href="https://akbyte-was-taken.github.io/CPS-Tester/" target="_blank" rel="noreferrer">
+                <span class="left">
+                  <b>CPS Tester</b>
+                  <small>Click speed tester</small>
+                </span>
+                <span class="arrow">↗</span>
+              </a>
+            </div>
+          </div>
         </div>
 
-        <form class="card form" onsubmit="return false">
-          <h3>Message</h3>
-          <label>
-            <span>Name</span>
-            <input type="text" placeholder="Your name" autocomplete="name" />
-          </label>
-          <label>
-            <span>Message</span>
-            <textarea rows="4" placeholder="What do you want to build?"></textarea>
-          </label>
-          <button class="btn" id="fakeSend" type="button">Send (demo)</button>
-          <p class="muted tiny">This button is a demo. If you want, I can wire it to Formspree later.</p>
-        </form>
+        <div class="card reveal">
+          <div class="cardInner">
+            <div class="sectionTitle" style="margin-top:0;">
+              <h2>Status</h2>
+              <p>What I’m into</p>
+            </div>
+
+            <ul class="list">
+              <li>Building small web tools that feel fast and simple.</li>
+              <li>Improving UI, animations, and mobile-first layouts.</li>
+              <li>Learning more about React patterns and better project structure.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
-    <footer class="wrap footer">
-      <div class="foot-left">
-        <b>Akbyte</b>
-        <span class="muted">© <span id="year"></span> Akash Rawat</span>
+    <section id="projects">
+      <div class="sectionTitle">
+        <h2>Projects</h2>
+        <p>Stuff you can open right now</p>
       </div>
-      <div class="foot-right">
-        <a href="#top">Back to top</a>
+
+      <div class="grid">
+        <article class="card project col6 reveal">
+          <div class="cardInner">
+            <h3>Pack2Zip</h3>
+            <p>
+              A web tool (closed-source) built by me. Info and usage is documented in the public repo below.
+            </p>
+            <div class="meta">
+              <span class="tag">Web Tool</span>
+              <span class="tag">Closed Source</span>
+              <span class="tag">HTML/CSS/JS</span>
+            </div>
+
+            <div class="projBtns">
+              <a class="pill primary" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noreferrer">
+                Open live ↗
+              </a>
+              <a class="pill" href="https://github.com/Akbyte-was-taken/Pack2zip-info.git" target="_blank" rel="noreferrer">
+                Info repo ↗
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card project col6 reveal">
+          <div class="cardInner">
+            <h3>CPS Tester</h3>
+            <p>
+              A simple click-per-second tester. Lightweight UI, fast feedback, easy to share.
+            </p>
+            <div class="meta">
+              <span class="tag">Web App</span>
+              <span class="tag">Performance</span>
+              <span class="tag">GitHub Pages</span>
+            </div>
+
+            <div class="projBtns">
+              <a class="pill primary" href="https://akbyte-was-taken.github.io/CPS-Tester/" target="_blank" rel="noreferrer">
+                Open live ↗
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="sectionTitle">
+        <h2>Skills</h2>
+        <p>What I use</p>
+      </div>
+
+      <div class="grid">
+        <div class="card col4 reveal">
+          <div class="cardInner">
+            <h3 style="margin:0 0 10px;">Frontend</h3>
+            <div class="chips">
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">Responsive UI</span>
+              <span class="chip">Animations</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card col4 reveal">
+          <div class="cardInner">
+            <h3 style="margin:0 0 10px;">Programming</h3>
+            <div class="chips">
+              <span class="chip">Python</span>
+              <span class="chip">Logic</span>
+              <span class="chip">Debugging</span>
+              <span class="chip">Problem solving</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card col4 reveal">
+          <div class="cardInner">
+            <h3 style="margin:0 0 10px;">Learning</h3>
+            <div class="chips">
+              <span class="chip">React</span>
+              <span class="chip">Better structure</span>
+              <span class="chip">Clean code</span>
+              <span class="chip">UI polish</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="sectionTitle">
+        <h2>About</h2>
+        <p>Quick intro</p>
+      </div>
+
+      <div class="grid">
+        <div class="card col8 reveal">
+          <div class="cardInner">
+            <p>
+              I’m Akash Rawat (Akbyte). I like building clean, fast websites and small tools that people can actually use.
+              I focus on UI, smooth interactions, and making things work well on mobile.
+            </p>
+            <ul class="list">
+              <li>I like dark UI with strong accent colors (yellow is my favorite).</li>
+              <li>I keep projects lightweight and easy to deploy (GitHub Pages friendly).</li>
+              <li>I’m learning continuously, improving both design + code.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card col4 reveal">
+          <div class="cardInner">
+            <h3 style="margin:0 0 10px;">What I can build</h3>
+            <ul class="list">
+              <li>Landing pages</li>
+              <li>UI components</li>
+              <li>Web tools</li>
+              <li>Small interactive apps</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="sectionTitle">
+        <h2>Contact</h2>
+        <p>Reach me directly</p>
+      </div>
+
+      <div class="grid">
+        <div class="card col6 reveal">
+          <div class="cardInner">
+            <h3 style="margin:0 0 10px;">Email</h3>
+            <p class="sub" style="margin-bottom:12px;">akbytebusiness@gmail.com</p>
+
+            <div class="projBtns">
+              <a class="pill primary" href="mailto:akbytebusiness@gmail.com?subject=Hey%20Akash%20(Akbyte)">
+                Send email
+              </a>
+              <button class="pill" id="copyAllBtn">Copy contact info</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card col6 reveal">
+          <div class="cardInner">
+            <h3 style="margin:0 0 10px;">Discord + WhatsApp</h3>
+            <p class="sub" style="margin-bottom:12px;">
+              Discord: <b style="color:var(--yellow)">akkuu_playzz</b><br/>
+              WhatsApp: <b style="color:var(--yellow)">+91 7302017538</b>
+            </p>
+
+            <div class="projBtns">
+              <a class="pill primary" href="https://wa.me/917302017538" target="_blank" rel="noreferrer">Open WhatsApp ↗</a>
+              <button class="pill" id="copyDiscordBtn">Copy Discord</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footerRow">
+        <div>
+          © <span id="yearBtn" title="(Hidden) Triple-click me">2026</span> Akash Rawat (Akbyte)
+        </div>
+        <div class="footerLinks">
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
       </div>
     </footer>
   </main>
 
-  <!-- Game Modal -->
-  <div class="modal" id="gameModal" aria-hidden="true">
-    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Easter egg mini game">
-      <div class="modal-head">
+  <!-- GAME MODAL (Easter egg #1: Konami code / button / terminal command) -->
+  <div class="modal" id="gameModal" aria-hidden="true" role="dialog" aria-label="Akbyte Mini Game">
+    <div class="modalBox">
+      <div class="modalHead">
         <div>
-          <b>Dodge the Blocks</b>
-          <div class="muted tiny">Move with arrow keys / WASD. On mobile: drag.</div>
+          <b>Akbyte Arcade</b>
+          <small>Collect yellow coins, avoid red blocks</small>
         </div>
-        <button class="icon-btn" id="closeGame" type="button" aria-label="Close game">✕</button>
+        <button class="xbtn" data-close="gameModal" aria-label="Close">Close</button>
       </div>
 
-      <canvas id="game" width="640" height="360"></canvas>
+      <div class="gameWrap">
+        <div class="gameTop">
+          <div class="scoreBox">
+            <span>Score: <span class="n" id="score">0</span></span>
+            <span>Best: <span class="n" id="best">0</span></span>
+            <span>Lives: <span class="n" id="lives">3</span></span>
+          </div>
 
-      <div class="modal-foot">
-        <div class="score">
-          <span class="muted">Score</span>
-          <b id="score">0</b>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="pill primary" id="startGame">Start</button>
+            <button class="pill" id="pauseGame">Pause</button>
+            <button class="pill" id="resetGame">Reset</button>
+          </div>
         </div>
-        <div class="score">
-          <span class="muted">Best</span>
-          <b id="best">0</b>
+
+        <canvas id="game" width="900" height="360" aria-label="Game canvas"></canvas>
+        <div class="hint">
+          Controls: <b>Arrow keys</b> / <b>WASD</b> on desktop. On mobile, drag anywhere on the canvas.<br/>
+          Hidden starts: Konami code · Dev Console command · Play button.
         </div>
-        <button class="btn small" id="restartGame" type="button">Restart</button>
       </div>
     </div>
   </div>
 
-  <script src="./app.js"></script>
+  <!-- DEV CONSOLE MODAL (Easter egg #2: hold logo) -->
+  <div class="modal" id="termModal" aria-hidden="true" role="dialog" aria-label="Akbyte Dev Console">
+    <div class="modalBox">
+      <div class="modalHead">
+        <div>
+          <b>Akbyte Dev Console</b>
+          <small>Type <span style="font-family:var(--mono); color:var(--yellow)">help</span></small>
+        </div>
+        <button class="xbtn" data-close="termModal" aria-label="Close">Close</button>
+      </div>
+      <div class="term">
+        <div class="termOut" id="termOut"></div>
+        <div class="termRow">
+          <input id="termIn" type="text" autocomplete="off" spellcheck="false" placeholder="help · projects · contact · play · theme · clear" />
+          <button id="termRun">Run</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const $ = (q, el=document) => el.querySelector(q);
+      const $$ = (q, el=document) => [...el.querySelectorAll(q)];
+      const html = document.documentElement;
+
+      // ---------------- Theme toggle ----------------
+      const themeToggle = $("#themeToggle");
+      const themeLabel = $("#themeLabel");
+
+      function applyTheme(t){
+        html.setAttribute("data-theme", t);
+        themeLabel.textContent = t === "light" ? "Light" : "Dark";
+        const themeColor = t === "light" ? "#ffffff" : "#0b0c10";
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", themeColor);
+        localStorage.setItem("akbyte_theme", t);
+      }
+
+      const savedTheme = localStorage.getItem("akbyte_theme");
+      if (savedTheme === "light" || savedTheme === "dark") applyTheme(savedTheme);
+      else {
+        const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+        applyTheme(prefersLight ? "light" : "dark");
+      }
+
+      themeToggle.addEventListener("click", () => {
+        const t = html.getAttribute("data-theme") === "light" ? "dark" : "light";
+        applyTheme(t);
+      });
+
+      // ---------------- Smooth scroll (nice but not heavy) ----------------
+      $$('a[href^="#"]').forEach(a => {
+        a.addEventListener("click", (e) => {
+          const id = a.getAttribute("href");
+          if (!id || id.length < 2) return;
+          const target = document.getElementById(id.slice(1));
+          if (!target) return;
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          history.replaceState(null, "", id);
+        });
+      });
+
+      // ---------------- Reveal on scroll ----------------
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            en.target.classList.add("on");
+            io.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      $$(".reveal").forEach(el => io.observe(el));
+
+      // ---------------- Copy buttons ----------------
+      const email = "akbytebusiness@gmail.com";
+      const whatsapp = "+91 7302017538";
+      const discord = "akkuu_playzz";
+      const allInfo = `Email: ${email}\nWhatsApp: ${whatsapp}\nDiscord: ${discord}`;
+
+      function copyText(text){
+        navigator.clipboard.writeText(text).then(() => toast("Copied"));
+      }
+
+      const toastEl = document.createElement("div");
+      toastEl.style.cssText = `
+        position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
+        padding: 10px 12px; border-radius: 999px;
+        border: 1px solid rgba(255,212,0,0.45);
+        background: linear-gradient(180deg, rgba(255,212,0,0.22), rgba(255,176,0,0.10));
+        color: ${getComputedStyle(document.body).color};
+        box-shadow: 0 18px 60px rgba(0,0,0,.25);
+        font-size: 13px; opacity: 0; pointer-events: none;
+        transition: opacity .2s ease, transform .2s ease;
+        z-index: 200;
+      `;
+      document.body.appendChild(toastEl);
+
+      let toastT;
+      function toast(msg){
+        clearTimeout(toastT);
+        toastEl.textContent = msg;
+        toastEl.style.opacity = "1";
+        toastEl.style.transform = "translateX(-50%) translateY(-6px)";
+        toastT = setTimeout(() => {
+          toastEl.style.opacity = "0";
+          toastEl.style.transform = "translateX(-50%) translateY(0px)";
+        }, 950);
+      }
+
+      $("#copyEmailBtn").addEventListener("click", () => copyText(email));
+      $("#copyAllBtn").addEventListener("click", () => copyText(allInfo));
+      $("#copyDiscordBtn").addEventListener("click", () => copyText(discord));
+
+      // ---------------- Modals ----------------
+      function openModal(id){
+        const m = document.getElementById(id);
+        if (!m) return;
+        m.classList.add("show");
+        m.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+      function closeModal(id){
+        const m = document.getElementById(id);
+        if (!m) return;
+        m.classList.remove("show");
+        m.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      document.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-close]");
+        if (!btn) return;
+        closeModal(btn.getAttribute("data-close"));
+      });
+      ["gameModal","termModal"].forEach(id => {
+        const m = document.getElementById(id);
+        m.addEventListener("click", (e) => {
+          if (e.target === m) closeModal(id);
+        });
+      });
+
+      // ---------------- Easter egg starts ----------------
+      // Start #1: Button
+      $("#playBtn").addEventListener("click", () => {
+        openModal("gameModal");
+        ensureGame();
+        toast("Arcade opened");
+      });
+
+      // Start #2: Konami code
+      const konami = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+      let kIndex = 0;
+      window.addEventListener("keydown", (e) => {
+        const key = e.key;
+        const want = konami[kIndex];
+        if (!want) { kIndex = 0; return; }
+
+        if (key.toLowerCase() === want.toLowerCase()){
+          kIndex++;
+          if (kIndex === konami.length){
+            kIndex = 0;
+            openModal("gameModal");
+            ensureGame();
+            toast("Konami unlocked");
+          }
+        } else {
+          kIndex = 0;
+        }
+      });
+
+      // Start #3: Hold logo to open dev console (and from there: play)
+      const brandBtn = $("#brandBtn");
+      let holdTimer = null;
+      let held = false;
+
+      const startHold = () => {
+        held = false;
+        holdTimer = setTimeout(() => {
+          held = true;
+          openModal("termModal");
+          termFocus();
+          termPrintBanner();
+          toast("Dev Console");
+        }, 520);
+      };
+      const endHold = () => {
+        if (holdTimer) clearTimeout(holdTimer);
+        holdTimer = null;
+      };
+      brandBtn.addEventListener("mousedown", startHold);
+      brandBtn.addEventListener("touchstart", startHold, {passive:true});
+      window.addEventListener("mouseup", endHold);
+      window.addEventListener("touchend", endHold);
+
+      // Easter egg #3: Triple-click year toggles retro mode
+      const yearBtn = $("#yearBtn");
+      let clickTimes = [];
+      yearBtn.addEventListener("click", () => {
+        const now = performance.now();
+        clickTimes.push(now);
+        clickTimes = clickTimes.filter(t => now - t < 450);
+        if (clickTimes.length >= 3){
+          document.body.classList.toggle("retro");
+          toast(document.body.classList.contains("retro") ? "Retro ON" : "Retro OFF");
+          clickTimes = [];
+        }
+      });
+
+      // ---------------- Set year ----------------
+      yearBtn.textContent = String(new Date().getFullYear());
+
+      // ---------------- Dev Console ----------------
+      const termOut = $("#termOut");
+      const termIn = $("#termIn");
+      const termRun = $("#termRun");
+      let bannerPrinted = false;
+
+      function termFocus(){ setTimeout(() => termIn.focus(), 60); }
+
+      function termWrite(line){
+        termOut.textContent += line + "\n";
+        termOut.scrollTop = termOut.scrollHeight;
+      }
+
+      function termPrintBanner(){
+        if (bannerPrinted) return;
+        bannerPrinted = true;
+        termOut.textContent = "";
+        termWrite("akbyte://console v1");
+        termWrite("Type: help");
+        termWrite("");
+      }
+
+      function runCmd(raw){
+        const cmd = (raw || "").trim();
+        if (!cmd) return;
+        termWrite("> " + cmd);
+
+        const c = cmd.toLowerCase();
+
+        if (c === "help"){
+          termWrite("Commands:");
+          termWrite("  projects  - open projects section");
+          termWrite("  contact   - open contact section");
+          termWrite("  play      - open arcade");
+          termWrite("  theme     - toggle theme");
+          termWrite("  retro     - toggle retro mode");
+          termWrite("  clear     - clear console");
+          termWrite("");
+          return;
+        }
+        if (c === "clear"){
+          termOut.textContent = "";
+          return;
+        }
+        if (c === "projects"){
+          closeModal("termModal");
+          document.getElementById("projects").scrollIntoView({behavior:"smooth"});
+          toast("Projects");
+          return;
+        }
+        if (c === "contact"){
+          closeModal("termModal");
+          document.getElementById("contact").scrollIntoView({behavior:"smooth"});
+          toast("Contact");
+          return;
+        }
+        if (c === "play"){
+          openModal("gameModal");
+          ensureGame();
+          toast("Arcade opened");
+          return;
+        }
+        if (c === "theme"){
+          themeToggle.click();
+          termWrite("Theme: " + html.getAttribute("data-theme"));
+          return;
+        }
+        if (c === "retro"){
+          document.body.classList.toggle("retro");
+          termWrite("Retro: " + (document.body.classList.contains("retro") ? "ON" : "OFF"));
+          return;
+        }
+
+        termWrite("Unknown command. Type: help");
+      }
+
+      termRun.addEventListener("click", () => {
+        termPrintBanner();
+        runCmd(termIn.value);
+        termIn.value = "";
+        termFocus();
+      });
+      termIn.addEventListener("keydown", (e) => {
+        if (e.key === "Enter"){
+          termRun.click();
+        }
+      });
+
+      // ---------------- Game (Canvas) ----------------
+      const canvas = $("#game");
+      const ctx = canvas.getContext("2d");
+
+      const state = {
+        ready: false,
+        running: false,
+        paused: false,
+        score: 0,
+        best: Number(localStorage.getItem("akbyte_best") || "0"),
+        lives: 3,
+        t: 0,
+        last: 0,
+        w: canvas.width,
+        h: canvas.height,
+        player: { x: 110, y: 180, r: 12, vx: 0, vy: 0, speed: 250 },
+        coins: [],
+        blocks: [],
+        touch: { active:false, x:0, y:0 }
+      };
+
+      $("#best").textContent = String(state.best);
+
+      function ensureGame(){
+        if (state.ready) return;
+        state.ready = true;
+        resetGame(true);
+        drawSplash();
+      }
+
+      function drawSplash(){
+        ctx.clearRect(0,0,state.w,state.h);
+        drawGrid();
+        drawTitle("AKBYTE ARCADE", "Press Start");
+        drawPlayer();
+      }
+
+      function resetGame(soft){
+        state.score = 0;
+        state.lives = 3;
+        state.player.x = 110;
+        state.player.y = state.h/2;
+        state.player.vx = 0;
+        state.player.vy = 0;
+        state.coins = [];
+        state.blocks = [];
+        state.t = 0;
+        state.last = performance.now();
+        state.paused = false;
+
+        for (let i=0;i<6;i++) spawnCoin();
+        for (let i=0;i<4;i++) spawnBlock();
+
+        $("#score").textContent = "0";
+        $("#lives").textContent = "3";
+        if (!soft) toast("Reset");
+      }
+
+      function startGame(){
+        if (!state.ready) ensureGame();
+        if (!state.running){
+          state.running = true;
+          state.last = performance.now();
+          requestAnimationFrame(loop);
+        }
+        state.paused = false;
+        toast("Start");
+      }
+      function pauseGame(){
+        if (!state.running) return;
+        state.paused = !state.paused;
+        toast(state.paused ? "Paused" : "Resume");
+      }
+
+      $("#startGame").addEventListener("click", startGame);
+      $("#pauseGame").addEventListener("click", pauseGame);
+      $("#resetGame").addEventListener("click", () => {
+        resetGame(false);
+        drawSplash();
+      });
+
+      // Keyboard input
+      const keys = new Set();
+      window.addEventListener("keydown", (e) => {
+        const k = e.key.toLowerCase();
+        if (["arrowup","arrowdown","arrowleft","arrowright","w","a","s","d"].includes(k)){
+          keys.add(k);
+          if (state.running) e.preventDefault();
+        }
+        if (k === " " && $("#gameModal").classList.contains("show")){
+          startGame();
+          e.preventDefault();
+        }
+      }, {passive:false});
+      window.addEventListener("keyup", (e) => keys.delete(e.key.toLowerCase()));
+
+      // Touch drag on canvas
+      const toPos = (ev) => {
+        const r = canvas.getBoundingClientRect();
+        const x = (ev.clientX - r.left) * (state.w / r.width);
+        const y = (ev.clientY - r.top) * (state.h / r.height);
+        return {x,y};
+      };
+      canvas.addEventListener("pointerdown", (e) => {
+        canvas.setPointerCapture(e.pointerId);
+        state.touch.active = true;
+        const p = toPos(e);
+        state.touch.x = p.x; state.touch.y = p.y;
+        startGame();
+      });
+      canvas.addEventListener("pointermove", (e) => {
+        if (!state.touch.active) return;
+        const p = toPos(e);
+        state.touch.x = p.x; state.touch.y = p.y;
+      });
+      canvas.addEventListener("pointerup", () => state.touch.active = false);
+      canvas.addEventListener("pointercancel", () => state.touch.active = false);
+
+      function spawnCoin(){
+        state.coins.push({
+          x: rand(220, state.w-30),
+          y: rand(20, state.h-20),
+          r: 9,
+          wob: rand(0, Math.PI*2)
+        });
+      }
+
+      function spawnBlock(){
+        const size = rand(18, 26);
+        state.blocks.push({
+          x: rand(260, state.w-40),
+          y: rand(40, state.h-40),
+          w: size*1.2,
+          h: size,
+          vx: rand(-90, 120),
+          vy: rand(-120, 120)
+        });
+      }
+
+      function loop(now){
+        if (!state.running) return;
+        const dt = Math.min(0.033, (now - state.last) / 1000);
+        state.last = now;
+
+        if (!state.paused){
+          state.t += dt;
+          update(dt);
+        }
+        render();
+        requestAnimationFrame(loop);
+      }
+
+      function update(dt){
+        const p = state.player;
+
+        // controls
+        let ax = 0, ay = 0;
+        if (keys.has("arrowleft") || keys.has("a")) ax -= 1;
+        if (keys.has("arrowright") || keys.has("d")) ax += 1;
+        if (keys.has("arrowup") || keys.has("w")) ay -= 1;
+        if (keys.has("arrowdown") || keys.has("s")) ay += 1;
+
+        // touch steering: follow finger
+        if (state.touch.active){
+          const dx = state.touch.x - p.x;
+          const dy = state.touch.y - p.y;
+          const len = Math.hypot(dx, dy) || 1;
+          ax = dx / len;
+          ay = dy / len;
+        }
+
+        const sp = p.speed;
+        p.vx = lerp(p.vx, ax * sp, 0.18);
+        p.vy = lerp(p.vy, ay * sp, 0.18);
+        p.x += p.vx * dt;
+        p.y += p.vy * dt;
+
+        // clamp
+        p.x = clamp(p.x, p.r + 6, state.w - p.r - 6);
+        p.y = clamp(p.y, p.r + 6, state.h - p.r - 6);
+
+        // move blocks + bounce
+        for (const b of state.blocks){
+          b.x += b.vx * dt;
+          b.y += b.vy * dt;
+
+          if (b.x < 12 || b.x + b.w > state.w - 12) b.vx *= -1;
+          if (b.y < 12 || b.y + b.h > state.h - 12) b.vy *= -1;
+
+          b.x = clamp(b.x, 12, state.w - b.w - 12);
+          b.y = clamp(b.y, 12, state.h - b.h - 12);
+        }
+
+        // coins wobble
+        for (const c of state.coins){
+          c.wob += dt * 4.2;
+        }
+
+        // collide coin
+        for (let i=state.coins.length-1; i>=0; i--){
+          const c = state.coins[i];
+          const d = dist(p.x, p.y, c.x, c.y);
+          if (d < p.r + c.r){
+            state.coins.splice(i,1);
+            state.score += 10;
+            $("#score").textContent = String(state.score);
+            spawnCoin();
+
+            // ramp difficulty a bit
+            if (state.score % 50 === 0){
+              spawnBlock();
+              toast("Speed up");
+            }
+          }
+        }
+
+        // collide block
+        for (const b of state.blocks){
+          const hit = circleRect(p.x, p.y, p.r, b.x, b.y, b.w, b.h);
+          if (hit){
+            state.lives -= 1;
+            $("#lives").textContent = String(state.lives);
+            // knockback
+            p.x = 110;
+            p.y = rand(60, state.h-60);
+            p.vx = 0; p.vy = 0;
+
+            if (state.lives <= 0){
+              endGame();
+              return;
+            }
+          }
+        }
+      }
+
+      function endGame(){
+        state.paused = true;
+        state.running = true; // keep render
+        if (state.score > state.best){
+          state.best = state.score;
+          localStorage.setItem("akbyte_best", String(state.best));
+          $("#best").textContent = String(state.best);
+          toast("New best");
+        } else {
+          toast("Game over");
+        }
+      }
+
+      function render(){
+        ctx.clearRect(0,0,state.w,state.h);
+        drawGrid();
+        drawCoins();
+        drawBlocks();
+        drawPlayer();
+
+        if (!state.running){
+          drawTitle("AKBYTE ARCADE", "Press Start");
+        }
+        if (state.paused){
+          const msg = (state.lives <= 0) ? "Game Over" : "Paused";
+          drawOverlay(msg, "Press Start to continue");
+        }
+      }
+
+      function drawGrid(){
+        // subtle grid
+        ctx.save();
+        ctx.globalAlpha = 0.20;
+        ctx.lineWidth = 1;
+
+        const isLight = html.getAttribute("data-theme") === "light";
+        ctx.strokeStyle = isLight ? "rgba(0,0,0,0.18)" : "rgba(255,255,255,0.18)";
+        for (let x=0; x<=state.w; x+=40){
+          ctx.beginPath();
+          ctx.moveTo(x,0); ctx.lineTo(x,state.h);
+          ctx.stroke();
+        }
+        for (let y=0; y<=state.h; y+=40){
+          ctx.beginPath();
+          ctx.moveTo(0,y); ctx.lineTo(state.w,y);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      function drawPlayer(){
+        const p = state.player;
+        ctx.save();
+
+        // glow
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r+10, 0, Math.PI*2);
+        ctx.fillStyle = "rgba(255,212,0,0.10)";
+        ctx.fill();
+
+        // body
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = "rgba(255,212,0,0.92)";
+        ctx.fill();
+
+        // highlight
+        ctx.beginPath();
+        ctx.arc(p.x - 4, p.y - 5, 4, 0, Math.PI*2);
+        ctx.fillStyle = "rgba(255,255,255,0.65)";
+        ctx.fill();
+
+        ctx.restore();
+      }
+
+      function drawCoins(){
+        ctx.save();
+        for (const c of state.coins){
+          const bob = Math.sin(c.wob) * 3;
+          ctx.beginPath();
+          ctx.arc(c.x, c.y + bob, c.r+8, 0, Math.PI*2);
+          ctx.fillStyle = "rgba(255,212,0,0.10)";
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(c.x, c.y + bob, c.r, 0, Math.PI*2);
+          ctx.fillStyle = "rgba(255,212,0,0.95)";
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(c.x - 2, c.y + bob - 2, 2.6, 0, Math.PI*2);
+          ctx.fillStyle = "rgba(255,255,255,0.55)";
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      function drawBlocks(){
+        ctx.save();
+        for (const b of state.blocks){
+          ctx.fillStyle = "rgba(255,92,122,0.22)";
+          roundRect(ctx, b.x-6, b.y-6, b.w+12, b.h+12, 10);
+          ctx.fill();
+
+          ctx.fillStyle = "rgba(255,92,122,0.80)";
+          roundRect(ctx, b.x, b.y, b.w, b.h, 10);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      function drawTitle(a,b){
+        ctx.save();
+        ctx.fillStyle = "rgba(0,0,0,0.35)";
+        ctx.fillRect(0,0,state.w,state.h);
+
+        ctx.textAlign = "center";
+        ctx.fillStyle = "rgba(255,212,0,0.98)";
+        ctx.font = "700 34px system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
+        ctx.fillText(a, state.w/2, state.h/2 - 10);
+
+        ctx.fillStyle = "rgba(255,255,255,0.72)";
+        ctx.font = "500 14px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace";
+        ctx.fillText(b, state.w/2, state.h/2 + 20);
+        ctx.restore();
+      }
+
+      function drawOverlay(a,b){
+        ctx.save();
+        ctx.fillStyle = "rgba(0,0,0,0.40)";
+        ctx.fillRect(0,0,state.w,state.h);
+
+        ctx.textAlign = "center";
+        ctx.fillStyle = "rgba(255,255,255,0.92)";
+        ctx.font = "700 28px system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
+        ctx.fillText(a, state.w/2, state.h/2 - 10);
+
+        ctx.fillStyle = "rgba(255,212,0,0.90)";
+        ctx.font = "500 13px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace";
+        ctx.fillText(b, state.w/2, state.h/2 + 18);
+        ctx.restore();
+      }
+
+      function roundRect(ctx, x, y, w, h, r){
+        const rr = Math.min(r, w/2, h/2);
+        ctx.beginPath();
+        ctx.moveTo(x+rr, y);
+        ctx.arcTo(x+w, y, x+w, y+h, rr);
+        ctx.arcTo(x+w, y+h, x, y+h, rr);
+        ctx.arcTo(x, y+h, x, y, rr);
+        ctx.arcTo(x, y, x+w, y, rr);
+        ctx.closePath();
+      }
+
+      function circleRect(cx, cy, cr, rx, ry, rw, rh){
+        const nx = clamp(cx, rx, rx+rw);
+        const ny = clamp(cy, ry, ry+rh);
+        const dx = cx - nx, dy = cy - ny;
+        return (dx*dx + dy*dy) <= cr*cr;
+      }
+
+      function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
+      function lerp(a,b,t){ return a + (b-a)*t; }
+      function rand(a,b){ return a + Math.random()*(b-a); }
+      function dist(x1,y1,x2,y2){ return Math.hypot(x2-x1, y2-y1); }
+
+      // open game when modal opens (only draws splash)
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape"){
+          if ($("#gameModal").classList.contains("show")) closeModal("gameModal");
+          if ($("#termModal").classList.contains("show")) closeModal("termModal");
+        }
+      });
+
+      // Keep game responsive on resize (CSS handles size; logic uses internal width/height)
+      const resize = () => {
+        const r = canvas.getBoundingClientRect();
+        // nothing needed for internal coords; we keep fixed internal resolution for stability
+      };
+      window.addEventListener("resize", resize);
+
+      // default: draw splash once ready if user opens via konami
+      const gameModal = $("#gameModal");
+      const mo = new MutationObserver(() => {
+        if (gameModal.classList.contains("show")){
+          ensureGame();
+          drawSplash();
+        }
+      });
+      mo.observe(gameModal, { attributes:true, attributeFilter:["class"] });
+
+    })();
+  </script>
 </body>
 </html>
