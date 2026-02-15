@@ -1,979 +1,1249 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="auto">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Akash Rawat (Akbyte) — Web Developer. HTML, CSS, JavaScript, Python, React. Projects: Pack2Zip, CPS Tester." />
-  <meta name="theme-color" content="#0b0c10" />
-  <title>Akbyte · Akash Rawat</title>
-
-  <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"%3E%3Cdefs%3E%3ClinearGradient id="g" x1="0" y1="0" x2="1" y2="1"%3E%3Cstop offset="0" stop-color="%23ffd400"/%3E%3Cstop offset="1" stop-color="%23ffb000"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="64" height="64" rx="14" fill="%230b0c10"/%3E%3Cpath d="M18 44l8-24h6l8 24h-6l-1.7-6H31.7L30 44h-6zm15-11.2h6.5L36.3 22l-3.3 10.8z" fill="url(%23g)"/%3E%3C/svg%3E' />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Akash Rawat (aka Akbyte) — web dev learner building useful tools. Projects: Pack2zip and CPS Tester." />
+  <meta name="theme-color" content="#0b0b0c" />
+  <meta property="og:title" content="Akash Rawat (Akbyte) — Portfolio" />
+  <meta property="og:description" content="Web dev learner building useful tools. Projects: Pack2zip and CPS Tester." />
+  <title>Akash Rawat (Akbyte) — Portfolio</title>
 
   <style>
-    /* =========================
-       Akbyte Portfolio (single file)
-       Theme: Black+Yellow + White+Yellow
-       ========================= */
-
     :root{
-      --bg: #0b0c10;
-      --panel: rgba(255,255,255,0.06);
-      --panel2: rgba(255,255,255,0.09);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.68);
-      --muted2: rgba(255,255,255,0.52);
-      --border: rgba(255,255,255,0.10);
-      --border2: rgba(255,255,255,0.16);
-      --shadow: 0 18px 60px rgba(0,0,0,0.35);
-      --yellow: #ffd400;
-      --yellow2:#ffb000;
-      --good: #49d17d;
-      --bad: #ff5c7a;
-      --ring: 0 0 0 8px rgba(255, 212, 0, 0.12);
+      --bg: #0b0b0c;
+      --bg2:#070708;
+      --text:#e9e9ee;
+      --muted:#b9b9c6;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --border: rgba(255,255,255,.10);
+      --shadow: 0 12px 40px rgba(0,0,0,.45);
+      --accent:#f6c445;
+      --accent2:#ffd86d;
+      --focus: rgba(246,196,69,.55);
+      --ring: 0 0 0 3px var(--focus);
       --radius: 18px;
-      --radius2: 26px;
-      --max: 1060px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
-      --pixel: ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", monospace; /* used in retro egg */
-      --grainOpacity: .12;
-      --blobOpacity: .22;
-    }
-    html[data-theme="light"]{
-      --bg: #ffffff;
-      --panel: rgba(0,0,0,0.06);
-      --panel2: rgba(0,0,0,0.09);
-      --text: rgba(0,0,0,0.90);
-      --muted: rgba(0,0,0,0.64);
-      --muted2: rgba(0,0,0,0.52);
-      --border: rgba(0,0,0,0.10);
-      --border2: rgba(0,0,0,0.16);
-      --shadow: 0 18px 60px rgba(0,0,0,0.14);
-      --ring: 0 0 0 8px rgba(255, 212, 0, 0.18);
-      --grainOpacity: .08;
-      --blobOpacity: .18;
+
+      --navH: 64px;
+
+      --ease: cubic-bezier(.2,.8,.2,1);
+      --fast: 160ms;
+      --med: 280ms;
+
+      --glow: 0 10px 30px rgba(246,196,69,.18);
+      --glow2: 0 18px 50px rgba(246,196,69,.22);
+
+      --heroShiftX: 0px;
+      --heroShiftY: 0px;
+
+      --accentBoost: 1;
     }
 
-    *{ box-sizing: border-box; }
-    html, body{ height: 100%; }
+    html[data-theme="light"]{
+      --bg:#ffffff;
+      --bg2:#fbfbfc;
+      --text:#101114;
+      --muted:#4b4d56;
+      --card: rgba(16,17,20,.045);
+      --card2: rgba(16,17,20,.06);
+      --border: rgba(16,17,20,.10);
+      --shadow: 0 12px 40px rgba(16,17,20,.10);
+      --focus: rgba(246,196,69,.45);
+      --glow: 0 10px 30px rgba(246,196,69,.16);
+      --glow2: 0 18px 50px rgba(246,196,69,.20);
+    }
+
+    html.dev{
+      --accentBoost: 1.35;
+      --glow: 0 12px 34px rgba(246,196,69,.22);
+      --glow2: 0 22px 60px rgba(246,196,69,.28);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family: var(--sans);
-      color: var(--text);
-      background: var(--bg);
-      overflow-x: hidden;
-      line-height: 1.55;
-    }
-    a{ color: inherit; text-decoration: none; }
-    button, input, textarea{ font: inherit; color: inherit; }
-    :focus-visible{ outline: none; box-shadow: var(--ring); border-color: rgba(255,212,0,0.7) !important; }
-
-    /* ---------- Background layers ---------- */
-    .bg{
-      position: fixed;
-      inset: 0;
-      z-index: -2;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
-        radial-gradient(1200px 700px at 20% 10%, rgba(255,212,0,var(--blobOpacity)), transparent 55%),
-        radial-gradient(900px 600px at 80% 20%, rgba(255,176,0, calc(var(--blobOpacity) * .7)), transparent 55%),
-        radial-gradient(1100px 700px at 60% 90%, rgba(255,212,0, calc(var(--blobOpacity) * .55)), transparent 55%),
-        linear-gradient(180deg, rgba(255,212,0,0.06), transparent 40%),
-        linear-gradient(180deg, var(--bg), var(--bg));
-      filter: saturate(1.05);
-    }
-    .grain{
-      position: fixed;
-      inset: -40%;
-      z-index: -1;
-      opacity: var(--grainOpacity);
-      pointer-events: none;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
-      transform: rotate(8deg);
-      animation: grainMove 9s steps(10) infinite;
-    }
-    @keyframes grainMove{
-      0%{ transform: translate(0,0) rotate(8deg); }
-      25%{ transform: translate(-2%, 1%) rotate(8deg); }
-      50%{ transform: translate(-1%, -2%) rotate(8deg); }
-      75%{ transform: translate(2%, 2%) rotate(8deg); }
-      100%{ transform: translate(0,0) rotate(8deg); }
+        radial-gradient(1200px 900px at 15% -10%, rgba(246,196,69,.14), transparent 55%),
+        radial-gradient(900px 700px at 95% 10%, rgba(246,196,69,.10), transparent 56%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
+      overflow-x:hidden;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ---------- Layout ---------- */
-    .wrap{ max-width: var(--max); margin: 0 auto; padding: 24px 18px 70px; }
+    /* subtle texture (CSS-only) */
+    .texture{
+      pointer-events:none;
+      position:fixed;
+      inset:0;
+      background:
+        repeating-linear-gradient(
+          135deg,
+          rgba(255,255,255,.035) 0px,
+          rgba(255,255,255,.035) 1px,
+          transparent 1px,
+          transparent 9px
+        ),
+        radial-gradient(circle at 30% 20%, rgba(246,196,69,.08), transparent 45%),
+        radial-gradient(circle at 70% 70%, rgba(246,196,69,.06), transparent 55%);
+      opacity:.55;
+      mix-blend-mode: overlay;
+      transform: translateZ(0);
+    }
+    html[data-theme="light"] .texture{
+      background:
+        repeating-linear-gradient(
+          135deg,
+          rgba(16,17,20,.06) 0px,
+          rgba(16,17,20,.06) 1px,
+          transparent 1px,
+          transparent 9px
+        ),
+        radial-gradient(circle at 30% 20%, rgba(246,196,69,.10), transparent 45%),
+        radial-gradient(circle at 70% 70%, rgba(246,196,69,.08), transparent 55%);
+      opacity:.45;
+      mix-blend-mode: multiply;
+    }
+
+    a{color:inherit}
+    .container{
+      width:min(1120px, calc(100% - 40px));
+      margin-inline:auto;
+    }
+
+    .skip{
+      position:absolute;
+      top:12px;
+      left:12px;
+      padding:10px 12px;
+      border-radius:12px;
+      background: var(--bg2);
+      border:1px solid var(--border);
+      color: var(--text);
+      text-decoration:none;
+      transform: translateY(-140%);
+      transition: transform var(--fast) var(--ease);
+      z-index:9999;
+    }
+    .skip:focus{transform: translateY(0); outline:none; box-shadow: var(--ring);}
+
     header{
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.06));
-      border-bottom: 1px solid var(--border);
+      position:sticky;
+      top:0;
+      z-index:80;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: color-mix(in srgb, var(--bg) 72%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
     }
-    html[data-theme="light"] header{
-      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.60));
-    }
-    .topbar{ max-width: var(--max); margin:0 auto; padding: 12px 18px; display:flex; align-items:center; gap: 14px; }
-    .brand{
-      display:flex; align-items:center; gap: 12px;
-      padding: 8px 10px;
-      border-radius: 14px;
-      border: 1px solid transparent;
-      user-select: none;
-      cursor: pointer;
-    }
-    .brand:hover{ border-color: var(--border2); background: rgba(255,255,255,0.04); }
-    html[data-theme="light"] .brand:hover{ background: rgba(0,0,0,0.04); }
-    .logo{
-      width: 34px; height: 34px; border-radius: 12px;
-      display:grid; place-items:center;
-      background: linear-gradient(140deg, rgba(255,212,0,0.18), rgba(255,176,0,0.08));
-      border: 1px solid rgba(255,212,0,0.28);
-      box-shadow: 0 10px 30px rgba(255,212,0,0.12);
-    }
-    .logo svg{ width: 19px; height: 19px; }
-    .brandText b{ display:block; font-size: 14px; letter-spacing: .2px; }
-    .brandText small{ display:block; font-size: 12px; color: var(--muted); margin-top: 1px; }
-
-    .spacer{ flex: 1; }
 
     .nav{
-      display:flex; gap: 8px; align-items:center;
-    }
-    .nav a{
-      font-size: 13px;
-      color: var(--muted);
-      padding: 8px 10px;
-      border-radius: 12px;
-      border: 1px solid transparent;
-    }
-    .nav a:hover{
-      color: var(--text);
-      border-color: var(--border2);
-      background: rgba(255,255,255,0.04);
-    }
-    html[data-theme="light"] .nav a:hover{ background: rgba(0,0,0,0.04); }
-    .ctaRow{
-      display:flex; gap: 10px; align-items:center;
-    }
-    .pill{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap: 10px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.10);
-      cursor: pointer;
-      transition: transform .14s ease, background .14s ease, border-color .14s ease;
-      user-select: none;
-    }
-    html[data-theme="light"] .pill{ background: rgba(0,0,0,0.03); }
-    .pill:hover{ transform: translateY(-1px); border-color: rgba(255,212,0,0.45); }
-    .pill:active{ transform: translateY(0px) scale(.99); }
-
-    .pill.primary{
-      border-color: rgba(255,212,0,0.55);
-      background: linear-gradient(180deg, rgba(255,212,0,0.18), rgba(255,176,0,0.08));
-    }
-    .pill.primary:hover{ border-color: rgba(255,212,0,0.75); }
-
-    .icon{
-      width: 16px; height:16px; display:inline-block;
-      opacity: .92;
+      height: var(--navH);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
     }
 
-    /* ---------- Hero ---------- */
-    .hero{
-      padding: 46px 0 22px;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      user-select:none;
+      min-width:max-content;
+    }
+    .logo{
+      width:38px; height:38px;
+      border-radius: 14px;
+      background:
+        radial-gradient(18px 18px at 30% 25%, rgba(255,255,255,.25), transparent 65%),
+        linear-gradient(140deg, rgba(246,196,69,.95), rgba(246,196,69,.35));
+      box-shadow: var(--glow);
+      border: 1px solid rgba(255,255,255,.18);
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 22px;
-      align-items: start;
+      place-items:center;
+      position:relative;
+      transition: transform var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
+      transform: translateZ(0);
     }
-    @media (max-width: 920px){
-      .hero{ grid-template-columns: 1fr; padding-top: 34px; }
-      .nav{ display:none; }
+    html[data-theme="light"] .logo{
+      border: 1px solid rgba(16,17,20,.12);
+    }
+    .logo svg{
+      width:22px;
+      height:22px;
+      fill: rgba(10,10,12,.88);
+      opacity:.95;
+      transform: scale(1);
+      transition: transform var(--fast) var(--ease);
+    }
+    .brand:hover .logo{transform: translateY(-1px) scale(1.02); box-shadow: var(--glow2);}
+    .brand:active .logo{transform: translateY(0px) scale(.98);}
+    .brand:hover .logo svg{transform: scale(1.03);}
+
+    .brandText{
+      display:flex;
+      flex-direction:column;
+      line-height:1.05;
+      gap:2px;
+    }
+    .brandText strong{font-size:14px; letter-spacing:.2px;}
+    .brandText span{font-size:12px; color: var(--muted);}
+
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap: 6px;
+      margin:0;
+      padding:0;
+      align-items:center;
     }
 
-    .card{
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      position: relative;
-    }
-    html[data-theme="light"] .card{
-      background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.02));
-    }
-    .cardInner{ padding: 22px; }
-
-    .badge{
-      display:inline-flex; align-items:center; gap: 8px;
-      font-size: 12px;
+    .navLink{
+      display:inline-flex;
+      align-items:center;
+      height:40px;
+      padding:0 12px;
+      border-radius: 12px;
+      text-decoration:none;
       color: var(--muted);
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,0.03);
-      margin-bottom: 14px;
-      user-select: none;
+      border: 1px solid transparent;
+      transition: background var(--fast) var(--ease), color var(--fast) var(--ease), transform var(--fast) var(--ease), border-color var(--fast) var(--ease);
     }
-    html[data-theme="light"] .badge{ background: rgba(0,0,0,0.03); }
+    .navLink:hover{
+      color: var(--text);
+      background: color-mix(in srgb, var(--card) 65%, transparent);
+      border-color: color-mix(in srgb, var(--border) 70%, transparent);
+    }
+    .navLink:active{transform: translateY(1px);}
+    .navLink:focus-visible{outline:none; box-shadow: var(--ring);}
 
-    h1{
-      margin: 0 0 10px;
-      font-size: clamp(28px, 3.3vw, 44px);
-      line-height: 1.12;
-      letter-spacing: -0.6px;
+    .navRight{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:max-content;
     }
-    .sub{
+
+    .iconBtn{
+      height:40px; width:40px;
+      border-radius: 12px;
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      background: color-mix(in srgb, var(--card) 70%, transparent);
+      color: var(--text);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition: transform var(--fast) var(--ease), box-shadow var(--fast) var(--ease), background var(--fast) var(--ease), border-color var(--fast) var(--ease);
+      box-shadow: 0 10px 22px rgba(0,0,0,.10);
+    }
+    html[data-theme="light"] .iconBtn{
+      box-shadow: 0 10px 22px rgba(16,17,20,.08);
+    }
+    .iconBtn:hover{transform: translateY(-1px); box-shadow: var(--glow);}
+    .iconBtn:active{transform: translateY(0px) scale(.98);}
+    .iconBtn:focus-visible{outline:none; box-shadow: var(--ring);}
+    .iconBtn svg{width:18px;height:18px; fill: currentColor; opacity:.92;}
+
+    main{padding-bottom: 56px;}
+
+    section{
+      padding: 72px 0;
+      scroll-margin-top: calc(var(--navH) + 18px);
+    }
+    .hero{
+      padding-top: 54px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .heroBg{
+      position:absolute;
+      inset:-40px;
+      background:
+        radial-gradient(850px 560px at 15% 30%, rgba(246,196,69,.20), transparent 58%),
+        radial-gradient(650px 420px at 75% 20%, rgba(246,196,69,.14), transparent 62%),
+        radial-gradient(420px 320px at 60% 80%, rgba(255,255,255,.08), transparent 65%);
+      transform: translate3d(var(--heroShiftX), var(--heroShiftY), 0);
+      filter: saturate(calc(1 * var(--accentBoost)));
+      transition: transform var(--med) var(--ease);
+      pointer-events:none;
+      opacity:.9;
+    }
+    html[data-theme="light"] .heroBg{
+      opacity:.7;
+      background:
+        radial-gradient(850px 560px at 15% 30%, rgba(246,196,69,.18), transparent 58%),
+        radial-gradient(650px 420px at 75% 20%, rgba(246,196,69,.12), transparent 62%),
+        radial-gradient(420px 320px at 60% 80%, rgba(16,17,20,.06), transparent 65%);
+    }
+
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 26px;
+      align-items:stretch;
+      position:relative;
+    }
+
+    .hCard{
+      border-radius: calc(var(--radius) + 8px);
+      background: color-mix(in srgb, var(--card) 65%, transparent);
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      position:relative;
+      overflow:hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .hCard::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(550px 300px at 10% 10%, rgba(246,196,69,.16), transparent 60%),
+        radial-gradient(420px 260px at 90% 30%, rgba(255,255,255,.08), transparent 65%);
+      opacity:.55;
+      pointer-events:none;
+    }
+    html[data-theme="light"] .hCard::before{
+      background:
+        radial-gradient(550px 300px at 10% 10%, rgba(246,196,69,.14), transparent 60%),
+        radial-gradient(420px 260px at 90% 30%, rgba(16,17,20,.05), transparent 65%);
+      opacity:.50;
+    }
+
+    .heroTitle{
+      margin:0 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      letter-spacing: -0.6px;
+      position:relative;
+    }
+    .heroTitle .aka{
+      font-weight: 650;
+      color: color-mix(in srgb, var(--accent) 92%, var(--text));
+      filter: saturate(calc(1 * var(--accentBoost)));
+    }
+
+    .tagline{
       margin: 0 0 18px;
       color: var(--muted);
-      font-size: 15px;
-      max-width: 62ch;
-    }
-    .chips{
-      display:flex; flex-wrap: wrap; gap: 10px;
-      margin-top: 10px;
-    }
-    .chip{
-      font-size: 12px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      user-select: none;
-      transition: transform .14s ease, border-color .14s ease;
-    }
-    html[data-theme="light"] .chip{ background: rgba(0,0,0,0.03); }
-    .chip:hover{ transform: translateY(-1px); border-color: rgba(255,212,0,0.45); }
-
-    .heroActions{
-      display:flex; flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
+      font-size: 16px;
+      line-height: 1.6;
+      position:relative;
     }
 
-    .sideStack{
+    .ctaRow{
       display:flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .quick{
-      display:grid;
+      flex-wrap:wrap;
       gap: 10px;
-    }
-    .quick a{
-      display:flex; align-items:center; justify-content: space-between;
-      gap: 12px;
-      padding: 12px 14px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      transition: transform .14s ease, border-color .14s ease, background .14s ease;
-    }
-    html[data-theme="light"] .quick a{ background: rgba(0,0,0,0.03); }
-    .quick a:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,212,0,0.45);
-      background: rgba(255,212,0,0.08);
-    }
-    .quick .left{
-      display:flex; flex-direction: column; gap: 2px;
-      min-width: 0;
-    }
-    .quick .left b{ font-size: 13px; }
-    .quick .left small{
-      font-size: 12px; color: var(--muted);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      max-width: 48ch;
+      position:relative;
     }
 
-    /* ---------- Sections ---------- */
-    section{ padding: 20px 0; }
-    .sectionTitle{
-      display:flex; align-items: baseline; justify-content: space-between;
-      gap: 14px;
-      margin: 16px 0 10px;
+    .btn{
+      height: 44px;
+      padding: 0 14px;
+      border-radius: 14px;
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      background: color-mix(in srgb, var(--card2) 70%, transparent);
+      color: var(--text);
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight: 600;
+      letter-spacing: .15px;
+      cursor:pointer;
+      transition: transform var(--fast) var(--ease), box-shadow var(--fast) var(--ease), background var(--fast) var(--ease), border-color var(--fast) var(--ease);
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
     }
-    .sectionTitle h2{
-      margin:0;
-      font-size: 18px;
+    .btn:hover{transform: translateY(-1px); box-shadow: var(--glow);}
+    .btn:active{transform: translateY(0) scale(.99); box-shadow: none;}
+    .btn:focus-visible{outline:none; box-shadow: var(--ring);}
+    .btn svg{width:16px;height:16px; fill: currentColor; opacity:.9;}
+
+    .btn.primary{
+      border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+      background:
+        radial-gradient(18px 18px at 25% 25%, rgba(255,255,255,.18), transparent 60%),
+        linear-gradient(135deg, color-mix(in srgb, var(--accent) 92%, #fff 8%), color-mix(in srgb, var(--accent) 55%, transparent));
+      color: #121212;
+      filter: saturate(calc(1 * var(--accentBoost)));
+    }
+    html[data-theme="light"] .btn.primary{
+      color: #101114;
+    }
+
+    .heroAside{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .miniCard{
+      border-radius: var(--radius);
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      background: color-mix(in srgb, var(--card) 70%, transparent);
+      padding: 16px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position:relative;
+      overflow:hidden;
+    }
+    html[data-theme="light"] .miniCard{
+      box-shadow: 0 10px 24px rgba(16,17,20,.08);
+    }
+
+    .miniTitle{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin:0 0 8px;
+      font-size: 14px;
       letter-spacing: .2px;
     }
-    .sectionTitle p{
-      margin:0;
+    .pillRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .pill{
+      font-size: 12px;
       color: var(--muted);
-      font-size: 13px;
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      background: color-mix(in srgb, var(--card2) 70%, transparent);
+      padding: 6px 10px;
+      border-radius: 999px;
+      line-height: 1;
+      user-select:none;
+    }
+    .pill.accent{
+      color: color-mix(in srgb, var(--accent) 95%, var(--text));
+      border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+      filter: saturate(calc(1 * var(--accentBoost)));
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size: 22px;
+      letter-spacing: -0.2px;
+    }
+    .sectionLead{
+      margin:0 0 22px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 70ch;
     }
 
     .grid{
       display:grid;
-      gap: 14px;
       grid-template-columns: repeat(12, 1fr);
-    }
-    .col6{ grid-column: span 6; }
-    .col4{ grid-column: span 4; }
-    .col8{ grid-column: span 8; }
-    .col12{ grid-column: span 12; }
-
-    @media (max-width: 920px){
-      .col6, .col4, .col8{ grid-column: span 12; }
+      gap: 14px;
     }
 
-    .project{
-      position: relative;
+    .card{
+      grid-column: span 6;
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--card) 72%, transparent);
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      position:relative;
       overflow:hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform var(--med) var(--ease), box-shadow var(--med) var(--ease), border-color var(--med) var(--ease);
+      transform: translateZ(0);
     }
-    .project .cardInner{ padding: 18px; }
-    .project h3{ margin: 0 0 6px; font-size: 16px; }
-    .project p{ margin: 0 0 12px; color: var(--muted); font-size: 13px; }
-    .project .meta{ display:flex; gap: 10px; flex-wrap: wrap; }
+    .card:hover{
+      transform: translateY(-3px);
+      box-shadow: var(--glow2);
+      border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+    }
+
+    .cardTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .card h3{
+      margin:0;
+      font-size: 18px;
+      letter-spacing:-0.2px;
+    }
+    .card p{
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .tagRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin: 10px 0 14px;
+    }
     .tag{
       font-size: 12px;
       padding: 6px 10px;
       border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,0.03);
+      background: color-mix(in srgb, var(--card2) 75%, transparent);
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
       color: var(--muted);
       user-select:none;
     }
-    html[data-theme="light"] .tag{ background: rgba(0,0,0,0.03); }
+    .tag strong{color: color-mix(in srgb, var(--accent) 92%, var(--text)); font-weight:700;}
 
-    .projBtns{ display:flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
-    .projBtns a{ font-size: 13px; }
-    .arrow{ opacity: .8; }
-
-    .project::before{
-      content:"";
-      position:absolute; inset: -1px;
-      background:
-        radial-gradient(500px 220px at 20% 0%, rgba(255,212,0,0.18), transparent 65%),
-        radial-gradient(520px 260px at 90% 20%, rgba(255,176,0,0.12), transparent 65%);
-      opacity: 0;
-      transition: opacity .2s ease;
-      pointer-events: none;
-    }
-    .project:hover::before{ opacity: 1; }
-    .project:hover{ border-color: rgba(255,212,0,0.35); }
-
-    .about p{ margin: 0; color: var(--muted); font-size: 14px; }
-    .list{
-      margin: 12px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .list li{ margin: 6px 0; }
-
-    /* ---------- Footer ---------- */
-    footer{ padding: 28px 0 0; }
-    .footerRow{
-      display:flex; align-items:center; justify-content: space-between;
-      gap: 14px;
-      border-top: 1px solid var(--border);
-      padding-top: 14px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-    .footerLinks{ display:flex; gap: 10px; flex-wrap: wrap; }
-    .footerLinks a{
-      padding: 7px 10px;
-      border-radius: 12px;
-      border: 1px solid transparent;
-      color: var(--muted);
-    }
-    .footerLinks a:hover{
-      border-color: var(--border2);
+    .btnRow{display:flex; flex-wrap:wrap; gap: 10px;}
+    .btn.small{height:40px; padding:0 12px; border-radius: 12px; font-weight: 650;}
+    .btn.ghost{
+      background: transparent;
+      border-color: color-mix(in srgb, var(--border) 85%, transparent);
       color: var(--text);
-      background: rgba(255,255,255,0.03);
     }
-    html[data-theme="light"] .footerLinks a:hover{ background: rgba(0,0,0,0.03); }
 
-    /* ---------- Reveal animation ---------- */
-    .reveal{ opacity: 0; transform: translateY(10px); }
-    .reveal.on{ opacity: 1; transform: translateY(0); transition: opacity .55s ease, transform .55s ease; }
+    .skillsWrap{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 12px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      background: color-mix(in srgb, var(--card2) 72%, transparent);
+      font-weight: 650;
+      letter-spacing:.1px;
+      user-select:none;
+    }
+    .badgeDot{
+      width:10px;height:10px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--accent) 90%, #fff 10%);
+      box-shadow: 0 0 0 3px rgba(246,196,69,.14);
+      filter: saturate(calc(1 * var(--accentBoost)));
+    }
+    .learnLine{
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
 
-    /* ---------- Modals ---------- */
-    .modal{
-      position: fixed;
-      inset: 0;
-      display:none;
-      align-items: center;
-      justify-content: center;
+    .aboutCard, .contactCard{
+      border-radius: var(--radius);
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      background: color-mix(in srgb, var(--card) 72%, transparent);
+      box-shadow: var(--shadow);
       padding: 18px;
-      z-index: 80;
-      background: rgba(0,0,0,0.55);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
     }
-    .modal.show{ display:flex; }
-    .modalBox{
-      width: min(820px, 100%);
-      border-radius: var(--radius2);
-      border: 1px solid var(--border2);
-      background: var(--bg);
-      box-shadow: 0 28px 90px rgba(0,0,0,0.45);
-      overflow:hidden;
-      position: relative;
-    }
-    .modalHead{
-      display:flex; align-items:center; justify-content: space-between;
-      gap: 12px;
-      padding: 12px 14px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-    }
-    html[data-theme="light"] .modalHead{ background: rgba(0,0,0,0.03); }
-    .modalHead b{ font-size: 13px; }
-    .modalHead small{ font-size: 12px; color: var(--muted); }
-    .xbtn{
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,0.03);
-      border-radius: 12px;
-      padding: 8px 10px;
-      cursor:pointer;
-    }
-    html[data-theme="light"] .xbtn{ background: rgba(0,0,0,0.03); }
-    .xbtn:hover{ border-color: rgba(255,212,0,0.5); }
 
-    /* ---------- Game ---------- */
-    .gameWrap{ padding: 14px; display:grid; gap: 12px; }
-    .gameTop{
-      display:flex; gap: 10px; flex-wrap: wrap;
-      align-items: center; justify-content: space-between;
+    .aboutCard p{margin:0; line-height:1.7; color: var(--muted);}
+
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 14px;
+      align-items:start;
     }
-    .scoreBox{
-      display:flex; gap: 10px; align-items: center; flex-wrap: wrap;
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--muted);
+
+    .contactList{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin: 8px 0 0;
+      padding:0;
+      list-style:none;
     }
-    .scoreBox .n{ color: var(--text); }
-    canvas{
-      width: 100%;
-      height: 360px;
-      display:block;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background:
-        radial-gradient(600px 240px at 30% 20%, rgba(255,212,0,0.14), transparent 62%),
-        radial-gradient(600px 240px at 70% 70%, rgba(255,176,0,0.10), transparent 62%),
-        rgba(255,255,255,0.02);
-      box-shadow: 0 18px 60px rgba(0,0,0,0.25);
+    .contactItem{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      background: color-mix(in srgb, var(--card2) 70%, transparent);
     }
-    html[data-theme="light"] canvas{
-      background:
-        radial-gradient(600px 240px at 30% 20%, rgba(255,212,0,0.16), transparent 62%),
-        radial-gradient(600px 240px at 70% 70%, rgba(255,176,0,0.12), transparent 62%),
-        rgba(0,0,0,0.02);
+    .contactLeft{display:flex; align-items:center; gap:10px; min-width:0;}
+    .contactLeft svg{width:18px;height:18px; fill: currentColor; opacity:.9;}
+    .contactLeft div{min-width:0;}
+    .contactLabel{font-size:12px; color: var(--muted); margin:0;}
+    .contactValue{
+      font-weight: 700;
+      margin:0;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      max-width: 32ch;
+    }
+
+    .copyBtn{
+      height: 36px;
+      padding: 0 10px;
+      border-radius: 12px;
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      background: transparent;
+      color: var(--text);
+      cursor:pointer;
+      transition: transform var(--fast) var(--ease), background var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
+      user-select:none;
+    }
+    .copyBtn:hover{transform: translateY(-1px); background: color-mix(in srgb, var(--card2) 75%, transparent); box-shadow: var(--glow);}
+    .copyBtn:active{transform: translateY(0) scale(.99); box-shadow:none;}
+    .copyBtn:focus-visible{outline:none; box-shadow: var(--ring);}
+
+    form{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    label{font-size:12px; color: var(--muted);}
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    input, textarea{
+      width:100%;
+      border-radius: 14px;
+      border: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
+      background: color-mix(in srgb, var(--card2) 70%, transparent);
+      color: var(--text);
+      padding: 12px 12px;
+      font: inherit;
+      outline: none;
+      transition: box-shadow var(--fast) var(--ease), border-color var(--fast) var(--ease), background var(--fast) var(--ease);
+    }
+    textarea{min-height: 110px; resize: vertical;}
+    input:focus, textarea:focus{box-shadow: var(--ring); border-color: color-mix(in srgb, var(--accent) 45%, var(--border));}
+    input::placeholder, textarea::placeholder{color: color-mix(in srgb, var(--muted) 80%, transparent);}
+
+    .formRow{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      align-items:center;
     }
     .hint{
-      color: var(--muted);
       font-size: 12px;
-      line-height: 1.45;
+      color: var(--muted);
+      line-height:1.5;
+    }
+    .hint kbd{
+      font: 11px ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      background: color-mix(in srgb, var(--card2) 70%, transparent);
+      color: color-mix(in srgb, var(--accent) 90%, var(--text));
+      filter: saturate(calc(1 * var(--accentBoost)));
     }
 
-    /* ---------- Dev Console (hidden) ---------- */
-    .term{
-      padding: 14px;
+    footer{
+      padding: 26px 0 40px;
+      border-top: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+      color: var(--muted);
+    }
+    .footerRow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .footerRow small{font-size: 13px;}
+    .footerHint{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+    .tinyHintBtn{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      background: color-mix(in srgb, var(--card2) 70%, transparent);
       display:grid;
+      place-items:center;
+      cursor: default;
+    }
+    .tinyHintBtn svg{width:16px;height:16px; fill: currentColor; opacity:.85;}
+
+    /* reveal animation */
+    .reveal{
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 520ms var(--ease), transform 520ms var(--ease);
+      will-change: opacity, transform;
+    }
+    .reveal.in{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* toast */
+    .toastWrap{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      display:flex;
+      flex-direction:column;
       gap: 10px;
+      z-index: 200;
+      pointer-events:none;
     }
-    .termOut{
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      padding: 12px;
-      min-height: 200px;
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--muted);
-      overflow:auto;
-      white-space: pre-wrap;
+    .toast{
+      pointer-events:auto;
+      min-width: min(360px, calc(100vw - 32px));
+      max-width: 420px;
+      border-radius: 16px;
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      background: color-mix(in srgb, var(--bg) 65%, transparent);
+      box-shadow: var(--shadow);
+      padding: 12px 12px;
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transform: translateY(10px);
+      opacity: 0;
+      transition: transform var(--med) var(--ease), opacity var(--med) var(--ease);
     }
-    html[data-theme="light"] .termOut{ background: rgba(0,0,0,0.03); }
-    .termRow{ display:flex; gap: 10px; }
-    .termRow input{
-      flex: 1;
+    .toast.show{transform: translateY(0); opacity:1;}
+    .toastIcon{
+      width: 34px; height:34px;
       border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      padding: 10px 12px;
-      outline: none;
-      font-family: var(--mono);
-      font-size: 12px;
+      background:
+        radial-gradient(18px 18px at 30% 25%, rgba(255,255,255,.20), transparent 65%),
+        linear-gradient(140deg, rgba(246,196,69,.95), rgba(246,196,69,.35));
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+      border: 1px solid rgba(255,255,255,.18);
+      filter: saturate(calc(1 * var(--accentBoost)));
     }
-    html[data-theme="light"] .termRow input{ background: rgba(0,0,0,0.03); }
-    .termRow button{
-      border-radius: 14px;
-      border: 1px solid rgba(255,212,0,0.45);
-      background: linear-gradient(180deg, rgba(255,212,0,0.22), rgba(255,176,0,0.10));
-      padding: 10px 12px;
+    .toastIcon svg{width:18px;height:18px; fill: rgba(10,10,12,.88);}
+    .toastBody{flex:1; min-width:0;}
+    .toastTitle{margin: 1px 0 2px; font-size: 13px; font-weight: 800; letter-spacing:.1px;}
+    .toastMsg{margin:0; color: var(--muted); font-size: 13px; line-height:1.4;}
+    .toastClose{
+      height: 28px;
+      width: 28px;
+      border-radius: 10px;
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      background: transparent;
       cursor:pointer;
+      display:grid;
+      place-items:center;
+      color: var(--text);
+      transition: background var(--fast) var(--ease), transform var(--fast) var(--ease);
+    }
+    .toastClose:hover{background: color-mix(in srgb, var(--card2) 75%, transparent);}
+    .toastClose:active{transform: scale(.98);}
+    .toastClose:focus-visible{outline:none; box-shadow: var(--ring);}
+    .toastClose svg{width:14px;height:14px; fill: currentColor;}
+
+    /* confetti canvas */
+    #confetti{
+      position: fixed;
+      inset: 0;
+      z-index: 180;
+      pointer-events:none;
+      opacity: 0;
+      transition: opacity var(--fast) var(--ease);
+    }
+    #confetti.on{opacity:1;}
+
+    /* mascot */
+    .mascot{
+      position: fixed;
+      left: 50%;
+      top: 18%;
+      transform: translateX(-50%) translateY(-8px) scale(.98);
+      z-index: 190;
+      opacity:0;
+      pointer-events:none;
+      transition: opacity var(--med) var(--ease), transform var(--med) var(--ease);
+      filter: drop-shadow(0 14px 26px rgba(0,0,0,.25));
+    }
+    .mascot.show{
+      opacity:1;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+    .mascotCard{
+      border-radius: 18px;
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      background: color-mix(in srgb, var(--bg) 60%, transparent);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 12px 14px;
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      max-width: min(420px, calc(100vw - 32px));
+    }
+    .mascotFace{
+      width: 46px; height:46px;
+      border-radius: 18px;
+      background:
+        radial-gradient(22px 16px at 35% 30%, rgba(255,255,255,.20), transparent 68%),
+        linear-gradient(140deg, rgba(246,196,69,.95), rgba(246,196,69,.35));
+      border: 1px solid rgba(255,255,255,.18);
+      position:relative;
+      flex: 0 0 auto;
+      filter: saturate(calc(1 * var(--accentBoost)));
+    }
+    .mascotFace:before, .mascotFace:after{
+      content:"";
+      position:absolute;
+      top: 16px;
+      width: 6px;
+      height: 6px;
+      border-radius: 99px;
+      background: rgba(10,10,12,.85);
+      opacity:.9;
+    }
+    .mascotFace:before{left: 15px;}
+    .mascotFace:after{right: 15px;}
+    .mascotSmile{
+      position:absolute;
+      left: 50%;
+      bottom: 12px;
+      width: 16px;
+      height: 10px;
+      border: 2px solid rgba(10,10,12,.78);
+      border-top: none;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      transform: translateX(-50%);
+      opacity:.9;
+    }
+    .mascotText strong{display:block; font-size: 13px; letter-spacing:.1px;}
+    .mascotText span{display:block; font-size: 13px; color: var(--muted); line-height:1.35;}
+
+    /* responsive */
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns: 1fr; }
+      .card{grid-column: span 12;}
+      .contactGrid{grid-template-columns: 1fr;}
     }
 
-    /* ---------- Retro mode (hidden) ---------- */
-    body.retro *{
-      font-family: var(--pixel) !important;
-      letter-spacing: .2px;
-    }
-    body.retro .chip, body.retro .tag, body.retro .pill, body.retro .nav a{
-      border-style: dashed;
+    @media (max-width: 760px){
+      nav ul{display:none;}
+      .navLink{display:none;}
+      .container{width: min(1120px, calc(100% - 30px));}
+      section{padding: 64px 0;}
+      .hero{padding-top: 42px;}
+      .hCard{padding: 20px;}
+      .miniCard{padding: 14px;}
+      .contactValue{max-width: 24ch;}
     }
 
-    /* ---------- Reduced motion ---------- */
     @media (prefers-reduced-motion: reduce){
-      .grain{ animation: none; }
-      .reveal{ opacity: 1; transform: none; }
-      .reveal.on{ transition: none; }
-      .pill, .chip, .project::before, .project{ transition: none !important; }
+      *{scroll-behavior:auto !important;}
+      .reveal{transition:none !important;}
+      .btn, .card, .iconBtn, .logo{transition:none !important;}
+      .heroBg{transition:none !important;}
+      #confetti{display:none !important;}
     }
   </style>
 </head>
 
 <body>
-  <div class="bg" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
+  <a class="skip" href="#home">Skip to content</a>
+  <div class="texture" aria-hidden="true"></div>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <div class="mascot" id="mascot" aria-hidden="true">
+    <div class="mascotCard">
+      <div class="mascotFace"><span class="mascotSmile"></span></div>
+      <div class="mascotText">
+        <strong>Akbyte mode</strong>
+        <span>Still learning, still shipping. Keep building useful things.</span>
+      </div>
+    </div>
+  </div>
 
   <header>
-    <div class="topbar">
-      <div class="brand" id="brandBtn" title="(Hidden) Hold to open Dev Console">
-        <div class="logo" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path d="M7 17v7h4l3-5h4v10h-3V21l-2 3H5V17h2zm10-14h-4l-3 5H6V-2h3v8l2-3h8V3z" fill="currentColor" style="opacity:.0"></path>
-            <path d="M7 19l3-12h4l3 12h-3l-.7-3H10.7L10 19H7zm4.2-5.1h2.6L12.5 8.4l-1.3 5.5z" fill="currentColor"></path>
-          </svg>
-        </div>
-        <div class="brandText">
-          <b>Akbyte</b>
-          <small>Akash Rawat · Web Developer</small>
-        </div>
-      </div>
-
-      <div class="spacer"></div>
-
-      <nav class="nav" aria-label="Primary">
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <div class="ctaRow">
-        <button class="pill" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
-          <span class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
-              <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19" stroke="currentColor" stroke-width="2" opacity=".55"/>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#home" id="brand" aria-label="Go to Home">
+          <div class="logo" id="logo" title="Small things are hidden in plain sight.">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2.5c4.1 0 7.5 3.4 7.5 7.5S16.1 17.5 12 17.5 4.5 14.1 4.5 10 7.9 2.5 12 2.5Zm0 2.2A5.3 5.3 0 0 0 6.7 10 5.3 5.3 0 0 0 12 15.3 5.3 5.3 0 0 0 17.3 10 5.3 5.3 0 0 0 12 4.7Zm0 14.1c3.7 0 7.1 1.7 9 4.6a1.1 1.1 0 0 1-1.8 1.2c-1.5-2.2-4.2-3.6-7.2-3.6s-5.7 1.4-7.2 3.6a1.1 1.1 0 0 1-1.8-1.2c1.9-2.9 5.3-4.6 9-4.6Z"/>
             </svg>
-          </span>
-          <span id="themeLabel">Dark</span>
-        </button>
-
-        <a class="pill primary" href="#contact" title="Contact Akash">
-          <span class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2" opacity=".75"/>
-              <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2"/>
-            </svg>
-          </span>
-          Contact
+          </div>
+          <div class="brandText">
+            <strong>Akash Rawat</strong>
+            <span>aka Akbyte</span>
+          </div>
         </a>
+
+        <nav aria-label="Primary">
+          <ul>
+            <li><a class="navLink" href="#home">Home</a></li>
+            <li><a class="navLink" href="#projects">Projects</a></li>
+            <li><a class="navLink" href="#skills">Skills</a></li>
+            <li><a class="navLink" href="#about">About</a></li>
+            <li><a class="navLink" href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="navRight">
+          <button class="iconBtn" id="themeToggle" type="button" aria-label="Toggle theme" title="Theme">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 18.5a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13Zm0 2.1c-4.75 0-8.6-3.85-8.6-8.6S7.25 3.4 12 3.4s8.6 3.85 8.6 8.6-3.85 8.6-8.6 8.6ZM12 1.6c.6 0 1.1.5 1.1 1.1v1.1a1.1 1.1 0 1 1-2.2 0V2.7c0-.6.5-1.1 1.1-1.1Zm0 18.6c.6 0 1.1.5 1.1 1.1v1.1a1.1 1.1 0 1 1-2.2 0v-1.1c0-.6.5-1.1 1.1-1.1Zm10.4-8.6c0 .6-.5 1.1-1.1 1.1h-1.1a1.1 1.1 0 1 1 0-2.2h1.1c.6 0 1.1.5 1.1 1.1ZM4.9 12.7H3.8a1.1 1.1 0 1 1 0-2.2h1.1a1.1 1.1 0 1 1 0 2.2Zm14.4-7.7a1.1 1.1 0 0 1 0 1.55l-.78.78a1.1 1.1 0 1 1-1.55-1.55l.78-.78a1.1 1.1 0 0 1 1.55 0ZM7.03 17.22a1.1 1.1 0 0 1 0 1.55l-.78.78A1.1 1.1 0 1 1 4.7 18l.78-.78a1.1 1.1 0 0 1 1.55 0Zm12.27 1.55a1.1 1.1 0 0 1-1.55 0l-.78-.78a1.1 1.1 0 0 1 1.55-1.55l.78.78a1.1 1.1 0 0 1 0 1.55ZM7.03 6.78a1.1 1.1 0 0 1-1.55 0l-.78-.78A1.1 1.1 0 1 1 6.25 4.45l.78.78a1.1 1.1 0 0 1 0 1.55Z"/>
+            </svg>
+          </button>
+
+          <a class="btn small ghost" href="#contact" aria-label="Jump to contact">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 2-8 5L4 6h16Zm0 12H4V8l8 5 8-5v10Z"/>
+            </svg>
+            Contact
+          </a>
+        </div>
       </div>
     </div>
   </header>
 
-  <main class="wrap">
+  <main id="home">
     <section class="hero">
-      <div class="card reveal">
-        <div class="cardInner">
-          <div class="badge" title="Black/Yellow + White/Yellow theme. Smooth animations.">
-            <span class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 2 2 7l10 5 10-5-10-5Z" stroke="currentColor" stroke-width="2" opacity=".8"/>
-                <path d="M2 17l10 5 10-5" stroke="currentColor" stroke-width="2" opacity=".55"/>
-                <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" opacity=".55"/>
-              </svg>
-            </span>
-            Clean UI · Fast build · GitHub Pages ready
-          </div>
+      <div class="heroBg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="heroGrid">
+          <div class="hCard reveal">
+            <h1 class="heroTitle">Akash Rawat <span class="aka">(Akbyte)</span></h1>
+            <p class="tagline">Web dev learner building useful tools.</p>
 
-          <h1>Akash Rawat <span style="color:var(--yellow)">(Akbyte)</span></h1>
-          <p class="sub">
-            I build clean websites and web tools. I work with HTML, CSS, JavaScript, Python, React — and I’m still learning coding every day.
-          </p>
-
-          <div class="chips" aria-label="Key skills">
-            <span class="chip">HTML</span>
-            <span class="chip">CSS</span>
-            <span class="chip">JavaScript</span>
-            <span class="chip">Python</span>
-            <span class="chip">React</span>
-          </div>
-
-          <div class="heroActions">
-            <a class="pill primary" href="#projects">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M4 7h16M4 12h10M4 17h16" stroke="currentColor" stroke-width="2"/>
+            <div class="ctaRow">
+              <a class="btn primary" href="#projects">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm0 2v14h10V5H7Zm2 3h6v2H9V8Zm0 4h6v2H9v-2Z"/>
                 </svg>
-              </span>
-              See projects
-            </a>
-
-            <button class="pill" id="playBtn" title="(Hidden) There are multiple ways to start this">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M9 7v10l10-5-10-5Z" stroke="currentColor" stroke-width="2"/>
-                </svg>
-              </span>
-              Play (Easter)
-            </button>
-
-            <button class="pill" id="copyEmailBtn" title="Copy email">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M8 7h10v14H8V7Z" stroke="currentColor" stroke-width="2" opacity=".85"/>
-                  <path d="M6 3h10v4H6V3Z" stroke="currentColor" stroke-width="2"/>
-                </svg>
-              </span>
-              Copy email
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="sideStack">
-        <div class="card reveal">
-          <div class="cardInner">
-            <div class="sectionTitle" style="margin-top:0;">
-              <h2>Quick links</h2>
-              <p>Fast access</p>
-            </div>
-
-            <div class="quick" role="list">
-              <a role="listitem" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noreferrer">
-                <span class="left">
-                  <b>Pack2Zip</b>
-                  <small>Closed-source tool · info repo available</small>
-                </span>
-                <span class="arrow">↗</span>
+                Projects
               </a>
-
-              <a role="listitem" href="https://github.com/Akbyte-was-taken/Pack2zip-info.git" target="_blank" rel="noreferrer">
-                <span class="left">
-                  <b>Pack2Zip Info Repo</b>
-                  <small>How to use + details</small>
-                </span>
-                <span class="arrow">↗</span>
+              <a class="btn" href="#contact">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8l9 6 9-6Zm-2-4a2 2 0 0 1 2 2l-9 6-9-6a2 2 0 0 1 2-2h14Z"/>
+                </svg>
+                Contact
               </a>
-
-              <a role="listitem" href="https://akbyte-was-taken.github.io/CPS-Tester/" target="_blank" rel="noreferrer">
-                <span class="left">
-                  <b>CPS Tester</b>
-                  <small>Click speed tester</small>
-                </span>
-                <span class="arrow">↗</span>
+              <a class="btn ghost" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noreferrer noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/>
+                </svg>
+                Pack2zip Live
               </a>
             </div>
           </div>
-        </div>
 
-        <div class="card reveal">
-          <div class="cardInner">
-            <div class="sectionTitle" style="margin-top:0;">
-              <h2>Status</h2>
-              <p>What I’m into</p>
+          <aside class="heroAside">
+            <div class="miniCard reveal" aria-label="Quick facts">
+              <p class="miniTitle">
+                <span style="display:inline-flex;align-items:center;gap:10px;">
+                  <span class="pill accent">Focus</span>
+                  <span>Shipping small, useful web tools</span>
+                </span>
+              </p>
+              <div class="pillRow" aria-label="Highlights">
+                <span class="pill">Fast UI</span>
+                <span class="pill">Clean UX</span>
+                <span class="pill">Responsive</span>
+                <span class="pill">Offline-ready</span>
+              </div>
             </div>
 
-            <ul class="list">
-              <li>Building small web tools that feel fast and simple.</li>
-              <li>Improving UI, animations, and mobile-first layouts.</li>
-              <li>Learning more about React patterns and better project structure.</li>
-            </ul>
-          </div>
+            <div class="miniCard reveal" aria-label="Skills snapshot">
+              <p class="miniTitle">
+                <span class="pill accent">Skills</span>
+                <span style="color:var(--muted);font-size:12px">and still learning</span>
+              </p>
+              <div class="pillRow">
+                <span class="pill">HTML</span>
+                <span class="pill">CSS</span>
+                <span class="pill">JavaScript</span>
+                <span class="pill">Python</span>
+                <span class="pill">React</span>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
 
     <section id="projects">
-      <div class="sectionTitle">
-        <h2>Projects</h2>
-        <p>Stuff you can open right now</p>
-      </div>
+      <div class="container">
+        <div class="reveal">
+          <h2>Projects</h2>
+          <p class="sectionLead">A couple of things I’ve built and published. I like projects that feel practical and simple to use.</p>
+        </div>
 
-      <div class="grid">
-        <article class="card project col6 reveal">
-          <div class="cardInner">
-            <h3>Pack2Zip</h3>
-            <p>
-              A web tool (closed-source) built by me. Info and usage is documented in the public repo below.
-            </p>
-            <div class="meta">
-              <span class="tag">Web Tool</span>
-              <span class="tag">Closed Source</span>
-              <span class="tag">HTML/CSS/JS</span>
+        <div class="grid">
+          <article class="card reveal" aria-label="Pack2zip project">
+            <div class="cardTop">
+              <div>
+                <h3>Pack2zip</h3>
+              </div>
+              <span class="pill accent" title="Closed source">Closed</span>
+            </div>
+            <p>A closed source tool that helps handle packing to zip workflows. Public docs exist as a separate info repo.</p>
+
+            <div class="tagRow" aria-label="Pack2zip tags">
+              <span class="tag"><strong>Tool</strong></span>
+              <span class="tag">Web</span>
+              <span class="tag">Closed-source</span>
+              <span class="tag">Open repo for docs</span>
+              <span class="tag">pack2zip.dpdns.org</span>
             </div>
 
-            <div class="projBtns">
-              <a class="pill primary" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noreferrer">
-                Open live ↗
+            <div class="btnRow">
+              <a class="btn small primary" href="https://pack2zip.dpdns.org/mrpack-to-zip.html" target="_blank" rel="noreferrer noopener" aria-label="Open Pack2zip live site">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/></svg>
+                Live
               </a>
-              <a class="pill" href="https://github.com/Akbyte-was-taken/Pack2zip-info.git" target="_blank" rel="noreferrer">
-                Info repo ↗
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card project col6 reveal">
-          <div class="cardInner">
-            <h3>CPS Tester</h3>
-            <p>
-              A simple click-per-second tester. Lightweight UI, fast feedback, easy to share.
-            </p>
-            <div class="meta">
-              <span class="tag">Web App</span>
-              <span class="tag">Performance</span>
-              <span class="tag">GitHub Pages</span>
-            </div>
-
-            <div class="projBtns">
-              <a class="pill primary" href="https://akbyte-was-taken.github.io/CPS-Tester/" target="_blank" rel="noreferrer">
-                Open live ↗
+              <a class="btn small ghost" href="https://github.com/Akbyte-was-taken/Pack2zip-info.git" target="_blank" rel="noreferrer noopener" aria-label="Open Pack2zip info repo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.77.6-3.36-1.18-3.36-1.18-.45-1.13-1.1-1.43-1.1-1.43-.9-.62.07-.61.07-.61 1 .07 1.52 1.02 1.52 1.02.88 1.52 2.32 1.08 2.88.83.09-.65.35-1.08.63-1.33-2.21-.25-4.54-1.1-4.54-4.9 0-1.08.39-1.96 1.02-2.65-.1-.25-.44-1.27.1-2.65 0 0 .84-.27 2.75 1.01A9.6 9.6 0 0 1 12 6.8c.85 0 1.7.11 2.5.33 1.9-1.28 2.74-1.01 2.74-1.01.55 1.38.2 2.4.1 2.65.63.69 1.02 1.57 1.02 2.65 0 3.81-2.34 4.65-4.57 4.9.36.31.68.92.68 1.86v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+                Info Repo
               </a>
             </div>
-          </div>
-        </article>
+          </article>
+
+          <article class="card reveal" aria-label="CPS Tester project">
+            <div class="cardTop">
+              <div>
+                <h3>CPS Tester</h3>
+              </div>
+              <span class="pill accent" title="Live web app">Live</span>
+            </div>
+            <p>A lightweight CPS testing web app. Fast interactions, simple UI, and easy to share.</p>
+
+            <div class="tagRow" aria-label="CPS Tester tags">
+              <span class="tag"><strong>Web</strong></span>
+              <span class="tag">Tool</span>
+              <span class="tag">Performance-first</span>
+              <span class="tag">Responsive</span>
+            </div>
+
+            <div class="btnRow">
+              <a class="btn small primary" href="https://akbyte-was-taken.github.io/CPS-Tester/" target="_blank" rel="noreferrer noopener" aria-label="Open CPS Tester live site">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/></svg>
+                Live
+              </a>
+              <button class="btn small ghost" type="button" id="copyCpsLink" aria-label="Copy CPS Tester link">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1Zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H10V7h9v14Z"/></svg>
+                Copy link
+              </button>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
     <section id="skills">
-      <div class="sectionTitle">
-        <h2>Skills</h2>
-        <p>What I use</p>
-      </div>
-
-      <div class="grid">
-        <div class="card col4 reveal">
-          <div class="cardInner">
-            <h3 style="margin:0 0 10px;">Frontend</h3>
-            <div class="chips">
-              <span class="chip">HTML</span>
-              <span class="chip">CSS</span>
-              <span class="chip">JavaScript</span>
-              <span class="chip">Responsive UI</span>
-              <span class="chip">Animations</span>
-            </div>
-          </div>
+      <div class="container">
+        <div class="reveal">
+          <h2>Skills</h2>
+          <p class="sectionLead">Built with a focus on fundamentals: good structure, clean CSS, and careful JavaScript.</p>
         </div>
 
-        <div class="card col4 reveal">
-          <div class="cardInner">
-            <h3 style="margin:0 0 10px;">Programming</h3>
-            <div class="chips">
-              <span class="chip">Python</span>
-              <span class="chip">Logic</span>
-              <span class="chip">Debugging</span>
-              <span class="chip">Problem solving</span>
-            </div>
+        <div class="aboutCard reveal" aria-label="Skills badges">
+          <div class="skillsWrap">
+            <span class="badge"><span class="badgeDot" aria-hidden="true"></span>HTML</span>
+            <span class="badge"><span class="badgeDot" aria-hidden="true"></span>CSS</span>
+            <span class="badge"><span class="badgeDot" aria-hidden="true"></span>JavaScript</span>
+            <span class="badge"><span class="badgeDot" aria-hidden="true"></span>Python</span>
+            <span class="badge"><span class="badgeDot" aria-hidden="true"></span>React</span>
           </div>
-        </div>
-
-        <div class="card col4 reveal">
-          <div class="cardInner">
-            <h3 style="margin:0 0 10px;">Learning</h3>
-            <div class="chips">
-              <span class="chip">React</span>
-              <span class="chip">Better structure</span>
-              <span class="chip">Clean code</span>
-              <span class="chip">UI polish</span>
-            </div>
-          </div>
+          <p class="learnLine">Currently learning coding and improving my React skills while keeping the basics sharp.</p>
         </div>
       </div>
     </section>
 
-    <section id="about" class="about">
-      <div class="sectionTitle">
-        <h2>About</h2>
-        <p>Quick intro</p>
-      </div>
-
-      <div class="grid">
-        <div class="card col8 reveal">
-          <div class="cardInner">
-            <p>
-              I’m Akash Rawat (Akbyte). I like building clean, fast websites and small tools that people can actually use.
-              I focus on UI, smooth interactions, and making things work well on mobile.
-            </p>
-            <ul class="list">
-              <li>I like dark UI with strong accent colors (yellow is my favorite).</li>
-              <li>I keep projects lightweight and easy to deploy (GitHub Pages friendly).</li>
-              <li>I’m learning continuously, improving both design + code.</li>
-            </ul>
-          </div>
+    <section id="about">
+      <div class="container">
+        <div class="reveal">
+          <h2>About</h2>
+          <p class="sectionLead">A bit about how I work.</p>
         </div>
 
-        <div class="card col4 reveal">
-          <div class="cardInner">
-            <h3 style="margin:0 0 10px;">What I can build</h3>
-            <ul class="list">
-              <li>Landing pages</li>
-              <li>UI components</li>
-              <li>Web tools</li>
-              <li>Small interactive apps</li>
-            </ul>
-          </div>
+        <div class="aboutCard reveal">
+          <p>
+            I’m Akash Rawat (Akbyte). I’m learning web development by building real tools, polishing the UI, and paying attention to the small details that make apps feel smooth.
+            I prefer clean layouts, responsive behavior, and performance-first code that stays readable and maintainable.
+          </p>
         </div>
       </div>
     </section>
 
     <section id="contact">
-      <div class="sectionTitle">
-        <h2>Contact</h2>
-        <p>Reach me directly</p>
-      </div>
-
-      <div class="grid">
-        <div class="card col6 reveal">
-          <div class="cardInner">
-            <h3 style="margin:0 0 10px;">Email</h3>
-            <p class="sub" style="margin-bottom:12px;">akbytebusiness@gmail.com</p>
-
-            <div class="projBtns">
-              <a class="pill primary" href="mailto:akbytebusiness@gmail.com?subject=Hey%20Akash%20(Akbyte)">
-                Send email
-              </a>
-              <button class="pill" id="copyAllBtn">Copy contact info</button>
-            </div>
-          </div>
+      <div class="container">
+        <div class="reveal">
+          <h2>Contact</h2>
+          <p class="sectionLead">If you want to talk about a project or collaboration, send a message. This page works offline, and the form stays front-end only.</p>
         </div>
 
-        <div class="card col6 reveal">
-          <div class="cardInner">
-            <h3 style="margin:0 0 10px;">Discord + WhatsApp</h3>
-            <p class="sub" style="margin-bottom:12px;">
-              Discord: <b style="color:var(--yellow)">akkuu_playzz</b><br/>
-              WhatsApp: <b style="color:var(--yellow)">+91 7302017538</b>
-            </p>
+        <div class="contactGrid">
+          <div class="contactCard reveal" aria-label="Contact methods">
+            <h3 style="margin:0 0 8px;font-size:16px;letter-spacing:-.15px;">Direct</h3>
+            <ul class="contactList">
+              <li class="contactItem">
+                <div class="contactLeft">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 2-8 5L4 6h16Zm0 12H4V8l8 5 8-5v10Z"/></svg>
+                  <div>
+                    <p class="contactLabel">Email</p>
+                    <p class="contactValue">akbytebusiness@gmail.com</p>
+                  </div>
+                </div>
+                <button class="copyBtn" type="button" data-copy="akbytebusiness@gmail.com" aria-label="Copy email">Copy</button>
+              </li>
 
-            <div class="projBtns">
-              <a class="pill primary" href="https://wa.me/917302017538" target="_blank" rel="noreferrer">Open WhatsApp ↗</a>
-              <button class="pill" id="copyDiscordBtn">Copy Discord</button>
-            </div>
+              <li class="contactItem">
+                <div class="contactLeft">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.1c-.4-.2-2.4-1.2-2.7-1.3-.3-.1-.6-.2-.8.2-.2.4-1 1.3-1.2 1.6-.2.3-.4.3-.8.1-.4-.2-1.6-.6-3-1.9-1.1-1-1.8-2.2-2-2.6-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.2-.4.3-.6.1-.2 0-.5-.1-.7-.2-.2-.8-2.1-1.1-2.8-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.5-.3.4-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.4c.2.2 2.4 3.7 5.9 5.2.8.3 1.5.5 2 .6.8.3 1.6.2 2.2.1.7-.1 2.4-1 2.8-2 .3-1 .3-1.9.2-2.1-.1-.2-.4-.3-.8-.5ZM12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm0 18.2a8.1 8.1 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.1 8.1 0 1 1 12 20.2Z"/></svg>
+                  <div>
+                    <p class="contactLabel">WhatsApp</p>
+                    <p class="contactValue">+91 7302017538</p>
+                  </div>
+                </div>
+                <button class="copyBtn" type="button" data-copy="+91 7302017538" aria-label="Copy WhatsApp number">Copy</button>
+              </li>
+
+              <li class="contactItem">
+                <div class="contactLeft">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4a4 4 0 0 0-3.3 1.7A4.6 4.6 0 0 0 12 4c-2.4 0-4.4 2-4.4 4.4 0 .3 0 .7.1 1C6 9.7 4.8 11.1 4.8 13c0 2.6 2.3 4.7 5.2 4.7h.1c.7 1.4 2.2 2.4 4 2.4 1.9 0 3.5-1.1 4.2-2.7 2.5-.3 4.5-2.2 4.5-4.6 0-2-1.3-3.7-3.2-4.3.1-.3.1-.7.1-1C20.7 5.5 20 4.8 19 4Zm-5 13.8c-1.3 0-2.4-.9-2.7-2.1l-.2-.8-.8.2c-.2 0-.5.1-.7.1-1.9 0-3.4-1.2-3.4-2.7 0-1.2.9-2.2 2.3-2.6l1-.2-.3-1c-.1-.3-.1-.6-.1-.9C9.1 6.7 10.4 5.4 12 5.4c1.2 0 2.3.7 2.8 1.8l.5 1 .9-.6c.5-.3 1.1-.5 1.8-.5.2 0 .5 0 .7.1-.1 1-.7 1.8-1.5 2.3l-.9.5.7.8c.4.5.6 1 .6 1.6 0 1.6-1.4 2.8-3.1 2.8-.3 0-.6 0-.9-.1l-.9-.2v.9c0 1.1.9 2 2 2Z"/></svg>
+                  <div>
+                    <p class="contactLabel">Discord</p>
+                    <p class="contactValue">akkuu_playzz</p>
+                  </div>
+                </div>
+                <button class="copyBtn" type="button" data-copy="akkuu_playzz" aria-label="Copy Discord username">Copy</button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="contactCard reveal" aria-label="Contact form">
+            <h3 style="margin:0 0 8px;font-size:16px;letter-spacing:-.15px;">Message</h3>
+
+            <form id="contactForm">
+              <div class="field">
+                <label for="name">Your name</label>
+                <input id="name" name="name" type="text" autocomplete="name" placeholder="Name" required />
+              </div>
+
+              <div class="field">
+                <label for="from">Your email (optional)</label>
+                <input id="from" name="from" type="email" autocomplete="email" placeholder="you@example.com" />
+              </div>
+
+              <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Write your message..." required></textarea>
+              </div>
+
+              <div class="formRow">
+                <button class="btn primary" type="submit">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 21 23 12 2 3v7l15 2-15 2v7Z"/></svg>
+                  Send (mailto)
+                </button>
+                <button class="btn" type="button" id="copyMessage">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1Zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H10V7h9v14Z"/></svg>
+                  Copy message
+                </button>
+                <div class="hint" aria-label="Hint">
+                  Hint: try a classic sequence… <kbd>↑</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>↓</kbd>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </section>
 
     <footer>
-      <div class="footerRow">
-        <div>
-          © <span id="yearBtn" title="(Hidden) Triple-click me">2026</span> Akash Rawat (Akbyte)
-        </div>
-        <div class="footerLinks">
-          <a href="#projects">Projects</a>
-          <a href="#skills">Skills</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+      <div class="container">
+        <div class="footerRow">
+          <small id="copyright">© <span id="year"></span> Akash Rawat</small>
+          <div class="footerHint">
+            <div class="tinyHintBtn" title="Some interactions are hidden.">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 15.2a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4ZM12 6.1c2 0 3.6 1.2 3.6 3.2 0 1.4-.8 2.3-1.8 2.9-.8.5-1.1.9-1.1 1.6v.3h-1.8v-.4c0-1.4.6-2.2 1.7-2.9.8-.5 1.2-.9 1.2-1.6 0-.9-.7-1.5-1.8-1.5-1 0-1.7.4-2.2 1.2L8.4 9.8C9.2 7.5 10.7 6.1 12 6.1Z"/></svg>
+            </div>
+            <small>Built for speed, not noise.</small>
+          </div>
         </div>
       </div>
     </footer>
   </main>
 
-  <!-- GAME MODAL (Easter egg #1: Konami code / button / terminal command) -->
-  <div class="modal" id="gameModal" aria-hidden="true" role="dialog" aria-label="Akbyte Mini Game">
-    <div class="modalBox">
-      <div class="modalHead">
-        <div>
-          <b>Akbyte Arcade</b>
-          <small>Collect yellow coins, avoid red blocks</small>
-        </div>
-        <button class="xbtn" data-close="gameModal" aria-label="Close">Close</button>
-      </div>
-
-      <div class="gameWrap">
-        <div class="gameTop">
-          <div class="scoreBox">
-            <span>Score: <span class="n" id="score">0</span></span>
-            <span>Best: <span class="n" id="best">0</span></span>
-            <span>Lives: <span class="n" id="lives">3</span></span>
-          </div>
-
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <button class="pill primary" id="startGame">Start</button>
-            <button class="pill" id="pauseGame">Pause</button>
-            <button class="pill" id="resetGame">Reset</button>
-          </div>
-        </div>
-
-        <canvas id="game" width="900" height="360" aria-label="Game canvas"></canvas>
-        <div class="hint">
-          Controls: <b>Arrow keys</b> / <b>WASD</b> on desktop. On mobile, drag anywhere on the canvas.<br/>
-          Hidden starts: Konami code · Dev Console command · Play button.
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- DEV CONSOLE MODAL (Easter egg #2: hold logo) -->
-  <div class="modal" id="termModal" aria-hidden="true" role="dialog" aria-label="Akbyte Dev Console">
-    <div class="modalBox">
-      <div class="modalHead">
-        <div>
-          <b>Akbyte Dev Console</b>
-          <small>Type <span style="font-family:var(--mono); color:var(--yellow)">help</span></small>
-        </div>
-        <button class="xbtn" data-close="termModal" aria-label="Close">Close</button>
-      </div>
-      <div class="term">
-        <div class="termOut" id="termOut"></div>
-        <div class="termRow">
-          <input id="termIn" type="text" autocomplete="off" spellcheck="false" placeholder="help · projects · contact · play · theme · clear" />
-          <button id="termRun">Run</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="toastWrap" id="toasts" aria-live="polite" aria-atomic="true"></div>
 
   <script>
     (() => {
-      const $ = (q, el=document) => el.querySelector(q);
-      const $$ = (q, el=document) => [...el.querySelectorAll(q)];
+      const $ = (sel, root=document) => root.querySelector(sel);
+      const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+      const EMAIL = "akbytebusiness@gmail.com";
+      const WHATSAPP = "+91 7302017538";
+      const DISCORD = "akkuu_playzz";
+
       const html = document.documentElement;
-
-      // ---------------- Theme toggle ----------------
       const themeToggle = $("#themeToggle");
-      const themeLabel = $("#themeLabel");
+      const yearEl = $("#year");
+      const toasts = $("#toasts");
+      const brand = $("#brand");
+      const logo = $("#logo");
+      const mascot = $("#mascot");
+      const confettiCanvas = $("#confetti");
 
-      function applyTheme(t){
+      // year
+      yearEl.textContent = String(new Date().getFullYear());
+
+      // theme
+      const storageKey = "akbyte_theme";
+      const getPreferred = () => window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+
+      const applyTheme = (t) => {
         html.setAttribute("data-theme", t);
-        themeLabel.textContent = t === "light" ? "Light" : "Dark";
-        const themeColor = t === "light" ? "#ffffff" : "#0b0c10";
-        const meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute("content", themeColor);
-        localStorage.setItem("akbyte_theme", t);
-      }
+        const themeColor = t === "light" ? "#ffffff" : "#0b0b0c";
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        if (metaTheme) metaTheme.setAttribute("content", themeColor);
+      };
 
-      const savedTheme = localStorage.getItem("akbyte_theme");
-      if (savedTheme === "light" || savedTheme === "dark") applyTheme(savedTheme);
-      else {
-        const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
-        applyTheme(prefersLight ? "light" : "dark");
-      }
+      const saved = localStorage.getItem(storageKey);
+      const initial = saved === "light" || saved === "dark" ? saved : getPreferred();
+      applyTheme(initial);
 
       themeToggle.addEventListener("click", () => {
-        const t = html.getAttribute("data-theme") === "light" ? "dark" : "light";
-        applyTheme(t);
+        const current = html.getAttribute("data-theme") === "light" ? "light" : "dark";
+        const next = current === "light" ? "dark" : "light";
+        applyTheme(next);
+        localStorage.setItem(storageKey, next);
+        toast("Theme updated", next === "light" ? "Light mode on." : "Dark mode on.");
       });
 
-      // ---------------- Smooth scroll (nice but not heavy) ----------------
+      // smooth in-page nav (keep lightweight; native is fine, but adjust for older browsers)
       $$('a[href^="#"]').forEach(a => {
         a.addEventListener("click", (e) => {
           const id = a.getAttribute("href");
@@ -982,673 +1252,321 @@
           if (!target) return;
           e.preventDefault();
           target.scrollIntoView({ behavior: "smooth", block: "start" });
-          history.replaceState(null, "", id);
+          history.pushState(null, "", id);
         });
       });
 
-      // ---------------- Reveal on scroll ----------------
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(en => {
-          if (en.isIntersecting) {
-            en.target.classList.add("on");
-            io.unobserve(en.target);
+      // scroll reveal
+      const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const revealEls = $$(".reveal");
+      if (!prefersReduce && "IntersectionObserver" in window) {
+        const io = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              io.unobserve(entry.target);
+            }
           }
-        });
-      }, { threshold: 0.12 });
-
-      $$(".reveal").forEach(el => io.observe(el));
-
-      // ---------------- Copy buttons ----------------
-      const email = "akbytebusiness@gmail.com";
-      const whatsapp = "+91 7302017538";
-      const discord = "akkuu_playzz";
-      const allInfo = `Email: ${email}\nWhatsApp: ${whatsapp}\nDiscord: ${discord}`;
-
-      function copyText(text){
-        navigator.clipboard.writeText(text).then(() => toast("Copied"));
+        }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+        revealEls.forEach(el => io.observe(el));
+      } else {
+        revealEls.forEach(el => el.classList.add("in"));
       }
 
-      const toastEl = document.createElement("div");
-      toastEl.style.cssText = `
-        position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
-        padding: 10px 12px; border-radius: 999px;
-        border: 1px solid rgba(255,212,0,0.45);
-        background: linear-gradient(180deg, rgba(255,212,0,0.22), rgba(255,176,0,0.10));
-        color: ${getComputedStyle(document.body).color};
-        box-shadow: 0 18px 60px rgba(0,0,0,.25);
-        font-size: 13px; opacity: 0; pointer-events: none;
-        transition: opacity .2s ease, transform .2s ease;
-        z-index: 200;
-      `;
-      document.body.appendChild(toastEl);
+      // subtle parallax-like hero background
+      const heroBg = document.querySelector(".heroBg");
+      const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+      let raf = 0;
+      const setShift = (x, y) => {
+        html.style.setProperty("--heroShiftX", `${x}px`);
+        html.style.setProperty("--heroShiftY", `${y}px`);
+      };
 
-      let toastT;
-      function toast(msg){
-        clearTimeout(toastT);
-        toastEl.textContent = msg;
-        toastEl.style.opacity = "1";
-        toastEl.style.transform = "translateX(-50%) translateY(-6px)";
-        toastT = setTimeout(() => {
-          toastEl.style.opacity = "0";
-          toastEl.style.transform = "translateX(-50%) translateY(0px)";
-        }, 950);
-      }
+      const onMove = (clientX, clientY) => {
+        if (!heroBg || prefersReduce) return;
+        const w = window.innerWidth || 1;
+        const h = Math.max(window.innerHeight, 1);
+        const dx = (clientX / w - 0.5);
+        const dy = (clientY / h - 0.5);
+        const x = clamp(dx * 10, -10, 10);
+        const y = clamp(dy * 10, -10, 10);
+        setShift(x, y);
+      };
 
-      $("#copyEmailBtn").addEventListener("click", () => copyText(email));
-      $("#copyAllBtn").addEventListener("click", () => copyText(allInfo));
-      $("#copyDiscordBtn").addEventListener("click", () => copyText(discord));
+      const moveHandler = (e) => {
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => onMove(e.clientX, e.clientY));
+      };
 
-      // ---------------- Modals ----------------
-      function openModal(id){
-        const m = document.getElementById(id);
-        if (!m) return;
-        m.classList.add("show");
-        m.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-      }
-      function closeModal(id){
-        const m = document.getElementById(id);
-        if (!m) return;
-        m.classList.remove("show");
-        m.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-      }
+      window.addEventListener("mousemove", moveHandler, { passive: true });
 
-      document.addEventListener("click", (e) => {
-        const btn = e.target.closest("[data-close]");
-        if (!btn) return;
-        closeModal(btn.getAttribute("data-close"));
-      });
-      ["gameModal","termModal"].forEach(id => {
-        const m = document.getElementById(id);
-        m.addEventListener("click", (e) => {
-          if (e.target === m) closeModal(id);
+      // copy helpers
+      const copyText = async (text) => {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch {
+          // fallback
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          let ok = false;
+          try { ok = document.execCommand("copy"); } catch { ok = false; }
+          document.body.removeChild(ta);
+          return ok;
+        }
+      };
+
+      $$(".copyBtn").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const val = btn.getAttribute("data-copy") || "";
+          if (!val) return;
+          const ok = await copyText(val);
+          toast(ok ? "Copied" : "Copy failed", ok ? val : "Your browser blocked clipboard access.");
         });
       });
 
-      // ---------------- Easter egg starts ----------------
-      // Start #1: Button
-      $("#playBtn").addEventListener("click", () => {
-        openModal("gameModal");
-        ensureGame();
-        toast("Arcade opened");
+      $("#copyCpsLink")?.addEventListener("click", async () => {
+        const url = "https://akbyte-was-taken.github.io/CPS-Tester/";
+        const ok = await copyText(url);
+        toast(ok ? "Copied link" : "Copy failed", ok ? "CPS Tester link copied." : "Clipboard access blocked.");
       });
 
-      // Start #2: Konami code
+      // contact form
+      const form = $("#contactForm");
+      const copyMessageBtn = $("#copyMessage");
+
+      const makeMailto = ({ name, from, message }) => {
+        const subject = `Portfolio contact — ${name}`;
+        const lines = [
+          `Name: ${name}`,
+          from ? `Email: ${from}` : `Email: (not provided)`,
+          `WhatsApp: ${WHATSAPP}`,
+          `Discord: ${DISCORD}`,
+          "",
+          message.trim()
+        ];
+        const body = lines.join("\n");
+        const href = `mailto:${encodeURIComponent(EMAIL)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        return { href, subject, body };
+      };
+
+      const getFormData = () => {
+        const name = String($("#name").value || "").trim();
+        const from = String($("#from").value || "").trim();
+        const message = String($("#message").value || "").trim();
+        return { name, from, message };
+      };
+
+      copyMessageBtn.addEventListener("click", async () => {
+        const { name, from, message } = getFormData();
+        if (!name || !message) {
+          toast("Add details", "Fill your name and message first.");
+          return;
+        }
+        const { body } = makeMailto({ name, from, message });
+        const ok = await copyText(body);
+        toast(ok ? "Copied" : "Copy failed", ok ? "Message copied to clipboard." : "Clipboard access blocked.");
+      });
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const { name, from, message } = getFormData();
+        if (!name || !message) {
+          toast("Missing info", "Please fill your name and message.");
+          return;
+        }
+
+        const pack = makeMailto({ name, from, message });
+
+        const copied = await copyText(pack.body);
+        toast("Ready to send", copied ? "Opening your mail app. Message also copied." : "Opening your mail app.");
+
+        // open mailto
+        window.location.href = pack.href;
+
+        // keep the message, but soften the form a bit for next send
+        form.querySelectorAll("input, textarea").forEach(el => el.blur());
+      });
+
+      // toast
+      const toast = (title, message) => {
+        const el = document.createElement("div");
+        el.className = "toast";
+        el.innerHTML = `
+          <div class="toastIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1 14.2 6-6-1.4-1.4L11 12.4 8.4 9.8 7 11.2l4 4Z"/></svg>
+          </div>
+          <div class="toastBody">
+            <div class="toastTitle"></div>
+            <p class="toastMsg"></p>
+          </div>
+          <button class="toastClose" type="button" aria-label="Close notification">
+            <svg viewBox="0 0 24 24"><path d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3 1.4 1.4Z"/></svg>
+          </button>
+        `;
+        el.querySelector(".toastTitle").textContent = title;
+        el.querySelector(".toastMsg").textContent = message;
+
+        const close = () => {
+          el.classList.remove("show");
+          setTimeout(() => el.remove(), 240);
+        };
+
+        el.querySelector(".toastClose").addEventListener("click", close);
+
+        toasts.appendChild(el);
+        requestAnimationFrame(() => el.classList.add("show"));
+
+        setTimeout(close, 3600);
+      };
+
+      // Easter egg #1: Logo 7 clicks -> Dev mode
+      let logoClicks = 0;
+      let logoTimer = 0;
+      logo.addEventListener("click", (e) => {
+        e.preventDefault();
+        logoClicks++;
+        clearTimeout(logoTimer);
+        logoTimer = setTimeout(() => (logoClicks = 0), 900);
+
+        if (logoClicks === 7) {
+          logoClicks = 0;
+          html.classList.toggle("dev");
+          toast("Dev mode", html.classList.contains("dev") ? "Accent intensity increased." : "Accent intensity reset.");
+        }
+      });
+
+      // Easter egg #2: typing "akbyte" -> floating mascot
+      const typeBuf = [];
+      const keyMax = 12;
+      let mascotTimer = 0;
+
+      const showMascot = () => {
+        clearTimeout(mascotTimer);
+        mascot.classList.add("show");
+        mascotTimer = setTimeout(() => mascot.classList.remove("show"), 2800);
+      };
+
+      // Easter egg #3: Konami code -> confetti
       const konami = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
-      let kIndex = 0;
+      const konamiBuf = [];
+      let confettiRunning = false;
+
+      const fireConfetti = () => {
+        if (prefersReduce || confettiRunning) return;
+        confettiRunning = true;
+
+        const c = confettiCanvas;
+        const ctx = c.getContext("2d", { alpha: true });
+        const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+
+        const resize = () => {
+          c.width = Math.floor(window.innerWidth * dpr);
+          c.height = Math.floor(window.innerHeight * dpr);
+          c.style.width = window.innerWidth + "px";
+          c.style.height = window.innerHeight + "px";
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        };
+        resize();
+
+        const colors = [
+          "rgba(246,196,69,0.95)",
+          "rgba(255,216,109,0.92)",
+          "rgba(255,255,255,0.85)",
+          "rgba(200,200,210,0.75)"
+        ];
+
+        const rand = (a, b) => a + Math.random() * (b - a);
+        const parts = [];
+        const count = Math.min(120, Math.floor((window.innerWidth * window.innerHeight) / 16000) + 60);
+
+        for (let i = 0; i < count; i++) {
+          parts.push({
+            x: rand(0, window.innerWidth),
+            y: rand(-20, window.innerHeight * 0.2),
+            vx: rand(-2.2, 2.2),
+            vy: rand(2.0, 5.2),
+            r: rand(2.2, 4.6),
+            rot: rand(0, Math.PI * 2),
+            vr: rand(-0.18, 0.18),
+            color: colors[(Math.random() * colors.length) | 0],
+            life: rand(70, 120)
+          });
+        }
+
+        const start = performance.now();
+        c.classList.add("on");
+
+        const tick = () => {
+          const now = performance.now();
+          const t = (now - start) / 1000;
+
+          ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+          for (const p of parts) {
+            p.vy += 0.03; // gravity
+            p.x += p.vx;
+            p.y += p.vy;
+            p.rot += p.vr;
+            p.life -= 1;
+
+            // wrap a little
+            if (p.x < -10) p.x = window.innerWidth + 10;
+            if (p.x > window.innerWidth + 10) p.x = -10;
+
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot);
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.r, -p.r * 0.6, p.r * 2, p.r * 1.2);
+            ctx.restore();
+          }
+
+          // end condition
+          const alive = parts.some(p => p.life > 0 && p.y < window.innerHeight + 60);
+          if (alive && t < 2.4) {
+            requestAnimationFrame(tick);
+          } else {
+            c.classList.remove("on");
+            confettiRunning = false;
+          }
+        };
+
+        window.addEventListener("resize", resize, { passive: true, once: true });
+        requestAnimationFrame(tick);
+        toast("Unlocked", "You found a hidden interaction.");
+      };
+
       window.addEventListener("keydown", (e) => {
+        if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+        // typing buffer for "akbyte"
         const key = e.key;
-        const want = konami[kIndex];
-        if (!want) { kIndex = 0; return; }
+        if (key && key.length === 1) {
+          typeBuf.push(key.toLowerCase());
+          while (typeBuf.length > keyMax) typeBuf.shift();
+          if (typeBuf.join("").includes("akbyte")) showMascot();
+        }
 
-        if (key.toLowerCase() === want.toLowerCase()){
-          kIndex++;
-          if (kIndex === konami.length){
-            kIndex = 0;
-            openModal("gameModal");
-            ensureGame();
-            toast("Konami unlocked");
-          }
-        } else {
-          kIndex = 0;
+        // konami buffer
+        konamiBuf.push(e.key);
+        while (konamiBuf.length > konami.length) konamiBuf.shift();
+        const match = konami.every((k, i) => konamiBuf[i] === k);
+        if (match) {
+          konamiBuf.length = 0;
+          fireConfetti();
         }
       });
 
-      // Start #3: Hold logo to open dev console (and from there: play)
-      const brandBtn = $("#brandBtn");
-      let holdTimer = null;
-      let held = false;
-
-      const startHold = () => {
-        held = false;
-        holdTimer = setTimeout(() => {
-          held = true;
-          openModal("termModal");
-          termFocus();
-          termPrintBanner();
-          toast("Dev Console");
-        }, 520);
-      };
-      const endHold = () => {
-        if (holdTimer) clearTimeout(holdTimer);
-        holdTimer = null;
-      };
-      brandBtn.addEventListener("mousedown", startHold);
-      brandBtn.addEventListener("touchstart", startHold, {passive:true});
-      window.addEventListener("mouseup", endHold);
-      window.addEventListener("touchend", endHold);
-
-      // Easter egg #3: Triple-click year toggles retro mode
-      const yearBtn = $("#yearBtn");
-      let clickTimes = [];
-      yearBtn.addEventListener("click", () => {
-        const now = performance.now();
-        clickTimes.push(now);
-        clickTimes = clickTimes.filter(t => now - t < 450);
-        if (clickTimes.length >= 3){
-          document.body.classList.toggle("retro");
-          toast(document.body.classList.contains("retro") ? "Retro ON" : "Retro OFF");
-          clickTimes = [];
-        }
-      });
-
-      // ---------------- Set year ----------------
-      yearBtn.textContent = String(new Date().getFullYear());
-
-      // ---------------- Dev Console ----------------
-      const termOut = $("#termOut");
-      const termIn = $("#termIn");
-      const termRun = $("#termRun");
-      let bannerPrinted = false;
-
-      function termFocus(){ setTimeout(() => termIn.focus(), 60); }
-
-      function termWrite(line){
-        termOut.textContent += line + "\n";
-        termOut.scrollTop = termOut.scrollHeight;
-      }
-
-      function termPrintBanner(){
-        if (bannerPrinted) return;
-        bannerPrinted = true;
-        termOut.textContent = "";
-        termWrite("akbyte://console v1");
-        termWrite("Type: help");
-        termWrite("");
-      }
-
-      function runCmd(raw){
-        const cmd = (raw || "").trim();
-        if (!cmd) return;
-        termWrite("> " + cmd);
-
-        const c = cmd.toLowerCase();
-
-        if (c === "help"){
-          termWrite("Commands:");
-          termWrite("  projects  - open projects section");
-          termWrite("  contact   - open contact section");
-          termWrite("  play      - open arcade");
-          termWrite("  theme     - toggle theme");
-          termWrite("  retro     - toggle retro mode");
-          termWrite("  clear     - clear console");
-          termWrite("");
-          return;
-        }
-        if (c === "clear"){
-          termOut.textContent = "";
-          return;
-        }
-        if (c === "projects"){
-          closeModal("termModal");
-          document.getElementById("projects").scrollIntoView({behavior:"smooth"});
-          toast("Projects");
-          return;
-        }
-        if (c === "contact"){
-          closeModal("termModal");
-          document.getElementById("contact").scrollIntoView({behavior:"smooth"});
-          toast("Contact");
-          return;
-        }
-        if (c === "play"){
-          openModal("gameModal");
-          ensureGame();
-          toast("Arcade opened");
-          return;
-        }
-        if (c === "theme"){
-          themeToggle.click();
-          termWrite("Theme: " + html.getAttribute("data-theme"));
-          return;
-        }
-        if (c === "retro"){
-          document.body.classList.toggle("retro");
-          termWrite("Retro: " + (document.body.classList.contains("retro") ? "ON" : "OFF"));
-          return;
-        }
-
-        termWrite("Unknown command. Type: help");
-      }
-
-      termRun.addEventListener("click", () => {
-        termPrintBanner();
-        runCmd(termIn.value);
-        termIn.value = "";
-        termFocus();
-      });
-      termIn.addEventListener("keydown", (e) => {
-        if (e.key === "Enter"){
-          termRun.click();
-        }
-      });
-
-      // ---------------- Game (Canvas) ----------------
-      const canvas = $("#game");
-      const ctx = canvas.getContext("2d");
-
-      const state = {
-        ready: false,
-        running: false,
-        paused: false,
-        score: 0,
-        best: Number(localStorage.getItem("akbyte_best") || "0"),
-        lives: 3,
-        t: 0,
-        last: 0,
-        w: canvas.width,
-        h: canvas.height,
-        player: { x: 110, y: 180, r: 12, vx: 0, vy: 0, speed: 250 },
-        coins: [],
-        blocks: [],
-        touch: { active:false, x:0, y:0 }
-      };
-
-      $("#best").textContent = String(state.best);
-
-      function ensureGame(){
-        if (state.ready) return;
-        state.ready = true;
-        resetGame(true);
-        drawSplash();
-      }
-
-      function drawSplash(){
-        ctx.clearRect(0,0,state.w,state.h);
-        drawGrid();
-        drawTitle("AKBYTE ARCADE", "Press Start");
-        drawPlayer();
-      }
-
-      function resetGame(soft){
-        state.score = 0;
-        state.lives = 3;
-        state.player.x = 110;
-        state.player.y = state.h/2;
-        state.player.vx = 0;
-        state.player.vy = 0;
-        state.coins = [];
-        state.blocks = [];
-        state.t = 0;
-        state.last = performance.now();
-        state.paused = false;
-
-        for (let i=0;i<6;i++) spawnCoin();
-        for (let i=0;i<4;i++) spawnBlock();
-
-        $("#score").textContent = "0";
-        $("#lives").textContent = "3";
-        if (!soft) toast("Reset");
-      }
-
-      function startGame(){
-        if (!state.ready) ensureGame();
-        if (!state.running){
-          state.running = true;
-          state.last = performance.now();
-          requestAnimationFrame(loop);
-        }
-        state.paused = false;
-        toast("Start");
-      }
-      function pauseGame(){
-        if (!state.running) return;
-        state.paused = !state.paused;
-        toast(state.paused ? "Paused" : "Resume");
-      }
-
-      $("#startGame").addEventListener("click", startGame);
-      $("#pauseGame").addEventListener("click", pauseGame);
-      $("#resetGame").addEventListener("click", () => {
-        resetGame(false);
-        drawSplash();
-      });
-
-      // Keyboard input
-      const keys = new Set();
-      window.addEventListener("keydown", (e) => {
-        const k = e.key.toLowerCase();
-        if (["arrowup","arrowdown","arrowleft","arrowright","w","a","s","d"].includes(k)){
-          keys.add(k);
-          if (state.running) e.preventDefault();
-        }
-        if (k === " " && $("#gameModal").classList.contains("show")){
-          startGame();
-          e.preventDefault();
-        }
-      }, {passive:false});
-      window.addEventListener("keyup", (e) => keys.delete(e.key.toLowerCase()));
-
-      // Touch drag on canvas
-      const toPos = (ev) => {
-        const r = canvas.getBoundingClientRect();
-        const x = (ev.clientX - r.left) * (state.w / r.width);
-        const y = (ev.clientY - r.top) * (state.h / r.height);
-        return {x,y};
-      };
-      canvas.addEventListener("pointerdown", (e) => {
-        canvas.setPointerCapture(e.pointerId);
-        state.touch.active = true;
-        const p = toPos(e);
-        state.touch.x = p.x; state.touch.y = p.y;
-        startGame();
-      });
-      canvas.addEventListener("pointermove", (e) => {
-        if (!state.touch.active) return;
-        const p = toPos(e);
-        state.touch.x = p.x; state.touch.y = p.y;
-      });
-      canvas.addEventListener("pointerup", () => state.touch.active = false);
-      canvas.addEventListener("pointercancel", () => state.touch.active = false);
-
-      function spawnCoin(){
-        state.coins.push({
-          x: rand(220, state.w-30),
-          y: rand(20, state.h-20),
-          r: 9,
-          wob: rand(0, Math.PI*2)
-        });
-      }
-
-      function spawnBlock(){
-        const size = rand(18, 26);
-        state.blocks.push({
-          x: rand(260, state.w-40),
-          y: rand(40, state.h-40),
-          w: size*1.2,
-          h: size,
-          vx: rand(-90, 120),
-          vy: rand(-120, 120)
-        });
-      }
-
-      function loop(now){
-        if (!state.running) return;
-        const dt = Math.min(0.033, (now - state.last) / 1000);
-        state.last = now;
-
-        if (!state.paused){
-          state.t += dt;
-          update(dt);
-        }
-        render();
-        requestAnimationFrame(loop);
-      }
-
-      function update(dt){
-        const p = state.player;
-
-        // controls
-        let ax = 0, ay = 0;
-        if (keys.has("arrowleft") || keys.has("a")) ax -= 1;
-        if (keys.has("arrowright") || keys.has("d")) ax += 1;
-        if (keys.has("arrowup") || keys.has("w")) ay -= 1;
-        if (keys.has("arrowdown") || keys.has("s")) ay += 1;
-
-        // touch steering: follow finger
-        if (state.touch.active){
-          const dx = state.touch.x - p.x;
-          const dy = state.touch.y - p.y;
-          const len = Math.hypot(dx, dy) || 1;
-          ax = dx / len;
-          ay = dy / len;
-        }
-
-        const sp = p.speed;
-        p.vx = lerp(p.vx, ax * sp, 0.18);
-        p.vy = lerp(p.vy, ay * sp, 0.18);
-        p.x += p.vx * dt;
-        p.y += p.vy * dt;
-
-        // clamp
-        p.x = clamp(p.x, p.r + 6, state.w - p.r - 6);
-        p.y = clamp(p.y, p.r + 6, state.h - p.r - 6);
-
-        // move blocks + bounce
-        for (const b of state.blocks){
-          b.x += b.vx * dt;
-          b.y += b.vy * dt;
-
-          if (b.x < 12 || b.x + b.w > state.w - 12) b.vx *= -1;
-          if (b.y < 12 || b.y + b.h > state.h - 12) b.vy *= -1;
-
-          b.x = clamp(b.x, 12, state.w - b.w - 12);
-          b.y = clamp(b.y, 12, state.h - b.h - 12);
-        }
-
-        // coins wobble
-        for (const c of state.coins){
-          c.wob += dt * 4.2;
-        }
-
-        // collide coin
-        for (let i=state.coins.length-1; i>=0; i--){
-          const c = state.coins[i];
-          const d = dist(p.x, p.y, c.x, c.y);
-          if (d < p.r + c.r){
-            state.coins.splice(i,1);
-            state.score += 10;
-            $("#score").textContent = String(state.score);
-            spawnCoin();
-
-            // ramp difficulty a bit
-            if (state.score % 50 === 0){
-              spawnBlock();
-              toast("Speed up");
-            }
-          }
-        }
-
-        // collide block
-        for (const b of state.blocks){
-          const hit = circleRect(p.x, p.y, p.r, b.x, b.y, b.w, b.h);
-          if (hit){
-            state.lives -= 1;
-            $("#lives").textContent = String(state.lives);
-            // knockback
-            p.x = 110;
-            p.y = rand(60, state.h-60);
-            p.vx = 0; p.vy = 0;
-
-            if (state.lives <= 0){
-              endGame();
-              return;
-            }
-          }
-        }
-      }
-
-      function endGame(){
-        state.paused = true;
-        state.running = true; // keep render
-        if (state.score > state.best){
-          state.best = state.score;
-          localStorage.setItem("akbyte_best", String(state.best));
-          $("#best").textContent = String(state.best);
-          toast("New best");
-        } else {
-          toast("Game over");
-        }
-      }
-
-      function render(){
-        ctx.clearRect(0,0,state.w,state.h);
-        drawGrid();
-        drawCoins();
-        drawBlocks();
-        drawPlayer();
-
-        if (!state.running){
-          drawTitle("AKBYTE ARCADE", "Press Start");
-        }
-        if (state.paused){
-          const msg = (state.lives <= 0) ? "Game Over" : "Paused";
-          drawOverlay(msg, "Press Start to continue");
-        }
-      }
-
-      function drawGrid(){
-        // subtle grid
-        ctx.save();
-        ctx.globalAlpha = 0.20;
-        ctx.lineWidth = 1;
-
-        const isLight = html.getAttribute("data-theme") === "light";
-        ctx.strokeStyle = isLight ? "rgba(0,0,0,0.18)" : "rgba(255,255,255,0.18)";
-        for (let x=0; x<=state.w; x+=40){
-          ctx.beginPath();
-          ctx.moveTo(x,0); ctx.lineTo(x,state.h);
-          ctx.stroke();
-        }
-        for (let y=0; y<=state.h; y+=40){
-          ctx.beginPath();
-          ctx.moveTo(0,y); ctx.lineTo(state.w,y);
-          ctx.stroke();
-        }
-        ctx.restore();
-      }
-
-      function drawPlayer(){
-        const p = state.player;
-        ctx.save();
-
-        // glow
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r+10, 0, Math.PI*2);
-        ctx.fillStyle = "rgba(255,212,0,0.10)";
-        ctx.fill();
-
-        // body
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-        ctx.fillStyle = "rgba(255,212,0,0.92)";
-        ctx.fill();
-
-        // highlight
-        ctx.beginPath();
-        ctx.arc(p.x - 4, p.y - 5, 4, 0, Math.PI*2);
-        ctx.fillStyle = "rgba(255,255,255,0.65)";
-        ctx.fill();
-
-        ctx.restore();
-      }
-
-      function drawCoins(){
-        ctx.save();
-        for (const c of state.coins){
-          const bob = Math.sin(c.wob) * 3;
-          ctx.beginPath();
-          ctx.arc(c.x, c.y + bob, c.r+8, 0, Math.PI*2);
-          ctx.fillStyle = "rgba(255,212,0,0.10)";
-          ctx.fill();
-
-          ctx.beginPath();
-          ctx.arc(c.x, c.y + bob, c.r, 0, Math.PI*2);
-          ctx.fillStyle = "rgba(255,212,0,0.95)";
-          ctx.fill();
-
-          ctx.beginPath();
-          ctx.arc(c.x - 2, c.y + bob - 2, 2.6, 0, Math.PI*2);
-          ctx.fillStyle = "rgba(255,255,255,0.55)";
-          ctx.fill();
-        }
-        ctx.restore();
-      }
-
-      function drawBlocks(){
-        ctx.save();
-        for (const b of state.blocks){
-          ctx.fillStyle = "rgba(255,92,122,0.22)";
-          roundRect(ctx, b.x-6, b.y-6, b.w+12, b.h+12, 10);
-          ctx.fill();
-
-          ctx.fillStyle = "rgba(255,92,122,0.80)";
-          roundRect(ctx, b.x, b.y, b.w, b.h, 10);
-          ctx.fill();
-        }
-        ctx.restore();
-      }
-
-      function drawTitle(a,b){
-        ctx.save();
-        ctx.fillStyle = "rgba(0,0,0,0.35)";
-        ctx.fillRect(0,0,state.w,state.h);
-
-        ctx.textAlign = "center";
-        ctx.fillStyle = "rgba(255,212,0,0.98)";
-        ctx.font = "700 34px system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
-        ctx.fillText(a, state.w/2, state.h/2 - 10);
-
-        ctx.fillStyle = "rgba(255,255,255,0.72)";
-        ctx.font = "500 14px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace";
-        ctx.fillText(b, state.w/2, state.h/2 + 20);
-        ctx.restore();
-      }
-
-      function drawOverlay(a,b){
-        ctx.save();
-        ctx.fillStyle = "rgba(0,0,0,0.40)";
-        ctx.fillRect(0,0,state.w,state.h);
-
-        ctx.textAlign = "center";
-        ctx.fillStyle = "rgba(255,255,255,0.92)";
-        ctx.font = "700 28px system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
-        ctx.fillText(a, state.w/2, state.h/2 - 10);
-
-        ctx.fillStyle = "rgba(255,212,0,0.90)";
-        ctx.font = "500 13px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace";
-        ctx.fillText(b, state.w/2, state.h/2 + 18);
-        ctx.restore();
-      }
-
-      function roundRect(ctx, x, y, w, h, r){
-        const rr = Math.min(r, w/2, h/2);
-        ctx.beginPath();
-        ctx.moveTo(x+rr, y);
-        ctx.arcTo(x+w, y, x+w, y+h, rr);
-        ctx.arcTo(x+w, y+h, x, y+h, rr);
-        ctx.arcTo(x, y+h, x, y, rr);
-        ctx.arcTo(x, y, x+w, y, rr);
-        ctx.closePath();
-      }
-
-      function circleRect(cx, cy, cr, rx, ry, rw, rh){
-        const nx = clamp(cx, rx, rx+rw);
-        const ny = clamp(cy, ry, ry+rh);
-        const dx = cx - nx, dy = cy - ny;
-        return (dx*dx + dy*dy) <= cr*cr;
-      }
-
-      function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
-      function lerp(a,b,t){ return a + (b-a)*t; }
-      function rand(a,b){ return a + Math.random()*(b-a); }
-      function dist(x1,y1,x2,y2){ return Math.hypot(x2-x1, y2-y1); }
-
-      // open game when modal opens (only draws splash)
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape"){
-          if ($("#gameModal").classList.contains("show")) closeModal("gameModal");
-          if ($("#termModal").classList.contains("show")) closeModal("termModal");
-        }
-      });
-
-      // Keep game responsive on resize (CSS handles size; logic uses internal width/height)
-      const resize = () => {
-        const r = canvas.getBoundingClientRect();
-        // nothing needed for internal coords; we keep fixed internal resolution for stability
-      };
-      window.addEventListener("resize", resize);
-
-      // default: draw splash once ready if user opens via konami
-      const gameModal = $("#gameModal");
-      const mo = new MutationObserver(() => {
-        if (gameModal.classList.contains("show")){
-          ensureGame();
-          drawSplash();
-        }
-      });
-      mo.observe(gameModal, { attributes:true, attributeFilter:["class"] });
+      // brand click -> subtle nudge
+      brand.addEventListener("auxclick", () => {
+        toast("Quick tip", "Keyboard shortcuts exist here.");
+      }, { passive: true });
 
     })();
   </script>
